@@ -1,0 +1,1 @@
+export const categoryData = ["Beverages", "Desserts", "Main Course", "Salads", "Starters"]
