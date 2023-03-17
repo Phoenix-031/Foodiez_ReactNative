@@ -15,10 +15,7 @@ const FilterModal = ({visible, setSortModal}) => {
         <Text>Sort</Text>
 
         <View>
-            <View>
-                <Text>Rating : High to Low</Text>
-                <RadioButton.Android value="Rating: High to Low" status='checked'/>
-            </View>
+            
         </View>
         
         </View>

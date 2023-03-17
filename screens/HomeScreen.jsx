@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, StatusBar, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, ScrollView, Pressable } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import {Chip, Avatar, Searchbar} from 'react-native-paper'
 import { useFonts } from 'expo-font'
+import { useNavigation } from '@react-navigation/native'
 
 import { imageList } from '../data/imageList'
 import { categoryData } from '../data/categoryData'
@@ -11,13 +12,23 @@ import { allrestaurants } from '../data/allrestaurants'
 import FilterModal from '../components/FilterModal'
 import RestaurantCard from '../components/RestaurantCard'
 
-import { AntDesign } from '@expo/vector-icons'
+import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons'
+import LanguageModal from '../components/LanguageModal'
+
+// import I18n from 'react-native-i18n'
+// import { en } from '../i18n/en'
+// import { bn } from '../i18n/bn'
 
 const HomeScreen = () => {
 
+    const navigation =useNavigation()
     const [user,setUser] = useState("Federico")
     const [category, setCategory] = useState(categoryData)
     const [number,setNumber] = useState('652')
+    const [languagemodal, setLanguageModal] = useState(false)
+    // const [locale, setLocale] = useState("en")
+
+    // I18n.translations = {en , bn}
 
     const [sortmodal, setSortModal] = useState(false)
 
@@ -32,7 +43,23 @@ const HomeScreen = () => {
   return (
         <SafeAreaProvider style={styles.container}>
             <StatusBar hidden />
-            <Text>Home</Text>
+
+            <Pressable style={{width:"90%", paddingBottom:10, flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
+                <Pressable style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}
+                     onPress={() => navigation.navigate('MapScreen')}
+                >
+                    <Entypo name="location-pin" size={24} color="red" />
+                    <Text style={{fontFamily:"Poppins-SemiBold", fontSize:16, color:"#e5e1d8"}}>Delivery</Text>
+                </Pressable>
+
+                <Pressable
+                    onPress={() => setLanguageModal((languagemodal) => !languagemodal)}
+                >
+                    <FontAwesome name="language" size={24} color="#e5e1d8" style={{ paddingVertical:10, paddingHorizontal:10, borderRadius:8, backgroundColor:"#1c1c27"}} />
+                </Pressable>
+                
+            </Pressable>
+            
             <Searchbar placeholder='Restaurant name / Dish' style={{borderRadius:10, width:"90%"}} />
 
             <View style={{width:"90%", marginTop:10}}>
@@ -63,7 +90,7 @@ const HomeScreen = () => {
                     {
                         imageList.map((item, index) => {
                             return(
-                                <Avatar.Image style={{marginLeft:10}} size={70} source={{uri: item}} />
+                                <Avatar.Image style={{marginLeft:10}} size={70} source={{uri: item}} key={index} />
                             )
                         })
                     }
@@ -71,7 +98,7 @@ const HomeScreen = () => {
             </View>
 
             <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:15, letterSpacing:3}}>{number} RESTAURANTS</Text>
+                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:15, letterSpacing:3}}>{number} I18n.t('restaurant')</Text>
             </View>
 
             <View>
@@ -88,6 +115,10 @@ const HomeScreen = () => {
 
             {
                 sortmodal ? <FilterModal visible={sortmodal} setSortModal={setSortModal} /> : null
+            }
+
+            {
+                languagemodal ? <LanguageModal languagemodal={languagemodal} setLanguageModal={setLanguageModal} /> : null
             }
             
         </SafeAreaProvider>
