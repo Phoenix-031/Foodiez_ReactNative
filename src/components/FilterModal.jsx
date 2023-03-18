@@ -1,12 +1,46 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Modal from 'react-native-modal'
 import { useFonts } from 'expo-font'
 import { RadioButton, Button } from 'react-native-paper'
 
+import { Pressable } from 'react-native'
+
+import useStore from '../store/store'
+
 const FilterModal = ({visible, setSortModal}) => {
 
+  const {sortbyRatingHTL , sortbyRatingLTH, sortbyPriceHTL, sortbyPriceLTH, sortbyDeliveryTime, sortbyDistance} = useStore((state) => ({
+    sortbyRatingHTL: state.sortbyRatingHTL,
+    sortbyRatingLTH: state.sortbyRatingLTH,
+    sortbyPriceHTL: state.sortbyPriceHTL,
+    sortbyPriceLTH: state.sortbyPriceLTH,
+    sortbyDeliveryTime: state.sortbyDeliveryTime,
+    sortbyDistance: state.sortbyDistance,
+  }))
+
   const [innitialValue, setInnitialValue] = React.useState('first')
+
+  useEffect(() => {
+    if(innitialValue === "RHTL"){
+      sortbyRatingHTL()
+    }
+    else if(innitialValue === "RLTH"){
+      sortbyRatingLTH()
+    }
+    else if(innitialValue === "PHTL"){
+      sortbyPriceHTL()
+    }
+    else if(innitialValue === "PLTH"){
+      sortbyPriceLTH()
+    }
+    else if(innitialValue === "DTLTH"){
+      sortbyDeliveryTime()
+    }
+    else if(innitialValue === "DLTH"){
+      sortbyDistance()
+    }
+  }, [innitialValue])
   
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -37,10 +71,10 @@ const FilterModal = ({visible, setSortModal}) => {
                 <RadioButton value="PHTL" />
                 <Text style={{fontFamily:"Poppins-SemiBold", color:"#ef845d", fontSize:15}}>Price: High to Low</Text>
               </View>
-              <View style={{ paddingVertical:10, paddingHorizontal:10,flexDirection:"row", alignItems:"center"}}>
+              <Pressable style={{ paddingVertical:10, paddingHorizontal:10,flexDirection:"row", alignItems:"center"}}>
                 <RadioButton value="RLTH" />
                 <Text style={{fontFamily:"Poppins-SemiBold", color:"#ef845d", fontSize:15}}>Rating: Low to High</Text>
-              </View>
+              </Pressable>
               <View style={{ paddingVertical:10, paddingHorizontal:10,flexDirection:"row", alignItems:"center"}}>
                 <RadioButton value="RHTL" />
                 <Text style={{fontFamily:"Poppins-SemiBold", color:"#ef845d", fontSize:15}}>Rating: High to Low</Text>

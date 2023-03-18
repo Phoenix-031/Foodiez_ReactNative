@@ -42,7 +42,7 @@ const RestaurantCard = ({item}) => {
         paddingVertical:12,
     }}>
         <Text style={{fontFamily:"Poppins-Medium"}}>{item.time_to_deliver} . {item.distance}km</Text>
-        <Text style={{fontFamily:"Poppins-Medium"}}>{item.price}</Text>
+        <Text style={{fontFamily:"Poppins-Medium"}}>Rs {item.price}</Text>
       </View>
 
       <View style={{position:"absolute", width:"100%", flexDirection:"row",justifyContent:"space-between", alignItems:"center",paddingHorizontal:10,backgroundColor:"rgba(52, 52, 52, 0.6)", paddingVertical:10, bottom:47  }}>

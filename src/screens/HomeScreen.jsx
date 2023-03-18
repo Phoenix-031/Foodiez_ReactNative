@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, StatusBar, ScrollView, Pressable } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import {Chip, Avatar, Searchbar} from 'react-native-paper'
@@ -33,6 +33,10 @@ const HomeScreen = () => {
     const {restaurantsList} = useStore((state) => ({
         restaurantsList: state.restaurantsList
     }))
+
+    // useEffect(() => {
+    //     console.log("state changed")
+    // }, [restaurantsList])
 
     // I18n.translations = {en , bn}
 
@@ -125,7 +129,7 @@ const HomeScreen = () => {
             {
                 languagemodal ? <LanguageModal languagemodal={languagemodal} setLanguageModal={setLanguageModal} /> : null
             }
-            
+
         </SafeAreaProvider>
   )
 }
