@@ -16,6 +16,8 @@ import OrderList from './src/screens/OrderList';
 import FavouriteOrders from './src/screens/FavouriteOrders';
 import LikedRestaurantsScreen from './src/screens/LikedRestaurantsScreen';
 
+import { Entypo } from '@expo/vector-icons';
+
 const Stack = createNativeStackNavigator()
 
 
