@@ -86,18 +86,6 @@ const [fontsLoaded] = useFonts({
     <CartStack.Navigator>
       <CartStack.Screen name="CartScreen" component={CartScreen} 
             options={{
-              headerShown: true,
-              headerBackVisible:true,
-              title:"Cart",
-              headerStyle:{
-                backgroundColor:"#1c1c27",
-                borderBottomWidth:0,
-              },
-              headerTitleStyle:{
-                fontFamily:"Poppins-SemiBold",
-                fontSize:18,
-              },
-              headerTintColor:"#e5e1d8",
               header:({navigation, route}) => {
                 // console.log(route, navigation)
                 return(

@@ -47,18 +47,6 @@ export default function App() {
           <Stack.Screen name="SignUp" component={RegisterScreen} />
           <Stack.Screen name="RestaurantScreen" component={RestaurantScreen} 
             options={{
-              headerShown: true,
-              headerBackVisible:true,
-              title:"Restaurant",
-              headerStyle:{
-                backgroundColor:"#1c1c27",
-                borderBottomWidth:0,
-              },
-              headerTitleStyle:{
-                fontFamily:"Poppins-SemiBold",
-                fontSize:18,
-              },
-              headerTintColor:"#e5e1d8",
               header:({navigation, route}) => {
                 // console.log(route, navigation)
                 return(
@@ -84,37 +72,74 @@ export default function App() {
           <Stack.Screen name="MapScreen" component={MapScreen} />
           <Stack.Screen name="OrderHistoryScreen" component={OrderList} 
           options={{
-            headerShown: true,
-            headerBackVisible:true,
-            title:"Order History",
-            headerStyle:{
-              backgroundColor:"#1c1c27",
-            },
-            headerTitleStyle:{
-              fontFamily:"Poppins-SemiBold",
-              fontSize:18,
-            },
-            headerTintColor:"#e5e1d8",
+            header:({navigation, route}) => {
+              // console.log(route, navigation)
+              return(
+                  <View style={{
+                  backgroundColor:"#1c1c27",
+                  borderBottomWidth:0,
+                  paddingHorizontal:20,
+                  paddingTop:20,
+                  flexDirection:"row",
+                  justifyContent:"flex-start",
+                  alignItems:"center",
+                  gap:6,
+                  }}>
+                      <Pressable
+                      onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>{route.name}</Text>
+                  </View>
+              )
+            }
           }} />
           <Stack.Screen name="ReviewScreen" component={ReviewScreen}
           options={{
             headerShown: true,
-            headerBackTitleVisible: false
+            header:({navigation, route}) => {
+              // console.log(route, navigation)
+              return(
+                  <View style={{
+                  backgroundColor:"#1c1c27",
+                  borderBottomWidth:0,
+                  paddingHorizontal:20,
+                  paddingTop:20,
+                  flexDirection:"row",
+                  justifyContent:"flex-start",
+                  alignItems:"center",
+                  gap:6,
+                  }}>
+                      <Pressable
+                      onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>{route.name}</Text>
+                  </View>
+              )
+            }
           }}
            />
            <Stack.Screen name="FavouriteOrders" component={FavouriteOrders} 
             options={{
-              headerShown: true,
-              headerBackVisible:true,
-              title:"Order History",
-              headerStyle:{
-                backgroundColor:"#1c1c27",
-              },
-              headerTitleStyle:{
-                fontFamily:"Poppins-SemiBold",
-                fontSize:18,
-              },
-              headerTintColor:"#e5e1d8",
+            header:({navigation, route}) => {
+              // console.log(route, navigation)
+              return(
+                  <View style={{
+                  backgroundColor:"#1c1c27",
+                  borderBottomWidth:0,
+                  paddingHorizontal:20,
+                  paddingTop:20,
+                  flexDirection:"row",
+                  justifyContent:"flex-start",
+                  alignItems:"center",
+                  gap:6,
+                  }}>
+                      <Pressable
+                      onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>{route.name}</Text>
+                  </View>
+              )
+            }
             }} 
            />
            <Stack.Screen name="LikedRestaurantsScreen" component={LikedRestaurantsScreen}

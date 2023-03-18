@@ -15,6 +15,8 @@ import RestaurantCard from '../components/RestaurantCard'
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons'
 import LanguageModal from '../components/LanguageModal'
 
+import useStore from '../store/store'
+
 // import I18n from 'react-native-i18n'
 // import { en } from '../i18n/en'
 // import { bn } from '../i18n/bn'
@@ -27,6 +29,10 @@ const HomeScreen = () => {
     const [number,setNumber] = useState('652')
     const [languagemodal, setLanguageModal] = useState(false)
     // const [locale, setLocale] = useState("en")
+
+    const {restaurantsList} = useStore((state) => ({
+        restaurantsList: state.restaurantsList
+    }))
 
     // I18n.translations = {en , bn}
 
@@ -44,7 +50,7 @@ const HomeScreen = () => {
         <SafeAreaProvider style={styles.container}>
             <StatusBar hidden />
 
-            <Pressable style={{width:"90%", paddingBottom:10, flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
+            <View style={{width:"90%", paddingBottom:10, flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
                 <Pressable style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}
                      onPress={() => navigation.navigate('MapScreen')}
                 >
@@ -58,7 +64,7 @@ const HomeScreen = () => {
                     <FontAwesome name="language" size={24} color="#e5e1d8" style={{ paddingVertical:10, paddingHorizontal:10, borderRadius:8, backgroundColor:"#1c1c27"}} />
                 </Pressable>
                 
-            </Pressable>
+            </View>
             
             <Searchbar placeholder='Restaurant name / Dish' style={{borderRadius:10, width:"90%"}} />
 
@@ -70,7 +76,7 @@ const HomeScreen = () => {
                         <Text>Sort </Text>
                         <AntDesign name="down" size={14} color="black" />
                     </Chip>
-                    <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Nearest</Chip>
+                    <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={(e) => console.log()}>Nearest</Chip>
                     <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Rating 4.0+</Chip>
                     <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Pure Veg</Chip>
                     <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>New Arraivals</Chip>
@@ -103,7 +109,7 @@ const HomeScreen = () => {
 
             <View>
                 {
-                    allrestaurants.map((item, index) => {
+                    restaurantsList.map((item, index) => {
                         return(
                             <RestaurantCard item={item} />
                         )
@@ -120,7 +126,6 @@ const HomeScreen = () => {
             {
                 languagemodal ? <LanguageModal languagemodal={languagemodal} setLanguageModal={setLanguageModal} /> : null
             }
-            
         </SafeAreaProvider>
   )
 }

@@ -2,12 +2,24 @@ import React from 'react'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable } from 'react-native'
 import CartItem from '../components/CartItem'
 import {Button, Badge} from 'react-native-paper'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
 import { cartData } from '../data/cartData'
 
+import useStore from '../store/store'
+
 const CartScreen = () => {
 
+  const {cartItems,totalPrice, addToCart, removeFromCart, clearCart, setTotalPrice, incrementItem, decrementItem} = useStore((state) => ({
+    cartItems: state.cartItems,
+    totalPrice: state.totalPrice,
+    addToCart: state.addToCart,
+    removeFromCart: state.removeFromCart,
+    clearCart: state.clearCart,
+    setTotalPrice: state.setTotalPrice,
+    incrementItem: state.incrementItem,
+    decrementItem: state.decrementItem
+  }))
+  
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
         'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
@@ -20,27 +32,15 @@ const CartScreen = () => {
 
   
   return (
-    <SafeAreaProvider style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1,width:'100%'}}>
+    <SafeAreaView style={styles.container}>
+
+      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1,width:'100%',}}>
 
         {
-          cartData.map((item, index) => {
+          cartItems.map((item, index) => {
             return <CartItem key={index} item={item} />
           })
         }
-
-        <View>
-          <View style={{marginTop:10}}>
-            <Text style={{fontSize:20, color:"#ffad16"}}>Have a promo code?</Text>
-            
-            <View style={styles.promocontainer}>
-              <TextInput style={styles.promocodeinput} placeholder="Enter Promo Code" placeholderTextColor="#e5e1d8"/>
-              <Button mode='contained' uppercase buttonColor='#ffad16' style={styles.promobutton}>
-                Apply
-              </Button>
-            </View>
-          </View>
-        </View>
 
         <View style={{gap:10}}>
           <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>Order Summary</Text>
@@ -59,16 +59,19 @@ const CartScreen = () => {
 
           </View>
 
-          <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", width:"100%"}}>
+          <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", width:"100%", }}>
             <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>Total</Text>
             <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. 45.90</Text>
           </View>
         </View>
+        <View>
+        </View>
+
       </ScrollView>
-      <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold", marginBottom:10}} buttonColor="#ef845d">
+      <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d">
         Proceed to Checkout
       </Button>
-    </SafeAreaProvider>
+    </SafeAreaView>
   )
 }
 
@@ -77,10 +80,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingHorizontal:20,
         paddingTop:25,
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap:5,
-        backgroundColor:"#1c1c27"
+        backgroundColor:"#1c1c27",
     },
     promocodeinput:{
         backgroundColor:"#28293d",

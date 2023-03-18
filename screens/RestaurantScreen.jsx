@@ -3,12 +3,17 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Pressable }
 import { useFonts } from 'expo-font';
 import { Chip } from 'react-native-paper';
 
-import { restairantItems } from '../data/restaurantItems';
 import RestaurantItemCard from '../components/RestaurantItemCard';
 
 import { useNavigation } from '@react-navigation/native';
 
+import useStore from '../store/store';
+
 const RestaurantScreen = () => {
+
+  const {menuItems} = useStore((state) => ({
+    menuItems: state.menuItems,
+  }))
 
   const navigation = useNavigation()
 
@@ -61,7 +66,7 @@ const RestaurantScreen = () => {
               /> */}
 
               {
-                restairantItems.map((item, index) => {
+                menuItems.map((item, index) => {
                   return <RestaurantItemCard item={item} key={index}  />
                 })
               }

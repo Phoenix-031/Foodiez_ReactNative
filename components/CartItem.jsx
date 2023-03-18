@@ -4,20 +4,26 @@ import { useFonts } from 'expo-font'
 import { Badge } from 'react-native-paper'
 import useStore from '../store/store'
 
+import { MaterialIcons } from '@expo/vector-icons'
+
 const CartItem = ({item}) => {
 
     const [quan,setQuan] = useState(Number(item.quantity))
     // const [image_uri,setImage_uri] = useState(item.image_uri)
     const image_uri = item.image_uri
 
-    const {cartItems, removeFromCart} = useStore((state) => ({
+    const {cartItems, removeFromCart, incrementItem, decrementItem} = useStore((state) => ({
         cartItems: state.cartItems,
         removeFromCart: state.removeFromCart,
+        incrementItem: state.incrementItem,
+        decrementItem: state.decrementItem,
     }))
 
     useEffect(() => {
         if(!quan)
-        removeFromCart(itemname)
+            removeFromCart(item.id)
+        else
+            incrementItem(item.id,quan)
             
     }, [quan])
 
@@ -52,13 +58,19 @@ const CartItem = ({item}) => {
             <Text style={{color:"#e5e1d8"}}>Rs. {item.price}</Text>
 
         <View style={styles.cartquantity}>
+            <MaterialIcons name="delete" size={26} color="#D10000" 
+            onPress={() => removeFromCart(item.id)}
+            />
             <View style={{flexDirection:"row",gap:20}}>
                 <Badge style={{backgroundColor:"#ffad16", borderRadius:5, color:"#000", fontSize:20, width: 30 ,height: 30, justifyContent:"center", alignItems:"center"}}
                 onPress={() => setQuan((quan) => quan + 1)}
                 >+</Badge>
                 <Text style={{color:"#e5e1d8", fontSize:20}}>{quan}</Text>
                 <Badge style={{backgroundColor:"#ffad16", borderRadius:5, color:"#000", fontSize:20, width: 30 ,height: 30, justifyContent:"center", alignItems:"center"}}
-                onPress={() => setQuan((quan) => quan - 1)}
+                onPress={() => {
+                    // console.log(quan)
+                        setQuan((quan) => quan - 1)
+                }}
                 >-</Badge>
             </View>
         </View>
@@ -80,7 +92,8 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         alignItems:'center',
         marginBottom:5,
-        backgroundColor:"#28293d"
+        backgroundColor:"#28293d",
+        marginBottom:10,
     },
     cartimg:{
         width: 100,
@@ -101,7 +114,8 @@ const styles = StyleSheet.create({
     },
     cartquantity:{
         flexDirection: 'row',
-        justifyContent:'flex-end',
+        justifyContent:'space-between',
+        width:"100%",
         alignItems:'center',
         flex:1,
         alignSelf:'flex-end',

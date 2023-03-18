@@ -19,7 +19,7 @@ const LikedRestaurantsScreen = () => {
                 {
                     allrestaurants.map((item, index) => {
                         return(
-                            <LikedRestaurantCard item={item} />
+                            <LikedRestaurantCard item={item} key={index}/>
                         )
                     })
                 }
