@@ -9,19 +9,19 @@ import { useFonts } from 'expo-font'
 
 const RestaurantItemCard = ({item}) => {
 
-    const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-    });
+const [fontsLoaded] = useFonts({
+    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+});
 
-    const {addToCart, totalPrice, setTotalPrice} = useStore((state) => ({
-        addToCart: state.addToCart,
-        totalPrice: state.totalPrice,
-        setTotalPrice: state.setTotalPrice,
-    }))
+const {addToCart, totalPrice, setTotalPrice} = useStore((state) => ({
+    addToCart: state.addToCart,
+    totalPrice: state.totalPrice,
+    setTotalPrice: state.setTotalPrice,
+}))
   
   return (
     <View style={{width:"100%", marginBottom:10, borderRadius:15, paddingVertical:12, paddingHorizontal:10, flexDirection:"row", gap:8, backgroundColor:"#28293d"}}>

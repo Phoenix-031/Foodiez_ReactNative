@@ -6,12 +6,9 @@ import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen } from './src/screens';
-import ReviewScreen from './src/screens/ReviewScreen';
 import { useFonts } from 'expo-font';
-import Header from './src/components/Header';
-import MapScreen from './src/screens/MapScreen';
-import OrderList from './src/screens/OrderList';
+
+import {MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen } from './src/screens';
 
 import FavouriteOrders from './src/screens/FavouriteOrders';
 import LikedRestaurantsScreen from './src/screens/LikedRestaurantsScreen';
@@ -33,7 +30,6 @@ export default function App() {
   
   return (
     <PaperProvider>
-      {/* <Navigation /> */}
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={RootNavigator}

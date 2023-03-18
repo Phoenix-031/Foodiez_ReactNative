@@ -9,8 +9,7 @@ import { imageList } from '../data/imageList'
 import { categoryData } from '../data/categoryData'
 import { allrestaurants } from '../data/allrestaurants'
 
-import FilterModal from '../components/FilterModal'
-import RestaurantCard from '../components/RestaurantCard'
+import { RestaurantCard, FilterModal } from '../components'
 
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons'
 import LanguageModal from '../components/LanguageModal'

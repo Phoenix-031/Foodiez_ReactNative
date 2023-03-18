@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Pressable }
 import { useFonts } from 'expo-font';
 import { Chip } from 'react-native-paper';
 
-import RestaurantItemCard from '../components/RestaurantItemCard';
+import { RestaurantItemCard } from '../components';
 
 import { useNavigation } from '@react-navigation/native';
 

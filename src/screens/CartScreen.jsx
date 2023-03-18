@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable 
 import CartItem from '../components/CartItem'
 import {Button, Badge} from 'react-native-paper'
 import { useFonts } from 'expo-font'
-import { cartData } from '../data/cartData'
 
 import useStore from '../store/store'
 

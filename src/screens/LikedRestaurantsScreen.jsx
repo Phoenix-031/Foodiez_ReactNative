@@ -2,11 +2,10 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import RestaurantCard from '../components/RestaurantCard'
 
 import { allrestaurants } from '../data/allrestaurants'
-import LikedRestaurantCard from '../components/LikedRestaurantCard'
 
+import { RestaurantCard, LikedRestaurantCard } from '../components'
 
 const LikedRestaurantsScreen = () => {
   return (

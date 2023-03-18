@@ -2,9 +2,9 @@ import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Searchbar, Button, Surface, Chip } from 'react-native-paper'
-import ReviewCard from '../components/ReviewCard'
 import { useFonts } from 'expo-font'
 
+import { ReviewCard } from '../components'
 
 const ReviewScreen = () => {
 
