@@ -26,7 +26,7 @@ export const restairantItems = [
         title:"sdakljfgh ldsfg d",
         tag:"Best Seller",
         name:"Chicken Tikka",
-        price:823,
+        price:923,
         ratings:"4",
         number_ratings:"45",
         description:"askj;d askljf  jklasdjkfg asdkljf as kljrhgh ;lakdjg ajlkdfhg aljkdgv asfdg",

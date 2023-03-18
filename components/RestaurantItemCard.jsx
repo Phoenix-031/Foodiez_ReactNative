@@ -34,25 +34,22 @@ const RestaurantItemCard = ({item}) => {
                 {/* <Badge style={{width:20, height:20, color:"#e5e1d8"}}>{item.rating}</Badge> */}
                 <Text style={{color:"#e5e1d8"}}>{item.number_ratings} ratings</Text>
             </View>
-            <Text style={{fontFamily:"Poppins-Bold", color:"#e5e1d8"}}>{item.price}</Text>
+            <Text style={{fontFamily:"Poppins-Bold", color:"#e5e1d8"}}>Rs {item.price}</Text>
             <Text style={{fontFamily:"Poppins-SemiBold", color:"#e5e1d8"}}>{item.description}</Text>
         </View>
         <View style={{flex:1}}>
             <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
             <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
             onPress = {() => {
-              console.log(item.price)
-              console.log(item)
-              // console.log(String(item.price).split(" ")[2])
-            // setTotalPrice(Number(totalPrice) + Number(item.price))
-            // addToCart({
-            //     id: item.id,
-            //     itemname: item.title,
-            //     description: item.description,
-            //     price: Number(item.price),
-            //     image_uri: item.image_uri,
-            //     quantity: 1,
-            // })
+            setTotalPrice(Number(totalPrice) + Number(item.price))
+            addToCart({
+                id: item.id,
+                itemname: item.title,
+                description: item.description,
+                price: Number(item.price),
+                image_uri: item.image_uri,
+                quantity: 1,
+            })
             }}
             >ADD</Button>
         </View>

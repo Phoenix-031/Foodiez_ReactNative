@@ -9,6 +9,9 @@ import { useNavigation } from '@react-navigation/native';
 
 import useStore from '../store/store';
 
+import { restairantItems } from '../data/restaurantItems'
+
+
 const RestaurantScreen = () => {
 
   const {menuItems, addToCart} = useStore((state) => ({
@@ -66,7 +69,7 @@ const RestaurantScreen = () => {
               /> */}
 
               {
-                menuItems.map((item, index) => {
+                restairantItems.map((item, index) => {
                   return <RestaurantItemCard item={item} key={index}  />
                 })
               }
