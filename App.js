@@ -1,23 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView, Pressable, Text, View } from 'react-native';
-import { Navigation, RootNavigator } from './navigation';
+import {  RootNavigator } from './src/navigation';
 import { Provider as PaperProvider } from 'react-native-paper';
 import React from 'react';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen } from './screens';
-import ReviewScreen from './screens/ReviewScreen';
+import { HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen } from './src/screens';
+import ReviewScreen from './src/screens/ReviewScreen';
 import { useFonts } from 'expo-font';
-import Header from './components/Header';
-import MapScreen from './screens/MapScreen';
-import OrderList from './screens/OrderList';
+import Header from './src/components/Header';
+import MapScreen from './src/screens/MapScreen';
+import OrderList from './src/screens/OrderList';
 
-import { Entypo } from '@expo/vector-icons';
-import FavouriteOrders from './screens/FavouriteOrders';
-import LikedRestaurantsScreen from './screens/LikedRestaurantsScreen';
+import FavouriteOrders from './src/screens/FavouriteOrders';
+import LikedRestaurantsScreen from './src/screens/LikedRestaurantsScreen';
 
 const Stack = createNativeStackNavigator()
+
 
 export default function App() {
 
@@ -162,3 +162,6 @@ export default function App() {
     </PaperProvider>
   );
 }
+
+
+

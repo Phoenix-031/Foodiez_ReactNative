@@ -12,18 +12,18 @@ const LoginScreen = () => {
   const navigation = useNavigation()
 
     const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-        'SourceSerifPro-Regular': require('../assets/fonts/SourceSerifPro-Regular.ttf'),
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
 
     
     });
   
   return (
     <SafeAreaProvider style={styles.container}>
-        {/* <Image source={require('../assets/logo.png')} style={styles.logo} /> */}
+        {/* <Image source={require('../../assets/logo.png')} style={styles.logo} /> */}
         <View style={{width:"90%"}}>
           <View style={{ width:'100%'}}>
             <Text style={{fontFamily:"Poppins-Medium", fontSize:20, color:"#ffad16"}}>Login</Text>

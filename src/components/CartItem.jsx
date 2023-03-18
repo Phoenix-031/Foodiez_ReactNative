@@ -30,21 +30,21 @@ const CartItem = ({item}) => {
     }, [quan])
 
     const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-        'Robotto-Regular': require('../assets/fonts/Roboto-Regular.ttf'),
-        'Robotto-Medium': require('../assets/fonts/Roboto-Medium.ttf'),
-        'Robotto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
-        'Robotto-Light': require('../assets/fonts/Roboto-Light.ttf'),
-        'Enriqueta-Regular': require('../assets/fonts/Enriqueta-Regular.ttf'),
-        'Enriqueta-Bold': require('../assets/fonts/Enriqueta-Bold.ttf'),
-        'Enriqueta-Medium': require('../assets/fonts/Enriqueta-Medium.ttf'),
-        'Enriqueta-SemiBold': require('../assets/fonts/Enriqueta-SemiBold.ttf'),
-        'SourceSerifPro-Regular': require('../assets/fonts/SourceSerifPro-Regular.ttf'),
-        'SourceSerifPro-Bold': require('../assets/fonts/SourceSerifPro-Bold.ttf'),
-        'SourceSerifPro-SemiBold': require('../assets/fonts/SourceSerifPro-SemiBold.ttf'),
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+        'Robotto-Light': require('../../assets/fonts/Roboto-Light.ttf'),
+        'Enriqueta-Regular': require('../../assets/fonts/Enriqueta-Regular.ttf'),
+        'Enriqueta-Bold': require('../../assets/fonts/Enriqueta-Bold.ttf'),
+        'Enriqueta-Medium': require('../../assets/fonts/Enriqueta-Medium.ttf'),
+        'Enriqueta-SemiBold': require('../../assets/fonts/Enriqueta-SemiBold.ttf'),
+        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+        'SourceSerifPro-Bold': require('../../assets/fonts/SourceSerifPro-Bold.ttf'),
+        'SourceSerifPro-SemiBold': require('../../assets/fonts/SourceSerifPro-SemiBold.ttf'),
     
     });
 

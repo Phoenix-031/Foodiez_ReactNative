@@ -4,28 +4,30 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import { useFonts } from "expo-font";
 import { Text, View, Pressable } from "react-native";
 
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
 
 import { 
     FontAwesome5,
     FontAwesome,
-    Entypo
+    Entypo,
+    MaterialIcons
 
  } from "@expo/vector-icons";
 
 
 import {CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen } from "../screens";
 
-
 const ProfileStack = createNativeStackNavigator();
 
 function ProfileStackScreen() {
 
 const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../assets/fonts/SourceSerifPro-Regular.ttf'),
+    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
 });
     
   return (
@@ -45,7 +47,6 @@ const [fontsLoaded] = useFonts({
               },
               headerTintColor:"#e5e1d8",
               header:({navigation, route}) => {
-                // console.log(route, navigation)
                 return(
                     <View style={{
                     backgroundColor:"#1c1c27",
@@ -75,11 +76,11 @@ const CartStack = createNativeStackNavigator();
 function CartStackScreen() {
 
 const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../assets/fonts/SourceSerifPro-Regular.ttf'),
+    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
 });
 
   return (
@@ -173,6 +174,13 @@ const RootNavigator = () => {
                 )
             }}
             />
+
+        <Tab.Screen name="Delivery" options={{
+          tabBarLabel : 'Order',
+          tabBarIcon : ({color})=> (
+            <MaterialIcons name="delivery-dining" size={35} color={color} />
+          )
+        }} component={HomeScreen} />
 
         </Tab.Navigator>
     )

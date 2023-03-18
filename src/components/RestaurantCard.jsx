@@ -7,10 +7,19 @@ import { MaterialIcons } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/native'
 
+import { useFonts } from 'expo-font'
+
 const RestaurantCard = ({item}) => {
 
     const navigation = useNavigation()
 
+    const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+    });
     
   return (
     <Pressable style={{borderRadius:20, flexDirection:"column",justifyContent:"center", alignItems:"center", marginVertical:10 }}
