@@ -92,10 +92,10 @@ const HomeScreen = () => {
 
             <ScrollView style={{width:"90%", marginTop:5, marginBottom:Number(`${cartItems.length > 0 ? 100 : 60}`)}}>
             <View>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:20, color:"#ffad16", marginTop:15, letterSpacing:3, alignSelf:"center"}}>EXPLORE</Text>
+                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#ffad16", marginTop:8, letterSpacing:3, alignSelf:"center"}}>EXPLORE</Text>
             </View>
 
-            <View style={{height:100, flexDirection:"row",justifyContent:"center", alignItems:"center"}}>
+            <View style={{height:85, flexDirection:"row",justifyContent:"center", alignItems:"center"}}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{}}>
 
                     {
@@ -109,7 +109,7 @@ const HomeScreen = () => {
             </View>
 
             <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:15, letterSpacing:3}}>{number} Restaurants</Text>
+                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{number} Restaurants</Text>
             </View>
 
             <View>
