@@ -17,10 +17,12 @@ const [fontsLoaded] = useFonts({
     'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
 });
 
-const {addToCart, totalPrice, setTotalPrice} = useStore((state) => ({
+const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart} = useStore((state) => ({
     addToCart: state.addToCart,
     totalPrice: state.totalPrice,
     setTotalPrice: state.setTotalPrice,
+    cartItems: state.cartItems,
+    removeFromCart: state.removeFromCart,
 }))
   
   return (
@@ -39,19 +41,31 @@ const {addToCart, totalPrice, setTotalPrice} = useStore((state) => ({
         </View>
         <View style={{flex:1}}>
             <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
-            <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
-            onPress = {() => {
-            setTotalPrice(Number(totalPrice) + Number(item.price))
-            addToCart({
-                id: item.id,
-                itemname: item.title,
-                description: item.description,
-                price: Number(item.price),
-                image_uri: item.image_uri,
-                quantity: 1,
-            })
-            }}
-            >ADD</Button>
+            {
+                cartItems?.find((cartItem) => cartItem.id === item.id) ? (
+                    <Button style={{backgroundColor:"#ffad16", marginTop:10, borderRadius:10, width:"100%", justifyContent:"center"}} onPress={() => {
+                        setTotalPrice(totalPrice - Number(item.price))
+                        removeFromCart(item.id)
+                    }
+                    }>Remove</Button>
+                ) : (
+                        <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
+                        onPress = {() => {
+                        setTotalPrice(Number(totalPrice) + Number(item.price))
+                        addToCart({
+                            id: item.id,
+                            itemname: item.title,
+                            description: item.description,
+                            price: Number(item.price),
+                            image_uri: item.image_uri,
+                            quantity: 1,
+                        })
+                        }}
+                        >ADD</Button>
+                )
+
+
+            }
         </View>
     </View>
   )

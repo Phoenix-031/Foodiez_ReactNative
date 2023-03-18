@@ -8,6 +8,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Veg", "Non-veg", "Special", "Burger"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"New Arrivals",
         distance: 24,
         isAvailableforDelivery: true,
         time_to_deliver: '60 min'
@@ -21,6 +22,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Veg", "Non-veg", "Combo"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"Old",
         distance: 10,
         isAvailableforDelivery: true,
         time_to_deliver: '30 min'
@@ -60,6 +62,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Momo", "Spring Roll", "Veg", "Non-veg"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"Old",
         distance: 5,
         isAvailableforDelivery: true,
         time_to_deliver: '40 min'
@@ -73,6 +76,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Ice Cream", "Shakes"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"New Arrivals",
         distance: 15,
         isAvailableforDelivery: true,
         time_to_deliver: '35 min'
@@ -86,6 +90,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Chinese", "Bengali", "NorthIndian", "Biriyani"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"Old",
         distance: 19,
         isAvailableforDelivery: true,
         time_to_deliver: '25 min'
@@ -99,6 +104,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Hot Coffee", "Cold Coffee", "Iced Tea", "Beverages"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"New Arrivals",
         distance: 20,
         isAvailableforDelivery: true,
         time_to_deliver: '15 min'
@@ -112,6 +118,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Mocktails", "Sandwiches"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"New Arrivals",
         distance: 14,
         isAvailableforDelivery: true,
         time_to_deliver: '5 min'
@@ -124,6 +131,7 @@ export const allrestaurants = [
         rating: 4,
         reviews: 400,
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"New Arrivals",
         cusines: ["Chinese", "Bengali", "NorthIndian", "Biriyani"],
         distance: 6,
         isAvailableforDelivery: true,
@@ -138,6 +146,7 @@ export const allrestaurants = [
         reviews: 400,
         cusines: ["Biriyani", "Chinese", "Bengali", "NorthIndian"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
+        arrival_tag:"New Arrivals",
         distance: 6,
         isAvailableforDelivery: true,
         time_to_deliver: '50 min'

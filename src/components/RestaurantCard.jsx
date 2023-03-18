@@ -59,12 +59,12 @@ const RestaurantCard = ({item}) => {
         paddingVertical:12,
     }}>
         <Text style={{fontFamily:"Poppins-Medium"}}>{item.time_to_deliver} . {item.distance}km</Text>
-        <Text style={{fontFamily:"Poppins-Medium"}}>Rs {item.price}</Text>
+        {/* <Text style={{fontFamily:"Poppins-Medium"}}>Rs {item.price}</Text> */}
       </View>
 
-      <View style={{position:"absolute", width:"100%", flexDirection:"row",justifyContent:"space-between", alignItems:"center",paddingHorizontal:10,backgroundColor:"rgba(52, 52, 52, 0.6)", paddingVertical:10, bottom:47  }}>
+      <View style={{position:"absolute",height:80 ,width:"100%", flexDirection:"row",justifyContent:"space-between", alignItems:"center",paddingHorizontal:10,backgroundColor:"rgba(52, 52, 52, 0.6)", paddingVertical:10, bottom:44, flex:1, gap:5  }}>
 
-        <View style={{fontFamily:"Poppins-Medium",fontSize:15}}>
+        <View style={{fontFamily:"Poppins-Medium",fontSize:15, flex:6}}>
             <Text style={{fontFamily:"Poppins-Bold",fontSize:18, color:"#e5e1d8",}}>{item.restaurant_name}</Text>
             <Text style={{fontFamily:"Poppins-Bold",fontSize:12, color:"#e5e1d8",}}>{item.small_description}</Text>
         </View>
@@ -73,6 +73,7 @@ const RestaurantCard = ({item}) => {
         flexDirection:"row",
         height: 30,
         paddingHorizontal:10,
+        flex:1,
     }} >
             <Text style={{fontFamily:"Poppins-Medium",fontSize:15}}>{item.rating}</Text>
             <MaterialIcons name="star-border" size={20} color="white" />
@@ -84,6 +85,7 @@ const RestaurantCard = ({item}) => {
           if(heartcol=="rgba(235, 235, 224,0.7)"){
               setheartcol("red")
               addLikedRestaurant(item)
+              // console.log(likedRestaurants)
           }
           else{
               setheartcol("rgba(235, 235, 224,0.7)")

@@ -16,8 +16,12 @@ const RestaurantScreen = ({naviagation, route}) => {
 
   const {restaurant_name, rating, distance, reviews, cusines, filters} = route.params.item;
 
-  const {menuItems, addToCart} = useStore((state) => ({
+  const {menuItems, addToCart, totalPrice, cartItems, removeFromCart} = useStore((state) => ({
     menuItems: state.menuItems,
+    addToCart: state.addToCart,
+    totalPrice: state.totalPrice,
+    cartItems: state.cartItems,
+    removeFromCart: state.removeFromCart,
   }))
 
   const navigation = useNavigation()
@@ -32,7 +36,7 @@ const RestaurantScreen = ({naviagation, route}) => {
   
   return (
     <SafeAreaView style={{backgroundColor:"#1c1c27", width:"100%", height:"100%", flexDirection:"column", justifyContent:"flex-start", alignItems:"center", paddingTop:15}}>
-        <ScrollView style={{width:"90%", height:"100%", marginTop:10, }}>
+        <ScrollView style={{width:"90%", height:"100%", marginTop:10, marginBottom:Number(`${cartItems.length > 0 ? 60 : 0}`) }}>
           {/* <ScrollView style={{backgroundColor:"#28293d", borderRadius:12, borderWidth:1}}> */}
 
           <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", borderRadius:12,marginBottom:10, backgroundColor:"#28293d",}}>
@@ -87,6 +91,19 @@ const RestaurantScreen = ({naviagation, route}) => {
 
           {/* </ScrollView> */}
         </ScrollView>
+
+            {
+                cartItems.length > 0 ? <View style={{position:"absolute", bottom:0, width:"100%", height:60,zIndex:40, backgroundColor:"#1c1c27", flexDirection:"row", justifyContent:"space-between", alignItems:"center", paddingHorizontal:20}}>
+                    <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                        <Text style={{fontFamily:"Poppins-SemiBold", fontSize:12, color:"#e5e1d8", textTransform:"uppercase"}}>{cartItems.length} Item Added</Text>
+                        <Text style={{fontFamily:"Poppins-SemiBold", fontSize:12, color:"#e5e1d8"}}>Subtotal : ₹{totalPrice}</Text>    
+                    </View>
+                    <Pressable style={{backgroundColor:"#ffad16", padding:5,paddingHorizontal:10, borderRadius:5}} onPress={() => navigation.navigate('Cart')}>
+                        <Text style={{fontFamily:"Poppins-Medium", fontSize:12, color:"#1c1c27"}}>Next</Text>
+                    </Pressable>
+                </View> : null
+            }
+        
     </SafeAreaView>
   )
 }

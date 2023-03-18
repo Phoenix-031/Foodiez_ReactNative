@@ -15,6 +15,7 @@ import {
 
  } from "@expo/vector-icons";
 
+ import { Badge } from "react-native-paper";
 
 import {CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen } from "../screens";
 
@@ -87,7 +88,7 @@ const [fontsLoaded] = useFonts({
     <CartStack.Navigator>
       <CartStack.Screen name="CartScreen" component={CartScreen} 
             options={{
-              header:({navigation, route}) => {
+              header:({navigation,route}) => {
                 // console.log(route, navigation)
                 return(
                     <View style={{
@@ -103,7 +104,7 @@ const [fontsLoaded] = useFonts({
                         <Pressable
                         onPress={() => navigation.goBack()}
                         ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
-                        <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8",paddingTop:5}}>{route.name}</Text>
+                        <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8",paddingTop:5}}>Cart</Text>
                     </View>
                 )
               }

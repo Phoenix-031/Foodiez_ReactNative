@@ -9,6 +9,8 @@ import useStore from '../store/store'
 
 import RazorpayCheckout from 'react-native-razorpay'
 
+import {MaterialCommunityIcons} from '@expo/vector-icons'
+
 const CartScreen = () => {
 
   const {cartItems,totalPrice, addToCart, removeFromCart, clearCart, setTotalPrice,} = useStore((state) => ({
@@ -34,75 +36,84 @@ const CartScreen = () => {
   
   return (
     <SafeAreaView style={styles.container}>
+      {
+        cartItems.length > 0 ? (
+          <ScrollView showsVerticalScrollIndicator={false} style={{flex:1,width:'100%',}}>
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{flex:1,width:'100%',}}>
+                  {
+                    cartItems?.map((item, index) => {
+                      return <CartItem key={index} item={item} />
+                    })
+                  }
 
-        {
-          cartItems?.map((item, index) => {
-            return <CartItem key={index} item={item} />
-          })
-        }
+                  {
+                    cartItems.length > 0 ? (
+                  <View style={{gap:10}}>
+                    <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>Order Summary</Text>
 
-        {
-          cartItems.length > 0 ? (
-        <View style={{gap:10}}>
-          <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>Order Summary</Text>
+                    <View>
 
-          <View>
+                      <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
+                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Subtotal</Text>
+                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice}</Text>
+                      </View>
+                      
+                      <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
+                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Delivery Charges</Text>
+                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {deliverycharge}</Text>
+                      </View>
 
-            <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
-              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Subtotal</Text>
-              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice}</Text>
-            </View>
-            
-            <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
-              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Delivery Charges</Text>
-              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {deliverycharge}</Text>
-            </View>
+                    </View>
 
+                    <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", width:"100%", }}>
+                      <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>Total</Text>
+                      <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice + deliverycharge}</Text>
+                    </View>
+                  </View>) : null
+                  }
+                  <View>
+                  </View>
+
+                <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
+                
+                  onPress={() => {
+                    // const orderplaced = await 
+                    var options = {
+                      description: 'Chekcout Payment',
+                      image: 'https://i.imgur.com/3g7nmJC.png',
+                      currency: 'INR',
+                      key: 'rzp_test_8lwdluon5ElOzi', // Your api key
+                      amount: 100,
+                      name: 'foo',
+                      prefill: {
+                        email: 'pradhandebayan@gmail.com',
+                        contact: '9007361795',
+                        name: 'Razorpay Software'
+                      },
+                      theme: {color: '#F37254'}
+                    }
+                    console.log(options)
+                    RazorpayCheckout.open(options).then((data) => {
+                      // handle success
+                      alert(`Success: ${data.razorpay_payment_id}`);
+                    }).catch((error) => {
+                      // handle failure
+                      alert(`Error: ${error.code} | ${error.description}`);
+                    });
+                  }}
+
+                >
+                  Proceed to Checkout
+                </Button>
+
+                </ScrollView>
+        ) : (
+          <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+            <MaterialCommunityIcons name="cart-remove" size={50} color="white" />
+            <Text style={{color:"#e5e1d8", fontSize:20, fontFamily:"Poppins-SemiBold", paddingTop:15}}>Your Cart is Empty</Text>
           </View>
-
-          <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", width:"100%", }}>
-            <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>Total</Text>
-            <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice + deliverycharge}</Text>
-          </View>
-        </View>) : null
-        }
-        <View>
-        </View>
-
-      </ScrollView>
-      <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
-      
-        onPress={() => {
-          // const orderplaced = await 
-          var options = {
-            description: 'Chekcout Payment',
-            image: 'https://i.imgur.com/3g7nmJC.png',
-            currency: 'INR',
-            key: 'rzp_test_8lwdluon5ElOzi', // Your api key
-            amount: 100,
-            name: 'foo',
-            prefill: {
-              email: 'pradhandebayan@gmail.com',
-              contact: '9007361795',
-              name: 'Razorpay Software'
-            },
-            theme: {color: '#F37254'}
-          }
-          console.log(options)
-          RazorpayCheckout.open(options).then((data) => {
-            // handle success
-            alert(`Success: ${data.razorpay_payment_id}`);
-          }).catch((error) => {
-            // handle failure
-            alert(`Error: ${error.code} | ${error.description}`);
-          });
-        }}
-
-      >
-        Proceed to Checkout
-      </Button>
+        )
+      }
     </SafeAreaView>
   )
 }
