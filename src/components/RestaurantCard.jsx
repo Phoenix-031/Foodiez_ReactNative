@@ -23,7 +23,7 @@ const RestaurantCard = ({item}) => {
     
   return (
     <Pressable style={{borderRadius:20, flexDirection:"column",justifyContent:"center", alignItems:"center", marginVertical:10 }}
-    onPress={()=>{navigation.navigate("RestaurantScreen")}}
+    onPress={()=>{navigation.navigate("RestaurantScreen",{item:item})}}
     >
       <Image src={item.restaurant_image} style={{
         width: '100%',

@@ -6,6 +6,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 4.1,
         price: 673,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 24,
         isAvailableforDelivery:true,
         time_to_deliver: '60 min'
@@ -17,6 +19,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 3.9,
         price: 753,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 10,
         isAvailableforDelivery:true,
         time_to_deliver: '30 min'
@@ -28,6 +32,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 4,
         price: 278,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 2,
         isAvailableforDelivery:true,
         time_to_deliver: '10 min'
@@ -39,6 +45,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 4.9,
         price: 294,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 8,
         isAvailableforDelivery:true,
         time_to_deliver: '45 min'
@@ -50,6 +58,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 1.2,
         price: 826,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 5,
         isAvailableforDelivery:true,
         time_to_deliver: '40 min'
@@ -61,6 +71,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 3.6,
         price: 835,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 15,
         isAvailableforDelivery:true,
         time_to_deliver: '35 min'
@@ -72,6 +84,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 3.8,
         price: 284,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 19,
         isAvailableforDelivery:true,
         time_to_deliver: '25 min'
@@ -83,6 +97,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 1.9,
         price: 562,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 20,
         isAvailableforDelivery:true,
         time_to_deliver: '15 min'
@@ -94,6 +110,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 4.5,
         price: 846,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 14,
         isAvailableforDelivery:true,
         time_to_deliver: '5 min'
@@ -105,6 +123,8 @@ export const allrestaurants = [
         small_description:"askjdfgha fglk ag asdsad",
         rating: 3.7,
         price: 735,
+        reviews:400,
+        cusines:["Chinese","Bengali","NorthIndian", "Biriyani"],
         distance: 6,
         isAvailableforDelivery:true,
         time_to_deliver: '50 min'

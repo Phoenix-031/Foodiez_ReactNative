@@ -12,7 +12,9 @@ import useStore from '../store/store';
 import { restairantItems } from '../data/restaurantItems'
 
 
-const RestaurantScreen = () => {
+const RestaurantScreen = ({naviagation, route}) => {
+
+  const {restaurant_name, rating, distance, reviews, cusines} = route.params.item;
 
   const {menuItems, addToCart} = useStore((state) => ({
     menuItems: state.menuItems,
@@ -36,19 +38,23 @@ const RestaurantScreen = () => {
           <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", borderRadius:12,marginBottom:10, backgroundColor:"#28293d",}}>
 
             <View style={{paddingHorizontal:10, paddingVertical:15, flex:3,}}>
-              <Text style={{fontFamily:"Poppins-Bold", fontSize:18,color:"#e5e1d8"}}>Name of the Restaurant Huh</Text>
-              <Text style={{fontFamily:"Poppins-Bold", fontSize:10,color:"#e5e1d8"}}>North India, Chinese, Bririyani</Text>
+              <Text style={{fontFamily:"Poppins-Bold", fontSize:18,color:"#e5e1d8"}}>{restaurant_name}</Text>
+              <Text style={{fontFamily:"Poppins-Bold", fontSize:10,color:"#e5e1d8"}}>
+                {cusines.map((item, index) => {
+                  return item + ", "
+                })}
+              </Text>
               <Text style={{fontFamily:"Poppins-Bold", fontSize:9,color:"gray"}}>Sealdah, Kolkata</Text>
-              <Text style={{fontFamily:"Poppins-Bold", fontSize:12,color:"#e5e1d8"}}>40-45 min | 5km away</Text>
+              <Text style={{fontFamily:"Poppins-Bold", fontSize:12,color:"#e5e1d8"}}>40-45 min | {distance}km away</Text>
             </View>
 
             <Pressable style={{flex:1, marginRight:10, borderRadius:12, height:110, paddingVertical:12, backgroundColor:"#1c1c27"}}
               onPress={() => navigation.navigate("ReviewScreen")}
             >
-              <Text style={{fontFamily:"Poppins-SemiBold", fontSize:20, alignSelf:"center", color:"#ef845d", height:"40%"}}>4.5</Text>
+              <Text style={{fontFamily:"Poppins-SemiBold", fontSize:20, alignSelf:"center", color:"#ef845d", height:"40%"}}>{rating}</Text>
 
               <View style={{flexDirection:"column", justifyContent:"center", alignItems:"center", alignSelf:"center",height:"60%" }}>
-                <Text style={{fontFamily:"Poppins-Medium", fontSize:12, color:"#ffad16"}}>2k</Text>
+                <Text style={{fontFamily:"Poppins-Medium", fontSize:12, color:"#ffad16"}}>{reviews}</Text>
                 <Text style={{fontFamily:"Poppins-Medium", fontSize:12, color:"#ffad16"}}>Reviews</Text>
               </View>
             </Pressable>

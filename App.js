@@ -61,7 +61,7 @@ export default function App() {
                         <Pressable
                         onPress={() => navigation.goBack()}
                         ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
-                        <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>{route.name}</Text>
+                        <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>{route.params.item.restaurant_name}</Text>
                     </View>
                 )
               }
