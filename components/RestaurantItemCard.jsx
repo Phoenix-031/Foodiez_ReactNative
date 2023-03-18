@@ -17,8 +17,10 @@ const RestaurantItemCard = ({item}) => {
         'SourceSerifPro-Regular': require('../assets/fonts/SourceSerifPro-Regular.ttf'),
     });
 
-    const {addToCart} = useStore((state) => ({
+    const {addToCart, totalPrice, setTotalPrice} = useStore((state) => ({
         addToCart: state.addToCart,
+        totalPrice: state.totalPrice,
+        setTotalPrice: state.setTotalPrice,
     }))
   
   return (
@@ -38,14 +40,20 @@ const RestaurantItemCard = ({item}) => {
         <View style={{flex:1}}>
             <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
             <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
-            onPress = {() => addToCart({
-                id: item.id,
-                itemname: item.title,
-                description: item.description,
-                price: item.price,
-                image_uri: item.image_uri,
-                quantity: 1,
-            })}
+            onPress = {() => {
+              console.log(item.price)
+              console.log(item)
+              // console.log(String(item.price).split(" ")[2])
+            // setTotalPrice(Number(totalPrice) + Number(item.price))
+            // addToCart({
+            //     id: item.id,
+            //     itemname: item.title,
+            //     description: item.description,
+            //     price: Number(item.price),
+            //     image_uri: item.image_uri,
+            //     quantity: 1,
+            // })
+            }}
             >ADD</Button>
         </View>
     </View>

@@ -41,6 +41,8 @@ const CartScreen = () => {
           })
         }
 
+        {
+          cartItems.length > 0 ? (
         <View style={{gap:10}}>
           <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>Order Summary</Text>
 
@@ -48,7 +50,7 @@ const CartScreen = () => {
 
             <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
               <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Subtotal</Text>
-              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. 45.90</Text>
+              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice}</Text>
             </View>
             
             <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
@@ -62,7 +64,8 @@ const CartScreen = () => {
             <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>Total</Text>
             <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice + deliverycharge}</Text>
           </View>
-        </View>
+        </View>) : null
+        }
         <View>
         </View>
 

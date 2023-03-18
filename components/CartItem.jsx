@@ -12,11 +12,13 @@ const CartItem = ({item}) => {
     // const [image_uri,setImage_uri] = useState(item.image_uri)
     const image_uri = item.image_uri
 
-    const {cartItems, removeFromCart, incrementItem, decrementItem,} = useStore((state) => ({
+    const {cartItems, removeFromCart, incrementItem, decrementItem,setTotalPrice, totalPrice} = useStore((state) => ({
         cartItems: state.cartItems,
         removeFromCart: state.removeFromCart,
         incrementItem: state.incrementItem,
         decrementItem: state.decrementItem,
+        setTotalPrice: state.setTotalPrice,
+        totalPrice: state.totalPrice,
     }))
 
     useEffect(() => {
@@ -63,13 +65,16 @@ const CartItem = ({item}) => {
             />
             <View style={{flexDirection:"row",gap:20}}>
                 <Badge style={{backgroundColor:"#ffad16", borderRadius:5, color:"#000", fontSize:20, width: 30 ,height: 30, justifyContent:"center", alignItems:"center"}}
-                onPress={() => setQuan((quan) => quan + 1)}
+                onPress={() => {
+                    setQuan((quan) => quan + 1)
+                    setTotalPrice(totalPrice + item.price)
+                }}
                 >+</Badge>
                 <Text style={{color:"#e5e1d8", fontSize:20}}>{quan}</Text>
                 <Badge style={{backgroundColor:"#ffad16", borderRadius:5, color:"#000", fontSize:20, width: 30 ,height: 30, justifyContent:"center", alignItems:"center"}}
                 onPress={() => {
-                    // console.log(quan)
                         setQuan((quan) => quan - 1)
+                        setTotalPrice(totalPrice - item.price)
                 }}
                 >-</Badge>
             </View>
