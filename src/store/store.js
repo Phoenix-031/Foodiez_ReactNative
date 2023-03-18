@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const userSlice = (set) => ({
     user: null,
+    likedRestaurants: [],
     cartItems:[],
     totalPrice:0,
     setUser: (user) => set((state) => ({ user: user })),
@@ -21,6 +22,8 @@ const userSlice = (set) => ({
     setTotalPrice: (price) => set((state) => ({ totalPrice: price })),
     incrementItem: (id) => set((state) => ({ cartItems: state.cartItems.map((item) => item.id === id ? {...item, quantity: item.quantity + 1} : item) })),
     decrementItem: (id) => set((state) => ({ cartItems: state.cartItems.map((item) => item.id === id ? {...item, quantity: item.quantity - 1} : item) })),
+    addLikedRestaurant: (restaurantName) => set((state) => ({ likedRestaurants: [...state.likedRestaurants,restaurantName] })),
+    removeLikedRestaurant: (restaurantName) => set((state) => ({ likedRestaurants: state.likedRestaurants.filter((item) => item !== restaurantName) })),
 })
 
 const appSlice = (set) => ({

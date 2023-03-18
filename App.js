@@ -142,17 +142,26 @@ export default function App() {
            />
            <Stack.Screen name="LikedRestaurantsScreen" component={LikedRestaurantsScreen}
             options={{
-              headerShown: true,
-              headerBackVisible:true,
-              title:"Liked",
-              headerStyle:{
-                backgroundColor:"#1c1c27",
-              },
-              headerTitleStyle:{
-                fontFamily:"Poppins-SemiBold",
-                fontSize:18,
-              },
-              headerTintColor:"#e5e1d8",
+            header:({navigation, route}) => {
+              // console.log(route, navigation)
+              return(
+                  <View style={{
+                  backgroundColor:"#1c1c27",
+                  borderBottomWidth:0,
+                  paddingHorizontal:20,
+                  paddingTop:20,
+                  flexDirection:"row",
+                  justifyContent:"flex-start",
+                  alignItems:"center",
+                  gap:6,
+                  }}>
+                      <Pressable
+                      onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>Liked</Text>
+                  </View>
+              )
+            }
             }} 
            />
         </Stack.Navigator>

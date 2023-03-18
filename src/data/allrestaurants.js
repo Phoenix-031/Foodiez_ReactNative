@@ -7,6 +7,7 @@ export const allrestaurants = [
         rating: 4.1,
         reviews: 400,
         cusines: ["Veg", "Non-veg", "Special", "Burger"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 24,
         isAvailableforDelivery: true,
         time_to_deliver: '60 min'
@@ -19,6 +20,7 @@ export const allrestaurants = [
         rating: 3.9,
         reviews: 400,
         cusines: ["Veg", "Non-veg", "Combo"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 10,
         isAvailableforDelivery: true,
         time_to_deliver: '30 min'
@@ -31,6 +33,7 @@ export const allrestaurants = [
         rating: 4,
         reviews: 400,
         cusines: ["Pizza", "Burger", "Combo"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 2,
         isAvailableforDelivery: true,
         time_to_deliver: '10 min'
@@ -43,6 +46,7 @@ export const allrestaurants = [
         rating: 4.9,
         reviews: 400,
         cusines: ["Pizza", "Burger", "Combo"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 8,
         isAvailableforDelivery: true,
         time_to_deliver: '45 min'
@@ -55,6 +59,7 @@ export const allrestaurants = [
         rating: 1.2,
         reviews: 400,
         cusines: ["Momo", "Spring Roll", "Veg", "Non-veg"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 5,
         isAvailableforDelivery: true,
         time_to_deliver: '40 min'
@@ -67,6 +72,7 @@ export const allrestaurants = [
         rating: 3.6,
         reviews: 400,
         cusines: ["Ice Cream", "Shakes"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 15,
         isAvailableforDelivery: true,
         time_to_deliver: '35 min'
@@ -79,6 +85,7 @@ export const allrestaurants = [
         rating: 3.8,
         reviews: 400,
         cusines: ["Chinese", "Bengali", "NorthIndian", "Biriyani"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 19,
         isAvailableforDelivery: true,
         time_to_deliver: '25 min'
@@ -91,6 +98,7 @@ export const allrestaurants = [
         rating: 1.9,
         reviews: 400,
         cusines: ["Hot Coffee", "Cold Coffee", "Iced Tea", "Beverages"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 20,
         isAvailableforDelivery: true,
         time_to_deliver: '15 min'
@@ -103,6 +111,7 @@ export const allrestaurants = [
         rating: 4.5,
         reviews: 400,
         cusines: ["Mocktails", "Sandwiches"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 14,
         isAvailableforDelivery: true,
         time_to_deliver: '5 min'
@@ -114,6 +123,7 @@ export const allrestaurants = [
         small_description: "Enjoy the variety of food at Hotel Kohinoor",
         rating: 4,
         reviews: 400,
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         cusines: ["Chinese", "Bengali", "NorthIndian", "Biriyani"],
         distance: 6,
         isAvailableforDelivery: true,
@@ -127,6 +137,7 @@ export const allrestaurants = [
         rating: 4.5,
         reviews: 400,
         cusines: ["Biriyani", "Chinese", "Bengali", "NorthIndian"],
+        filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 6,
         isAvailableforDelivery: true,
         time_to_deliver: '50 min'
