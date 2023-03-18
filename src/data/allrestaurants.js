@@ -7,6 +7,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -17,6 +18,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -27,6 +29,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -37,6 +40,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -47,6 +51,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -57,6 +62,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -67,6 +73,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -77,6 +84,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -87,6 +95,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
     {
@@ -97,6 +106,7 @@ export const allrestaurants = [
         rating: 4.5,
         price: 'Rs 278',
         distance: 7,
+        isAvailableforDelivery:true,
         time_to_deliver: '30 min'
     },
 ]

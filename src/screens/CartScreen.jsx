@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable } from 'react-native'
-import CartItem from '../components/CartItem'
 import {Button, Badge} from 'react-native-paper'
 import { useFonts } from 'expo-font'
 
+import { CartItem } from '../components'
+
 import useStore from '../store/store'
+
+import RazorpayCheckout from 'react-native-razorpay'
 
 const CartScreen = () => {
 
@@ -69,7 +72,35 @@ const CartScreen = () => {
         </View>
 
       </ScrollView>
-      <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d">
+      <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
+      
+        onPress={() => {
+          // const orderplaced = await 
+          var options = {
+            description: 'Chekcout Payment',
+            image: 'https://i.imgur.com/3g7nmJC.png',
+            currency: 'INR',
+            key: 'rzp_test_8lwdluon5ElOzi', // Your api key
+            amount: 100,
+            name: 'foo',
+            prefill: {
+              email: 'pradhandebayan@gmail.com',
+              contact: '9007361795',
+              name: 'Razorpay Software'
+            },
+            theme: {color: '#F37254'}
+          }
+          console.log(options)
+          RazorpayCheckout.open(options).then((data) => {
+            // handle success
+            alert(`Success: ${data.razorpay_payment_id}`);
+          }).catch((error) => {
+            // handle failure
+            alert(`Error: ${error.code} | ${error.description}`);
+          });
+        }}
+
+      >
         Proceed to Checkout
       </Button>
     </SafeAreaView>

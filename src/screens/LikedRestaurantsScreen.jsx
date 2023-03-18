@@ -30,5 +30,3 @@ const LikedRestaurantsScreen = () => {
 }
 
 export default LikedRestaurantsScreen
-
-const styles = StyleSheet.create({})

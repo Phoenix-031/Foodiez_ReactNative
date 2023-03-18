@@ -9,12 +9,13 @@ import { imageList } from '../data/imageList'
 import { categoryData } from '../data/categoryData'
 import { allrestaurants } from '../data/allrestaurants'
 
-import { RestaurantCard, FilterModal } from '../components'
+import { RestaurantCard, FilterModal, LanguageModal } from '../components'
 
 import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons'
-import LanguageModal from '../components/LanguageModal'
 
 import useStore from '../store/store'
+
+import {ActivityIndicator} from 'react-native-paper'
 
 // import I18n from 'react-native-i18n'
 // import { en } from '../i18n/en'
@@ -80,7 +81,6 @@ const HomeScreen = () => {
                     <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Pure Veg</Chip>
                     <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>New Arraivals</Chip>
                     <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Previous orders</Chip>
-                    <Chip style={{margin:5, paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Sort</Chip>
                 </ScrollView>
             </View>
 
@@ -110,7 +110,7 @@ const HomeScreen = () => {
                 {
                     restaurantsList.map((item, index) => {
                         return(
-                            <RestaurantCard item={item} />
+                            <RestaurantCard item={item} key={index} />
                         )
                     })
                 }
@@ -125,9 +125,13 @@ const HomeScreen = () => {
             {
                 languagemodal ? <LanguageModal languagemodal={languagemodal} setLanguageModal={setLanguageModal} /> : null
             }
+            
         </SafeAreaProvider>
   )
 }
+
+
+export default HomeScreen
 
 const styles = StyleSheet.create({
     container: {
@@ -139,5 +143,3 @@ const styles = StyleSheet.create({
         paddingTop:StatusBar.currentHeight
     },
 })
-
-export default HomeScreen
