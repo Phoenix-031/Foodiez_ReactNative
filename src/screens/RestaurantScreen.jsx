@@ -14,7 +14,7 @@ import { restairantItems } from '../data/restaurantItems'
 
 const RestaurantScreen = ({naviagation, route}) => {
 
-  const {restaurant_name, rating, distance, reviews, cusines, filters} = route.params.item;
+  const {restaurant_name, rating, distance, reviews, cusines, filters, res_items} = route.params.item;
 
   const {menuItems, addToCart, totalPrice, cartItems, removeFromCart} = useStore((state) => ({
     menuItems: state.menuItems,
@@ -84,7 +84,7 @@ const RestaurantScreen = ({naviagation, route}) => {
               /> */}
 
               {
-                restairantItems.map((item, index) => {
+                res_items.map((item, index) => {
                   return <RestaurantItemCard item={item} key={index}  />
                 })
               }

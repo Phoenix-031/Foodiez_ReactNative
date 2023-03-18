@@ -30,7 +30,6 @@ const appSlice = (set) => ({
     restaurantsList: allrestaurants,
     addRestaurants: (restaurantName) => set((state) => ({ restaurantsList: [...state.restaurantsList,restaurantName] })),
     removeRestaurants: (restaurantName) => set((state) => ({ restaurantsList: state.restaurantsList.filter((item) => item !== restaurantName) })),
-    
     sortbyRatingHTL: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => b.rating - a.rating) })),
     sortbyRatingLTH: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => a.rating - b.rating) })),
     sortbyPriceLTH: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => a.price - b.price) })),
@@ -51,6 +50,7 @@ const appSlice = (set) => ({
     // sortbyChinese: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => b.chinese - a.chinese) })),
     // sortbyIndian: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => b.indian - a.indian) })),
     // sortbyItalian: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => b.italian - a.italian) })),
+
 
 })
 

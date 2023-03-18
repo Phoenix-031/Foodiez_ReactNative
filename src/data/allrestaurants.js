@@ -1,3 +1,6 @@
+import { restairantItems } from "./restaurantItems";
+import { KFCItems } from "./RestaurantItems/KFC";
+
 export const allrestaurants = [
     {
         "id": 1,
@@ -10,6 +13,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"New Arrivals",
         distance: 24,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '60 min'
     },
@@ -24,6 +28,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"Old",
         distance: 10,
+        res_items:KFCItems,
         isAvailableforDelivery: true,
         time_to_deliver: '30 min'
     },
@@ -37,6 +42,7 @@ export const allrestaurants = [
         cusines: ["Pizza", "Burger", "Combo"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 2,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '10 min'
     },
@@ -50,6 +56,7 @@ export const allrestaurants = [
         cusines: ["Pizza", "Burger", "Combo"],
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         distance: 8,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '45 min'
     },
@@ -64,6 +71,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"Old",
         distance: 5,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '40 min'
     },
@@ -78,6 +86,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"New Arrivals",
         distance: 15,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '35 min'
     },
@@ -92,6 +101,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"Old",
         distance: 19,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '25 min'
     },
@@ -106,6 +116,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"New Arrivals",
         distance: 20,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '15 min'
     },
@@ -120,6 +131,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"New Arrivals",
         distance: 14,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '5 min'
     },
@@ -134,6 +146,7 @@ export const allrestaurants = [
         arrival_tag:"New Arrivals",
         cusines: ["Chinese", "Bengali", "NorthIndian", "Biriyani"],
         distance: 6,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '50 min'
     },
@@ -148,6 +161,7 @@ export const allrestaurants = [
         filters:["Veg","Non-Veg","Bestseller","Rating 4.0+"],
         arrival_tag:"New Arrivals",
         distance: 6,
+        res_items:restairantItems,
         isAvailableforDelivery: true,
         time_to_deliver: '50 min'
     },
