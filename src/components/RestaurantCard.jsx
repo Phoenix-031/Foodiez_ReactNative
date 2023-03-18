@@ -62,22 +62,22 @@ const RestaurantCard = ({item}) => {
         {/* <Text style={{fontFamily:"Poppins-Medium"}}>Rs {item.price}</Text> */}
       </View>
 
-      <View style={{position:"absolute",height:80 ,width:"100%", flexDirection:"row",justifyContent:"space-between", alignItems:"center",paddingHorizontal:10,backgroundColor:"rgba(52, 52, 52, 0.6)", paddingVertical:10, bottom:44, flex:1, gap:5  }}>
+      <View style={{position:"absolute",height:80 ,width:"100%", flexDirection:"row",justifyContent:"space-between", alignItems:"center",paddingHorizontal:10,backgroundColor:"rgba(52, 52, 52, 0.6)", paddingVertical:10, bottom:44, flex:1  }}>
 
         <View style={{fontFamily:"Poppins-Medium",fontSize:15, flex:6}}>
             <Text style={{fontFamily:"Poppins-Bold",fontSize:18, color:"#e5e1d8",}}>{item.restaurant_name}</Text>
-            <Text style={{fontFamily:"Poppins-Bold",fontSize:12, color:"#e5e1d8",}}>{item.small_description}</Text>
+            <Text style={{fontFamily:"Poppins-Regular",fontSize:12, color:"white",}}>Italian. NorthIndian .Chinese</Text>
         </View>
 
-        <Badge style={{backgroundColor:"#ef845d", borderRadius:5, color:"#000", fontSize:20 , justifyContent:"center", alignItems:"baseline",
+        <View style={{backgroundColor:"#ef845d", borderRadius:5, color:"#000", fontSize:18 , justifyContent:"center", alignItems:"baseline",
         flexDirection:"row",
         height: 30,
         paddingHorizontal:10,
         flex:1,
     }} >
-            <Text style={{fontFamily:"Poppins-Medium",fontSize:15}}>{item.rating}</Text>
-            <MaterialIcons name="star-border" size={20} color="white" />
-        </Badge>
+            <Text style={{fontFamily:"Poppins-Medium",fontSize:12}}>{item.rating}</Text>
+            <MaterialIcons name="star-border" size={18} color="white" style={{paddingTop:3}} />
+        </View>
       </View>
 
       <AntDesign name="heart" size={24} color={heartcol} style={{position:"absolute", top:10, right:10,}} 
