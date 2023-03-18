@@ -1,17 +1,26 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Badge } from 'react-native-paper'
 
-import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/native'
 
 import { useFonts } from 'expo-font'
 
+import useStore from '../store/store'
+
 const RestaurantCard = ({item}) => {
 
     const navigation = useNavigation()
+    const [heartcol, setheartcol] = React.useState('rgba(235, 235, 224,0.7)')
+
+    const {addLikedRestaurant, removeLikedRestaurant, likedRestaurants} = useStore(state => ({
+        addLikedRestaurant: state.addLikedRestaurant,
+        removeLikedRestaurant: state.removeLikedRestaurant,
+        likedRestaurants: state.likedRestaurants
+    }))
 
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -20,6 +29,14 @@ const RestaurantCard = ({item}) => {
         'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
         'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
     });
+
+    useEffect(() => {
+        likedRestaurants.map((restaurant) => {
+            if(restaurant.restaurant_id === item.restaurant_id){
+                setheartcol('#e5e1d8')
+            }
+        })
+    }, [])
     
   return (
     <Pressable style={{borderRadius:20, flexDirection:"column",justifyContent:"center", alignItems:"center", marginVertical:10 }}
@@ -62,6 +79,18 @@ const RestaurantCard = ({item}) => {
         </Badge>
       </View>
 
+      <AntDesign name="heart" size={24} color={heartcol} style={{position:"absolute", top:10, right:10,}} 
+      onPress={()=>{
+          if(heartcol=="rgba(235, 235, 224,0.7)"){
+              setheartcol("red")
+              addLikedRestaurant(item)
+          }
+          else{
+              setheartcol("rgba(235, 235, 224,0.7)")
+              removeLikedRestaurant(item)
+          }
+      }}
+      />
 
     </Pressable>
   )

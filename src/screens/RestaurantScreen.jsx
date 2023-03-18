@@ -14,7 +14,7 @@ import { restairantItems } from '../data/restaurantItems'
 
 const RestaurantScreen = ({naviagation, route}) => {
 
-  const {restaurant_name, rating, distance, reviews, cusines} = route.params.item;
+  const {restaurant_name, rating, distance, reviews, cusines, filters} = route.params.item;
 
   const {menuItems, addToCart} = useStore((state) => ({
     menuItems: state.menuItems,
@@ -61,10 +61,15 @@ const RestaurantScreen = ({naviagation, route}) => {
 
           </View>
 
-            <View style={{width:"100%", flexDirection:"row", justifyContent:"flex-start", alignItems:"center", gap:10, paddingHorizontal:10, paddingVertical:10}}>
-              <Chip>BestSeller</Chip>
-              <Chip>Rated 4.0+</Chip>
-            </View>
+          <View style={{width:"100%", flexDirection:"row", justifyContent:"flex-start",}}>
+            <ScrollView horizontal style={{width:"100%"}}>
+              {
+                filters.map((item, index) => {
+                  return <Chip key={index} style={{marginRight:10, marginVertical:10}} >{item}</Chip>
+                })
+              }
+            </ScrollView>
+          </View>
 
               {/* <SectionList
                   sections={restairantItems}
