@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const userSlice = (set) => ({
     user: null,
-    cartItems:cartData,
+    cartItems:[],
     totalPrice:0,
     setUser: (user) => set((state) => ({ user: user })),
     removeUser: () => set((state) => ({ user: null })),

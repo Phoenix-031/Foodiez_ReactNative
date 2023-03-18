@@ -10,6 +10,7 @@ import { useNavigation } from '@react-navigation/native'
 const RestaurantCard = ({item}) => {
 
     const navigation = useNavigation()
+
     
   return (
     <Pressable style={{borderRadius:20, flexDirection:"column",justifyContent:"center", alignItems:"center", marginVertical:10 }}

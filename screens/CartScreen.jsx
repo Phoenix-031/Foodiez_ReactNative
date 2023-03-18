@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable } from 'react-native'
 import CartItem from '../components/CartItem'
 import {Button, Badge} from 'react-native-paper'
@@ -9,15 +9,13 @@ import useStore from '../store/store'
 
 const CartScreen = () => {
 
-  const {cartItems,totalPrice, addToCart, removeFromCart, clearCart, setTotalPrice, incrementItem, decrementItem} = useStore((state) => ({
+  const {cartItems,totalPrice, addToCart, removeFromCart, clearCart, setTotalPrice,} = useStore((state) => ({
     cartItems: state.cartItems,
     totalPrice: state.totalPrice,
     addToCart: state.addToCart,
     removeFromCart: state.removeFromCart,
     clearCart: state.clearCart,
     setTotalPrice: state.setTotalPrice,
-    incrementItem: state.incrementItem,
-    decrementItem: state.decrementItem
   }))
   
     const [fontsLoaded] = useFonts({
@@ -30,6 +28,7 @@ const CartScreen = () => {
         'Robotto-Bold': require('../assets/fonts/Roboto-Bold.ttf'),
     });
 
+    const [deliverycharge, setDeliveryCharge] = useState(45)
   
   return (
     <SafeAreaView style={styles.container}>
@@ -37,7 +36,7 @@ const CartScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false} style={{flex:1,width:'100%',}}>
 
         {
-          cartItems.map((item, index) => {
+          cartItems?.map((item, index) => {
             return <CartItem key={index} item={item} />
           })
         }
@@ -54,14 +53,14 @@ const CartScreen = () => {
             
             <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
               <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Delivery Charges</Text>
-              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. 45.90</Text>
+              <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {deliverycharge}</Text>
             </View>
 
           </View>
 
           <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", width:"100%", }}>
             <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>Total</Text>
-            <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. 45.90</Text>
+            <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice + deliverycharge}</Text>
           </View>
         </View>
         <View>

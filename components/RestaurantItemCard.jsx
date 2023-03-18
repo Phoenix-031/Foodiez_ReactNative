@@ -3,6 +3,8 @@ import React from 'react'
 import { Button, Surface } from 'react-native-paper'
 import { Image } from 'react-native'
 
+import useStore from '../store/store'
+
 import { useFonts } from 'expo-font'
 
 const RestaurantItemCard = ({item}) => {
@@ -14,6 +16,10 @@ const RestaurantItemCard = ({item}) => {
         'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
         'SourceSerifPro-Regular': require('../assets/fonts/SourceSerifPro-Regular.ttf'),
     });
+
+    const {addToCart} = useStore((state) => ({
+        addToCart: state.addToCart,
+    }))
   
   return (
     <View style={{width:"100%", marginBottom:10, borderRadius:15, paddingVertical:12, paddingHorizontal:10, flexDirection:"row", gap:8, backgroundColor:"#28293d"}}>
@@ -31,7 +37,16 @@ const RestaurantItemCard = ({item}) => {
         </View>
         <View style={{flex:1}}>
             <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
-            <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" >ADD</Button>
+            <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
+            onPress = {() => addToCart({
+                id: item.id,
+                itemname: item.title,
+                description: item.description,
+                price: item.price,
+                image_uri: item.image_uri,
+                quantity: 1,
+            })}
+            >ADD</Button>
         </View>
     </View>
   )

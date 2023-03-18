@@ -12,7 +12,7 @@ const CartItem = ({item}) => {
     // const [image_uri,setImage_uri] = useState(item.image_uri)
     const image_uri = item.image_uri
 
-    const {cartItems, removeFromCart, incrementItem, decrementItem} = useStore((state) => ({
+    const {cartItems, removeFromCart, incrementItem, decrementItem,} = useStore((state) => ({
         cartItems: state.cartItems,
         removeFromCart: state.removeFromCart,
         incrementItem: state.incrementItem,

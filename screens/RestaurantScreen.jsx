@@ -11,7 +11,7 @@ import useStore from '../store/store';
 
 const RestaurantScreen = () => {
 
-  const {menuItems} = useStore((state) => ({
+  const {menuItems, addToCart} = useStore((state) => ({
     menuItems: state.menuItems,
   }))
 
