@@ -24,21 +24,27 @@ const FilterModal = ({visible, setSortModal}) => {
   useEffect(() => {
     if(innitialValue === "RHTL"){
       sortbyRatingHTL()
+      setSortModal(false)
     }
     else if(innitialValue === "RLTH"){
       sortbyRatingLTH()
+      setSortModal(false)
     }
     else if(innitialValue === "PHTL"){
       sortbyPriceHTL()
+      setSortModal(false)
     }
     else if(innitialValue === "PLTH"){
       sortbyPriceLTH()
+      setSortModal(false)
     }
     else if(innitialValue === "DTLTH"){
       sortbyDeliveryTime()
+      setSortModal(false)
     }
     else if(innitialValue === "DLTH"){
       sortbyDistance()
+      setSortModal(false)
     }
   }, [innitialValue])
   
