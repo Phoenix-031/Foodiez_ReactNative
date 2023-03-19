@@ -1,5 +1,9 @@
 import { restairantItems } from "./restaurantItems";
 import { KFCItems } from "./RestaurantItems/KFC";
+import { BurgerKingItems } from "./RestaurantItems/BurgerKing";
+import { DominoItems } from "./RestaurantItems/Domino's";
+import {HotelKohinoorItems} from "./RestaurantItems/HotelKohinoor";
+import {PizzaHutItems} from "./RestaurantItems/PizzaHut";
 
 export const allrestaurants = [
     {
@@ -13,7 +17,7 @@ export const allrestaurants = [
         filters: ["Veg", "Non-Veg", "Bestseller", "Rating 4.0+"],
         arrival_tag: "New Arrivals",
         distance: 24,
-        res_items: restairantItems,
+        res_items: BurgerKingItems,
         isAvailableforDelivery: true,
         time_to_deliver: '60 min'
     },
@@ -42,7 +46,7 @@ export const allrestaurants = [
         cusines: ["Pizza", "Burger", "Combo"],
         filters: ["Veg", "Non-Veg", "Bestseller", "Rating 4.0+"],
         distance: 2,
-        res_items: restairantItems,
+        res_items: DominoItems,
         isAvailableforDelivery: true,
         time_to_deliver: '10 min'
     },
@@ -56,7 +60,7 @@ export const allrestaurants = [
         cusines: ["Pizza", "Burger", "Combo"],
         filters: ["Veg", "Non-Veg", "Bestseller", "Rating 4.0+"],
         distance: 8,
-        res_items: restairantItems,
+        res_items: PizzaHutItems,
         isAvailableforDelivery: true,
         time_to_deliver: '45 min'
     },
@@ -146,7 +150,7 @@ export const allrestaurants = [
         arrival_tag: "New Arrivals",
         cusines: ["Chinese", "Bengali", "NorthIndian", "Biriyani"],
         distance: 6,
-        res_items: restairantItems,
+        res_items: HotelKohinoorItems,
         isAvailableforDelivery: true,
         time_to_deliver: '50 min'
     },

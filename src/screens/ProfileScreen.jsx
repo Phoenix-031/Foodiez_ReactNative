@@ -21,7 +21,9 @@ const ProfileScreen = () => {
   
   return (
     <SafeAreaProvider style={styles.container}>
-      <View style={styles.userCard}>
+      <Pressable style={styles.userCard}
+        onPress={() => navigation.navigate("UserProfile")}
+      >
         <View>
           <Text style={{color: "#e5e1d8",fontFamily:"Poppins-Bold", fontSize:25}}>User name</Text>
           <Text style={{color: "#e5e1d8",fontFamily:"SourceSerifPro-Regular", fontSize:16}}>someemail@gmail.com</Text>
@@ -30,7 +32,7 @@ const ProfileScreen = () => {
         <View style={{width:100, height:100, borderWidth:1, borderRadius:100, justifyContent:"center", alignItems:"center"}}>
           <FontAwesome5 name="user" size={35} color="gray" />
         </View>
-      </View>
+      </Pressable>
 
       <ScrollView style={{width:"90%", flexDirection:"column"}}>
 

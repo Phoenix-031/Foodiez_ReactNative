@@ -14,6 +14,7 @@ import FavouriteOrders from './src/screens/FavouriteOrders';
 import LikedRestaurantsScreen from './src/screens/LikedRestaurantsScreen';
 
 import { Entypo } from '@expo/vector-icons';
+import UserProfile from './src/screens/UserProfile';
 
 const Stack = createNativeStackNavigator()
 
@@ -163,6 +164,30 @@ export default function App() {
               )
             }
             }} 
+           />
+          <Stack.Screen name="UserProfile" component={UserProfile}
+          options={{
+            headerShown: true,
+            header:({navigation, route}) => {
+              return(
+                  <View style={{
+                  backgroundColor:"#1c1c27",
+                  borderBottomWidth:0,
+                  paddingHorizontal:20,
+                  paddingTop:20,
+                  flexDirection:"row",
+                  justifyContent:"flex-start",
+                  alignItems:"center",
+                  gap:6,
+                  }}>
+                      <Pressable
+                      onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>Profile</Text>
+                  </View>
+              )
+            }
+          }}
            />
         </Stack.Navigator>
       </NavigationContainer>

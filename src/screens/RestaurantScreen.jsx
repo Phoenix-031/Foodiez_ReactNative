@@ -23,7 +23,6 @@ const RestaurantScreen = ({ naviagation, route }) => {
     cartItems: state.cartItems,
     removeFromCart: state.removeFromCart,
   }))
-
   
   const navigation = useNavigation()
 
