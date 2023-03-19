@@ -30,10 +30,13 @@ const HomeScreen = () => {
     const [languagemodal, setLanguageModal] = useState(false)
     // const [locale, setLocale] = useState("en")
 
-    const {restaurantsList, cartItems, totalPrice} = useStore((state) => ({
+    const {restaurantsList, cartItems, totalPrice, filters, setFilters, allfilters} = useStore((state) => ({
         restaurantsList: state.restaurantsList,
         cartItems: state.cartItems,
         totalPrice: state.totalPrice,
+        filters: state.filters,
+        setFilters: state.setFilters,
+        allfilters: state.allfilters
     }))
 
     // useEffect(() => {
@@ -82,11 +85,11 @@ const HomeScreen = () => {
                         <Text>Sort </Text>
                         <AntDesign name="down" size={14} color="black" />
                     </Chip>
-                    <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={(e) => console.log()}>Nearest</Chip>
-                    <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Rating 4.0+</Chip>
-                    <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Pure Veg</Chip>
-                    <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>New Arraivals</Chip>
-                    <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} onPress={() => console.log('Pressed')}>Previous orders</Chip>
+                    {
+                        allfilters.map((item, index) => (
+                        <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} key={index} onPress={() => console.log('Pressed')}>{item}</Chip>
+                        ))
+                    }
                 </ScrollView>
             </View>
 

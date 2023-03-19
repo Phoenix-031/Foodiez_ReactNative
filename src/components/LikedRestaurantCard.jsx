@@ -3,7 +3,16 @@ import React from 'react'
 import { Pressable } from 'react-native'
 import { useFonts } from 'expo-font'
 
+import { Feather } from '@expo/vector-icons';
+
+import { useNavigation } from '@react-navigation/native';
+import LikeScreenModal from './LikeScreenModal';
+
 const LikedRestaurantCard = ({item}) => {
+
+  const navigation = useNavigation()
+
+  const[modal, setModal] = React.useState(false)
 
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -15,7 +24,7 @@ const LikedRestaurantCard = ({item}) => {
 
   return (
     <Pressable style={{borderRadius:20, flexDirection:"column",justifyContent:"center", alignItems:"center", marginVertical:10, backgroundColor:"#28293d" }}
-    // onPress={()=>{navigation.navigate("RestaurantScreen")}}
+    onPress={()=>{navigation.navigate("RestaurantScreen", {item:item})}}
     >
       <Image src={item.restaurant_image} style={{
         width: '100%',
@@ -30,9 +39,18 @@ const LikedRestaurantCard = ({item}) => {
             <Text style={{fontFamily:"Poppins-Bold",fontSize:12, color:"#e5e1d8",}}>{item.small_description}</Text>
         </View>
 
+        <Pressable style={{position:"absolute", borderRadius:100, paddingVertical:3, paddingHorizontal:3, top:5,right:10, backgroundColor:"white", borderWidth:1,}}
+        onPress={()=>{setModal(true)}}
+        >
+          <Feather name="more-vertical" size={20} color="black" />
+        </Pressable>
 
+    {
+      modal ? <LikeScreenModal item={item} modal={modal} setModal={setModal} /> : null
+    }
 
     </Pressable>
+    
   )
 }
 

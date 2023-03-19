@@ -1,13 +1,17 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useState } from 'react'
 import { Button, Surface } from 'react-native-paper'
 import { Image } from 'react-native'
 
 import useStore from '../store/store'
 
 import { useFonts } from 'expo-font'
+import Loading from './Loading'
 
 const RestaurantItemCard = ({item}) => {
+
+    const [loading, setLoading] = React.useState(false)
 
 const [fontsLoaded] = useFonts({
     'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -24,8 +28,9 @@ const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart} = useSto
     cartItems: state.cartItems,
     removeFromCart: state.removeFromCart,
 }))
-  
-  return (
+
+
+return (
     <View style={{width:"100%", marginBottom:10, borderRadius:15, paddingVertical:12, paddingHorizontal:10, flexDirection:"row", gap:8, backgroundColor:"#28293d"}}>
         <View style={{flex:2}}>
             <Surface style={{backgroundColor:"#ffad16", fontFamily:'Poppins-Regular',width:90, justifyContent:"center",flexDirection:"row", borderRadius:5}}>
@@ -49,9 +54,12 @@ const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart} = useSto
                     }
                     }>Remove</Button>
                 ) : (
+                    loading ? (<Loading />) : (
                         <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
                         onPress = {() => {
+                        setLoading(true)
                         setTotalPrice(Number(totalPrice) + Number(item.price))
+                        setTimeout(() => {
                         addToCart({
                             id: item.id,
                             itemname: item.title,
@@ -60,8 +68,11 @@ const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart} = useSto
                             image_uri: item.image_uri,
                             quantity: 1,
                         })
+                        }, 2000);
+                        setLoading(false)
                         }}
                         >ADD</Button>
+                )
                 )
 
 
@@ -69,6 +80,7 @@ const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart} = useSto
         </View>
     </View>
   )
+
 }
 
 export default RestaurantItemCard

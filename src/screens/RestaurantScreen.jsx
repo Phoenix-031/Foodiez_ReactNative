@@ -24,6 +24,7 @@ const RestaurantScreen = ({naviagation, route}) => {
     removeFromCart: state.removeFromCart,
   }))
 
+  
   const navigation = useNavigation()
 
     const [fontsLoaded] = useFonts({

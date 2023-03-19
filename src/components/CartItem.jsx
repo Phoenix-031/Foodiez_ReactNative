@@ -61,7 +61,9 @@ const CartItem = ({item}) => {
 
         <View style={styles.cartquantity}>
             <MaterialIcons name="delete" size={26} color="#D10000" 
-            onPress={() => removeFromCart(item.id)}
+            onPress={() => {
+                removeFromCart(item.id)
+            }}
             />
             <View style={{flexDirection:"row",gap:20}}>
                 <Badge style={{backgroundColor:"#ffad16", borderRadius:5, color:"#000", fontSize:20, width: 30 ,height: 30, justifyContent:"center", alignItems:"center"}}

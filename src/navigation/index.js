@@ -176,12 +176,16 @@ const RootNavigator = () => {
             }}
             />
 
-        <Tab.Screen name="Delivery" options={{
-          tabBarLabel : 'Order',
-          tabBarIcon : ({color})=> (
-            <MaterialIcons name="delivery-dining" size={35} color={color} />
-          )
-        }} component={HomeScreen} />
+        <Tab.Screen name="Delivery"
+          // tabBarLabel : 'Order',
+            component={HomeScreen} 
+            options={{
+                tabBarLabel:"",
+                tabBarIcon:({color}) => (
+                    <MaterialIcons name="delivery-dining" size={35} color={color} />
+                )
+            }}
+        />
 
         </Tab.Navigator>
     )
