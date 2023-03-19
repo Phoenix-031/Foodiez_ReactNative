@@ -63,6 +63,7 @@ const CartItem = ({item}) => {
             <MaterialIcons name="delete" size={26} color="#D10000" 
             onPress={() => {
                 removeFromCart(item.id)
+                setTotalPrice(totalPrice - item.price*quan)
             }}
             />
             <View style={{flexDirection:"row",gap:20}}>
