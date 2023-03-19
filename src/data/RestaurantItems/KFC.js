@@ -1,6 +1,6 @@
 export const KFCItems = [
     {
-        id: 1,
+        id: 'KFC1',
         title: "Ultimate Savings Bucket",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -11,7 +11,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00000638.jpg?ver=26.14"
     },
     {
-        id: 2,
+        id: 'KFC2',
         title: "Duo Chicken Chizza",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -22,7 +22,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00002228.jpg?ver=26.14"
     },
     {
-        id: 3,
+        id: 'KFC3',
         title: "Chicken Chizza",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -33,7 +33,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-K754.jpg?ver=26.14"
     },
     {
-        id: 4,
+        id: 'KFC4',
         title: "Ultimate Savings Bucket",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -44,7 +44,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00001003.jpg?ver=26.14"
     },
     {
-        id: 5,
+        id: 'KFC5',
         title: "Chicken & Krispers",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -55,7 +55,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00001027.jpg?ver=26.14"
     },
     {
-        id: 6,
+        id: 'KFC6',
         title: "Super Snacker Combo",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -66,7 +66,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00000892.jpg?ver=26.14"
     },
     {
-        id: 7,
+        id: 'KFC7',
         title: "Chicken Popcorn-Large",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -77,7 +77,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00002169.jpg?ver=26.14"
     },
     {
-        id: 8,
+        id: 'KFC8',
         title: "Tandoori Zinger Burger",
         tag: "Best Seller",
         name: "Chicken Tikka",
@@ -88,7 +88,7 @@ export const KFCItems = [
         image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-K445.jpg?ver=26.14"
     },
     {
-        id: 9,
+        id: 'KFC9',
         title: "Super Snack Combo",
         tag: "Best Seller",
         name: "Chicken Tikka",

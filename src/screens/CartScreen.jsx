@@ -77,13 +77,14 @@ const CartScreen = () => {
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
                 
                   onPress={() => {
-                    // const orderplaced = await 
+
                     var options = {
+                      order_id:"order_LTUsmSfiKe4e8f",
                       description: 'Chekcout Payment',
                       image: 'https://i.imgur.com/3g7nmJC.png',
                       currency: 'INR',
-                      key: '', // Your api key
-                      amount: 100,
+                      key: 'rzp_test_8lwdluon5ElOzi', // Your api 
+                      amount: 500,
                       name: 'foo',
                       prefill: {
                         email: 'pradhandebayan@gmail.com',
@@ -92,12 +93,12 @@ const CartScreen = () => {
                       },
                       theme: {color: '#F37254'}
                     }
-                    console.log(options)
                     RazorpayCheckout.open(options).then((data) => {
                       // handle success
                       alert(`Success: ${data.razorpay_payment_id}`);
                     }).catch((error) => {
                       // handle failure
+                      console.log(error)
                       alert(`Error: ${error.code} | ${error.description}`);
                     });
                   }}
