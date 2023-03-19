@@ -6,6 +6,7 @@ import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 import { allrestaurants } from '../data/allrestaurants'
 import { cartData } from '../data/cartData'
 import { restairantItems } from '../data/restaurantItems'
+import { restaurantReviews } from '../data/restaurantReviews'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
@@ -61,6 +62,7 @@ const appSlice = (set) => ({
 
 const restaurantSlice = (set) => ({
     menuItems: restairantItems,
+    restaurantReviews:restaurantReviews,
 })
 
 const store = (set) => ({

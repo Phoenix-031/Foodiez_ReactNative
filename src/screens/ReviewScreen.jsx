@@ -6,7 +6,11 @@ import { useFonts } from 'expo-font'
 
 import { ReviewCard } from '../components'
 
-const ReviewScreen = () => {
+// import useStore from '../store/store'
+
+const ReviewScreen = ({route}) => {
+
+  const {restaurantReviews} = route.params
 
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -15,7 +19,7 @@ const ReviewScreen = () => {
         'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
         'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
     });
-  
+
   return (
     <SafeAreaProvider style={{backgroundColor:"#1c1c27", width:"100%", height:"100%", flexDirection:"column", justifyContent:"flex-start", alignItems:"center", paddingTop:15}}>
       
@@ -34,12 +38,11 @@ const ReviewScreen = () => {
       
       <ScrollView>
 
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
-        <ReviewCard />
+{        restaurantReviews.map((item,index) => {
+          return (
+            <ReviewCard item={item} />
+          )
+        })}
 
       </ScrollView>
 

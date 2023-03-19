@@ -16,12 +16,13 @@ const RestaurantScreen = ({ naviagation, route }) => {
 
   const { restaurant_name, rating, distance, reviews, cusines, filters, res_items } = route.params.item;
 
-  const { menuItems, addToCart, totalPrice, cartItems, removeFromCart } = useStore((state) => ({
+  const { menuItems, addToCart, totalPrice, cartItems, removeFromCart, restaurantReviews } = useStore((state) => ({
     menuItems: state.menuItems,
     addToCart: state.addToCart,
     totalPrice: state.totalPrice,
     cartItems: state.cartItems,
     removeFromCart: state.removeFromCart,
+    restaurantReviews: state.restaurantReviews
   }))
   
   const navigation = useNavigation()
@@ -53,7 +54,7 @@ const RestaurantScreen = ({ naviagation, route }) => {
           </View>
 
           <Pressable style={{ flex: 1, marginRight: 10, borderRadius: 12, height: 110, paddingVertical: 12, backgroundColor: "#1c1c27" }}
-            onPress={() => navigation.navigate("ReviewScreen")}
+            onPress={() => navigation.navigate("ReviewScreen",{restaurantReviews:restaurantReviews })}
           >
             <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 20, alignSelf: "center", color: "#ef845d", height: "40%" }}>{rating}</Text>
 
