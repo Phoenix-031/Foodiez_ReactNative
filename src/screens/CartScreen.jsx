@@ -82,7 +82,7 @@ const CartScreen = () => {
                       description: 'Chekcout Payment',
                       image: 'https://i.imgur.com/3g7nmJC.png',
                       currency: 'INR',
-                      key: 'rzp_test_8lwdluon5ElOzi', // Your api key
+                      key: '', // Your api key
                       amount: 100,
                       name: 'foo',
                       prefill: {
