@@ -2,8 +2,9 @@ import { restairantItems } from "./restaurantItems";
 import { KFCItems } from "./RestaurantItems/KFC";
 import { BurgerKingItems } from "./RestaurantItems/BurgerKing";
 import { DominoItems } from "./RestaurantItems/Domino's";
-import {HotelKohinoorItems} from "./RestaurantItems/HotelKohinoor";
-import {PizzaHutItems} from "./RestaurantItems/PizzaHut";
+import { HotelKohinoorItems } from "./RestaurantItems/HotelKohinoor";
+import { PizzaHutItems } from "./RestaurantItems/PizzaHut";
+import { KolkataBiryaniItems } from "./RestaurantItems/KolkataBiryaniHouse";
 
 export const allrestaurants = [
     {
@@ -165,7 +166,7 @@ export const allrestaurants = [
         filters: ["Veg", "Non-Veg", "Bestseller", "Rating 4.0+"],
         arrival_tag: "New Arrivals",
         distance: 6,
-        res_items: restairantItems,
+        res_items: KolkataBiryaniItems,
         isAvailableforDelivery: true,
         time_to_deliver: '50 min'
     },
