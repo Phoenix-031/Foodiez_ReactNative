@@ -6,7 +6,7 @@ import { Button, Badge } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import { I18n } from 'i18n-js'
 import { en, bn, hi } from '../i18n'
-
+import { Image } from 'react-native'
 
 import { FontAwesome5, Ionicons, SimpleLineIcons, Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons'
 
@@ -48,13 +48,14 @@ const ProfileScreen = () => {
         onPress={() => navigation.navigate("UserProfile")}
       >
         <View>
-          <Text style={{color: "#e5e1d8",fontFamily:"Poppins-Bold", fontSize:25}}>{user.name}</Text>
-          <Text style={{color: "#e5e1d8",fontFamily:"SourceSerifPro-Regular", fontSize:16}}>{user.email}</Text>
+          <Text style={{color: "#e5e1d8",fontFamily:"Poppins-Bold", fontSize:20}}>{user.name}</Text>
+          <Text style={{color: "#e5e1d8",fontFamily:"SourceSerifPro-Regular", fontSize:14}}>{user.email}</Text>
         </View>
 
-        <View style={{width:100, height:100, borderWidth:1, borderRadius:100, justifyContent:"center", alignItems:"center"}}>
+        {/* <View style={{width:100, height:100, borderWidth:1, borderRadius:100, justifyContent:"center", alignItems:"center"}}>
           <FontAwesome5 name="user" size={35} color="gray" />
-        </View>
+        </View> */}
+        <Image source={{uri: user.picture}} style={{width:80, height:80, borderRadius:100}} />
       </Pressable>
 
       <ScrollView style={{width:"90%", flexDirection:"column"}}>

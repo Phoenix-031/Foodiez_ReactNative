@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
+import Welcome from './Welcome'
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -26,8 +27,7 @@ export default function App() {
   }))
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: "585846589791-01t5jhqt6v9vo2rihcc3adt58q3dbknt.apps.googleusercontent.com",
-    expoClientId:"585846589791-01t5jhqt6v9vo2rihcc3adt58q3dbknt.apps.googleusercontent.com",
+
   });
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export default function App() {
         <AntDesign name="google" size={26} color="black" />
       </Pressable>
       ) : (
-        null
+        <Welcome />
       )}
     </View>
   );

@@ -12,6 +12,7 @@ import ReviewScreen from "./ReviewScreen";
 import EditProfile from "./EditProfile";
 import UserProfile from "./UserProfile";
 import CommentScreen from "./CommentScreen";
+import Welcome from "./Welcome";
 
 
-export {HomeScreen, ProfileScreen, CartScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList, EditProfile, UserProfile, CommentScreen}
+export {HomeScreen, ProfileScreen, CartScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList, EditProfile, UserProfile, CommentScreen, Welcome}
