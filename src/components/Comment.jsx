@@ -3,8 +3,7 @@ import React from 'react'
 import { Image } from 'react-native'
 
 const Comment = ({item}) => {
-    console.log(item)
-    
+
   return (
     <View style={{flexDirection:"column", gap:6, backgroundColor:"#28293d", paddingVertical:10, paddingHorizontal:5, borderRadius:15}}>
         <View style={{flexDirection:"row",justifyContent:"flex-start", paddingHorizontal:10, gap:4, alignItems:"center"}}>
