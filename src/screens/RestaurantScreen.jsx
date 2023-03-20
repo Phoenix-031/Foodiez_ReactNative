@@ -9,9 +9,6 @@ import { useNavigation } from '@react-navigation/native';
 
 import useStore from '../store/store';
 
-import { restairantItems } from '../data/restaurantItems'
-
-
 const RestaurantScreen = ({ naviagation, route }) => {
 
   const { restaurant_name, rating, distance, reviews, cusines, filters, res_items } = route.params.item;

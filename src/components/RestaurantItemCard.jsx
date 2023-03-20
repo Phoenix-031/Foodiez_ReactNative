@@ -8,8 +8,20 @@ import useStore from '../store/store'
 
 import { useFonts } from 'expo-font'
 import Loading from './Loading'
+import { I18n } from 'i18n-js'
+import { en, bn, hi } from '../i18n'
 
 const RestaurantItemCard = ({item}) => {
+
+    const i18n = new I18n()
+
+    const {locale} = useStore((state) => ({
+        locale: state.locale
+    }))
+
+    i18n.fallbacks = true,
+    i18n.translations = {en, bn, hi},
+    i18n.locale = locale
 
     const [loading, setLoading] = React.useState(false)
 
@@ -52,7 +64,7 @@ return (
                         setTotalPrice(totalPrice - Number(item.price))
                         removeFromCart(item.id)
                     }
-                    }>Remove</Button>
+                    }>{i18n.t("remove")}</Button>
                 ) : (
                     loading ? (<Loading />) : (
                         <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
@@ -71,7 +83,7 @@ return (
                         }, 2000);
                         setLoading(false)
                         }}
-                        >ADD</Button>
+                        >{i18n.t("add")}</Button>
                 )
                 )
 

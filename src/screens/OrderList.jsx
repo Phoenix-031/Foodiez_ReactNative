@@ -5,7 +5,22 @@ import { useFonts } from 'expo-font'
 
 import { MaterialIcons } from '@expo/vector-icons'
 
+import useStore from '../store/store'
+
+import { I18n } from 'i18n-js'
+import { en, bn, hi } from '../i18n'
+
 const OrderList = () => {
+
+    const i18n = new I18n()
+
+    const {locale} = useStore((state) => ({
+        locale: state.locale
+    }))
+
+    i18n.fallbacks = true,
+    i18n.translations = {en, bn, hi},
+    i18n.locale = locale
 
     const [orderlist, setOrderList] = useState([])
     
@@ -32,7 +47,7 @@ const OrderList = () => {
                     ))) : (
                         <View style={{alignSelf:"center", justifyContent:"center", alignContent:"center",flex:1}}>
                             <MaterialIcons name="remove-shopping-cart" size={35} color="#e5e1d8" />
-                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:20, color:"#e5e1d8"}}>No Orders</Text>
+                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:20, color:"#e5e1d8"}}>{i18n.t("no orders")}</Text>
                         </View> 
                     )
             }

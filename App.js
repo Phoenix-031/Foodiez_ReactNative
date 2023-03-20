@@ -16,6 +16,8 @@ import LikedRestaurantsScreen from './src/screens/LikedRestaurantsScreen';
 import { Entypo } from '@expo/vector-icons';
 import UserProfile from './src/screens/UserProfile';
 
+import { StripeProvider } from '@stripe/stripe-react-native';
+
 const Stack = createNativeStackNavigator()
 
 
@@ -30,7 +32,8 @@ export default function App() {
     });
   
   return (
-    <PaperProvider>
+    <StripeProvider publishableKey='pk_test_51MnT0pSBE9PwAuPZOpvhaH0QAMlHm7uSXuZgI84HyrK3N4UyKu9QESQJQjL7PBZjWz6bSERWthF7zN6gQxRtoyT900geCkrQiW'>
+<PaperProvider>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Home" component={RootNavigator}
@@ -68,7 +71,30 @@ export default function App() {
               }
             }} 
           />
-          <Stack.Screen name="MapScreen" component={MapScreen} />
+          <Stack.Screen name="MapScreen" component={MapScreen} 
+            options={{
+              header:({navigation, route}) => {
+                // console.log(route, navigation)
+                return(
+                    <View style={{
+                    backgroundColor:"#1c1c27",
+                    borderBottomWidth:0,
+                    paddingHorizontal:20,
+                    paddingTop:20,
+                    flexDirection:"row",
+                    justifyContent:"flex-start",
+                    alignItems:"center",
+                    gap:6,
+                    }}>
+                        <Pressable
+                        onPress={() => navigation.goBack()}
+                        ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                        <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>Delivery Location</Text>
+                    </View>
+                )
+              }
+            }}
+          />
           <Stack.Screen name="OrderHistoryScreen" component={OrderList} 
           options={{
             header:({navigation, route}) => {
@@ -192,6 +218,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
+    </StripeProvider>
   );
 }
 

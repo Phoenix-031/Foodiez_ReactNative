@@ -7,11 +7,24 @@ import { CartItem } from '../components'
 
 import useStore from '../store/store'
 
-import RazorpayCheckout from 'react-native-razorpay'
+// import RazorpayCheckout from 'react-native-razorpay'
+
+import {I18n} from 'i18n-js'
+import { en, bn, hi } from '../i18n'
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 const CartScreen = () => {
+
+      const i18n = new I18n()
+
+      const {locale} = useStore((state) => ({
+        locale: state.locale
+      }))
+  
+    i18n.fallbacks = true,
+    i18n.translations = {en, bn, hi},
+    i18n.locale = locale
 
   const {cartItems,totalPrice, addToCart, removeFromCart, clearCart, setTotalPrice,} = useStore((state) => ({
     cartItems: state.cartItems,
@@ -49,24 +62,24 @@ const CartScreen = () => {
                   {
                     cartItems.length > 0 ? (
                   <View style={{gap:10}}>
-                    <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>Order Summary</Text>
+                    <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>{i18n.t("order summary")}</Text>
 
                     <View>
 
                       <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
-                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Subtotal</Text>
+                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>{i18n.t("subtotal")}</Text>
                         <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice}</Text>
                       </View>
                       
                       <View style={{flexDirection:"row",justifyContent:"space-between", alignItems:"center"}}>
-                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Delivery Charges</Text>
+                        <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>{i18n.t("delivery charges")}</Text>
                         <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {deliverycharge}</Text>
                       </View>
 
                     </View>
 
                     <View style={{flexDirection:"row", justifyContent:"space-between", alignItems:"center", width:"100%", }}>
-                      <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>Total</Text>
+                      <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>{i18n.t("total")}</Text>
                       <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice + deliverycharge}</Text>
                     </View>
                   </View>) : null
@@ -104,14 +117,14 @@ const CartScreen = () => {
                   }}
 
                 >
-                  Proceed to Checkout
+                  {i18n.t("proceed to checkout")}
                 </Button>
 
                 </ScrollView>
         ) : (
           <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
             <MaterialCommunityIcons name="cart-remove" size={50} color="white" />
-            <Text style={{color:"#e5e1d8", fontSize:20, fontFamily:"Poppins-SemiBold", paddingTop:15}}>Your Cart is Empty</Text>
+            <Text style={{color:"#e5e1d8", fontSize:20, fontFamily:"Poppins-SemiBold", paddingTop:15}}>{i18n.t("your cart is empty")}</Text>
           </View>
         )
       }

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, Pressable } from 'react-native'
-import { categoryData } from '../data/categoryData'
+
+import { categoryData } from '../data'
 
 const CategoryComponent = ({categoryList}) => {
 

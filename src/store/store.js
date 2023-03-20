@@ -2,13 +2,19 @@ import { create } from 'zustand'
 
 import { persist, devtools, createJSONStorage } from 'zustand/middleware'
 
-//data imports from data folder
-import { allrestaurants } from '../data/allrestaurants'
-import { cartData } from '../data/cartData'
-import { restairantItems } from '../data/restaurantItems'
-import { restaurantReviews } from '../data/restaurantReviews'
+import { cartData, allrestaurants, restairantItems, restaurantReviews } from '../data'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
+
+import * as Localization from 'expo-localization';
+import {I18n} from 'i18n-js'
+import { en, bn, hi } from '../i18n';
+
+const i18n = new I18n()
+
+i18n.fallbacks = true
+i18n.translations = {en, bn, hi}
+// i18n.locale = locale
 
 const userSlice = (set) => ({
     user: null,
@@ -17,7 +23,9 @@ const userSlice = (set) => ({
     totalPrice:0,
     sortfilter:"RLTH",
     filters:[],
-    allfilters:["Nearest","Rating 4.0+","Pure Veg", "New Arrivals", "Previous Orders"],
+    allfilters:["Nearest","Rating 4.0+","Pure Veg", "New Arrivals", "Previous Orders"],     
+    locale:"en",
+    setLocale: (locale) => set((state) => ({ locale: locale })), 
     setFilters: (filters) => set((state) => ({ filters: filters })),
     setSortfilter: (sortfilter) => set((state) => ({ sortfilter: sortfilter })),
     setUser: (user) => set((state) => ({ user: user })),

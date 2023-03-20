@@ -7,6 +7,15 @@
     "orientation": "portrait",
     "icon": "assets/foodiez-logo.png",
     "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": ["com.jgogoi.Foodiez"],
+          "enableGooglePay": false
+        }
+      ]
+    ],
     "splash": {
       "image": "assets/foodiez-logo.png",
       "resizeMode": "contain",

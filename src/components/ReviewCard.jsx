@@ -6,8 +6,23 @@ import { Entypo } from '@expo/vector-icons'
 
 import { useFonts } from 'expo-font'
 
+import useStore from '../store/store'
+
+import { I18n } from 'i18n-js'
+import { en, bn, hi } from '../i18n'
+
 const ReviewCard = ({item}) => {
 
+    const i18n = new I18n()
+
+    const {locale} = useStore((state) => ({
+        locale: state.locale
+    }))
+
+    i18n.fallbacks = true,
+    i18n.translations = {en, bn, hi},
+    i18n.locale = locale
+    
 const [fontsLoaded] = useFonts({
     'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
     'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
@@ -37,15 +52,15 @@ const [fontsLoaded] = useFonts({
         <View style={{width:"100%", flexDirection:"row", justifyContent:"space-between" , alignContent:"center"}}>
             <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
                 <Entypo name="thumbs-up" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>Like</Text>
+                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("like")}</Text>
             </View>
             <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
                 <Entypo name="message" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>Comment</Text>
+                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("comment")}</Text>
             </View>
             <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
                 <Entypo name="share" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>Share</Text>
+                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("share")}</Text>
             </View>
         </View>
     </View>
