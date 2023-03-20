@@ -54,7 +54,7 @@ const MapScreen = () => {
       <MapView style={styles.map}  
         initialRegion={mapregion}>
       
-      {/* <Marker coordinate={mapregion} title="Your location" pinColor='red' /> */}
+      <Marker coordinate={mapregion} title="Your location" pinColor='red' />
     </MapView>
     </View>
   )

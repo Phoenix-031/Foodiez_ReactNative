@@ -95,7 +95,7 @@ const HomeScreen = () => {
                 
             </View>
             
-            <Searchbar placeholder='Restaurant name / Dish' style={{borderRadius:10, width:"90%", paddingVertical:0, }} 
+            <Searchbar placeholder={i18n.t("homesearch")} style={{borderRadius:10, width:"90%", paddingVertical:0, }} 
                onChangeText={(text) => {
                 setSearchQuery(text)
                 }}
@@ -148,7 +148,7 @@ const HomeScreen = () => {
                         )
                     }) : (
                         <View style={{width:"100%", height:300, justifyContent:"center", alignItems:"center"}}>
-                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>No Restaurants Found</Text>
+                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{i18n.t("no restuarants found")}</Text>
                             <MaterialIcons name="search-off" size={40} color="gray" />
                         </View>
                     )

@@ -14,7 +14,6 @@ const i18n = new I18n()
 
 i18n.fallbacks = true
 i18n.translations = {en, bn, hi}
-// i18n.locale = locale
 
 const userSlice = (set) => ({
     user: null,

@@ -57,7 +57,7 @@ const LikedRestaurantsScreen = () => {
         <View style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:15}}>
 
             <Searchbar style={{marginBottom:12}} 
-                placeholder="Search"
+                placeholder={i18n.t("search")}
                 onChangeText={(query) => setSearchQuery(query)}
                 value={searchQuery}
             />
