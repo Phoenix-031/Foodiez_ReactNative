@@ -27,6 +27,10 @@ const ProfileScreen = () => {
 
   const navigation = useNavigation()
 
+  const {user} = useStore((state) => ({
+    user: state.user
+  }))
+
 
 
     const [fontsLoaded] = useFonts({
@@ -44,8 +48,8 @@ const ProfileScreen = () => {
         onPress={() => navigation.navigate("UserProfile")}
       >
         <View>
-          <Text style={{color: "#e5e1d8",fontFamily:"Poppins-Bold", fontSize:25}}>User name</Text>
-          <Text style={{color: "#e5e1d8",fontFamily:"SourceSerifPro-Regular", fontSize:16}}>someemail@gmail.com</Text>
+          <Text style={{color: "#e5e1d8",fontFamily:"Poppins-Bold", fontSize:25}}>{user.name}</Text>
+          <Text style={{color: "#e5e1d8",fontFamily:"SourceSerifPro-Regular", fontSize:16}}>{user.email}</Text>
         </View>
 
         <View style={{width:100, height:100, borderWidth:1, borderRadius:100, justifyContent:"center", alignItems:"center"}}>

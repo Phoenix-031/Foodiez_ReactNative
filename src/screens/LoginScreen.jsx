@@ -18,11 +18,16 @@ WebBrowser.maybeCompleteAuthSession();
 
 export default function App() {
   const [token, setToken] = useState("");
-  const [userInfo, setUserInfo] = useState(null);
+  const navigation = useNavigation()
+
+  const {user, setUser} = useStore((state) => ({
+    user: state.user,
+    setUser: state.setUser,
+  }))
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: "585846589791-nmksq7lc0fbvi7u7ivtoe8ff88m17iqr.apps.googleusercontent.com",
-
+    androidClientId: "585846589791-01t5jhqt6v9vo2rihcc3adt58q3dbknt.apps.googleusercontent.com",
+    expoClientId:"585846589791-01t5jhqt6v9vo2rihcc3adt58q3dbknt.apps.googleusercontent.com",
   });
 
   useEffect(() => {
@@ -42,27 +47,30 @@ export default function App() {
       );
 
       const user = await response.json();
-      setUserInfo(user);
+      setUser(user);
+      console.log(user);
+      navigation.navigate('Home')
     } catch (error) {
       // Add your own error handler here
+      console.log(error);
     }
   };
 
   return (
-    // <View style={styles.container}>
-    //   {userInfo === null ? (
-    //     <Button
-    //       title="Sign in with Google"
-    //       disabled={!request}
-    //       onPress={() => {
-    //         promptAsync();
-    //       }}
-    //     />
-    //   ) : (
-    //     <Text style={styles.text}>{userInfo.name}</Text>
-    //   )}
-    // </View>
-    <Text>Login screen</Text>
+    <View style={styles.container}>
+      {user === null ? (
+      <Pressable
+        style={{width:250, backgroundColor:'#ef845d', borderRadius:10, marginBottom:10, paddingVertical:5, justifyContent:'center', alignItems:'center', flexDirection:'row', paddingVertical:10}}
+          onPress={() => {
+            promptAsync();
+          }}
+      >
+        <AntDesign name="google" size={26} color="black" />
+      </Pressable>
+      ) : (
+        null
+      )}
+    </View>
   );
 }
 

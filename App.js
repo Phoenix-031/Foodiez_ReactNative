@@ -36,13 +36,13 @@ export default function App() {
       <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName='Home'
+          initialRouteName='Login'
         >
-          {/* <Stack.Screen name="Login" component={LoginScreen} 
+          <Stack.Screen name="Login" component={LoginScreen} 
           options={{
             headerShown: false,
           }}
-          /> */}
+          />
           <Stack.Screen name="Home" component={RootNavigator}
           options={{
             headerShown: false,

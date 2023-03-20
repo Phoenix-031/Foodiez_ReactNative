@@ -7,6 +7,7 @@
     "orientation": "portrait",
     "icon": "assets/foodiez-logo.png",
     "userInterfaceStyle": "light",
+    "scheme": "com.auth.Foodiez",
     "plugins": [
       [
         "@stripe/stripe-react-native",
@@ -31,7 +32,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "package": "com.auth.Foodiez"
+      "package": "com.auth.Foodiez",
+      "bundleIdentifier": "com.auth.Foodiez"
     },
     "android": {
       "adaptiveIcon": {
