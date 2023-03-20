@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Avatar, Badge } from 'react-native-paper'
 
@@ -11,8 +11,11 @@ import useStore from '../store/store'
 import { I18n } from 'i18n-js'
 import { en, bn, hi } from '../i18n'
 
+import { useNavigation } from '@react-navigation/native'
+
 const ReviewCard = ({item}) => {
 
+    const navigation = useNavigation()
     const i18n = new I18n()
 
     const {locale} = useStore((state) => ({
@@ -32,7 +35,9 @@ const [fontsLoaded] = useFonts({
 });
     
   return (
-    <View style={{marginVertical:10, width:"100%", paddingHorizontal:15, paddingVertical:15, backgroundColor:"#28293d", borderRadius:15}}>
+    <Pressable style={{marginVertical:10, width:"100%", paddingHorizontal:15, paddingVertical:15, backgroundColor:"#28293d", borderRadius:15}}
+    onPress={() => navigation.navigate('CommentScreen',{item:item})}
+    >
         <View style={{width:"100%", justifyContent:"space-between", alignItems:"center",}}>
             <View style={{flexDirection:"row", alignSelf:"flex-start", gap:8}}>
                 <Avatar.Image source={{uri:item.profile_image}} 
@@ -52,7 +57,7 @@ const [fontsLoaded] = useFonts({
         <View style={{width:"100%", flexDirection:"row", justifyContent:"space-between" , alignContent:"center"}}>
             <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
                 <Entypo name="thumbs-up" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("like")}</Text>
+                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("liked")}</Text>
             </View>
             <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
                 <Entypo name="message" size={20} color="#e5e1d8" />
@@ -63,7 +68,7 @@ const [fontsLoaded] = useFonts({
                 <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("share")}</Text>
             </View>
         </View>
-    </View>
+    </Pressable>
   )
 }
 
