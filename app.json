@@ -11,9 +11,14 @@
       [
         "@stripe/stripe-react-native",
         {
-          "merchantIdentifier": ["com.jgogoi.Foodiez"],
+          "merchantIdentifier": [
+            "com.jgogoi.Foodiez"
+          ],
           "enableGooglePay": false
         }
+      ],
+      [
+        "@react-native-voice/voice"
       ]
     ],
     "splash": {
@@ -25,16 +30,26 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package": "com.auth.Foodiez"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.auth.Foodiez",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "48ae831f-4c83-499c-bded-4cc7e5201ca6"
+      }
     }
   }
 }

@@ -94,13 +94,21 @@ const HomeScreen = () => {
                 </Pressable>
                 
             </View>
-            
-            <Searchbar placeholder={i18n.t("homesearch")} style={{borderRadius:10, width:"90%", paddingVertical:0, }} 
+
+            <View style={{width:"90%", flexDirection:"row", gap:4,}}>
+            <Searchbar placeholder={i18n.t("homesearch")} style={{borderRadius:10, width:"80%", paddingVertical:0, flex:6 }} 
                onChangeText={(text) => {
                 setSearchQuery(text)
                 }}
                 value={searchQuery}
             />
+            
+            <Pressable style={{flex:1, backgroundColor:"white", paddingVertical:4, paddingHorizontal:4, borderRadius:100,flexDirection:"row", justifyContent:"center", alignItems:"center"}}
+            onPress={() => console.log('Pressed')}
+            >
+                <MaterialIcons name="keyboard-voice" size={24} color="#ef845d"  />
+            </Pressable>
+            </View>
 
             <View style={{width:"90%", marginTop:2}}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

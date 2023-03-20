@@ -1,78 +1,80 @@
 import React from 'react'
-import { View, Text, StyleSheet, TextInput, Pressable } from 'react-native'
+import {  TextInput, Pressable } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Button } from 'react-native-paper'
 import { useFonts } from 'expo-font'
 import { useNavigation } from '@react-navigation/native'
 
 import { Ionicons, MaterialIcons, AntDesign} from '@expo/vector-icons'
 
-const LoginScreen = () => {
+import useStore from '../store/store'
 
-  const navigation = useNavigation()
 
-    const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
 
-    
-    });
-  
+WebBrowser.maybeCompleteAuthSession();
+
+export default function App() {
+  const [token, setToken] = useState("");
+  const [userInfo, setUserInfo] = useState(null);
+
+  const [request, response, promptAsync] = Google.useAuthRequest({
+    androidClientId: "585846589791-nmksq7lc0fbvi7u7ivtoe8ff88m17iqr.apps.googleusercontent.com",
+
+  });
+
+  useEffect(() => {
+    if (response?.type === "success") {
+      setToken(response.authentication.accessToken);
+      getUserInfo();
+    }
+  }, [response, token]);
+
+  const getUserInfo = async () => {
+    try {
+      const response = await fetch(
+        "https://www.googleapis.com/userinfo/v2/me",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const user = await response.json();
+      setUserInfo(user);
+    } catch (error) {
+      // Add your own error handler here
+    }
+  };
+
   return (
-    <SafeAreaProvider style={styles.container}>
-        {/* <Image source={require('../../assets/logo.png')} style={styles.logo} /> */}
-        <View style={{width:"90%"}}>
-          <View style={{ width:'100%'}}>
-            <Text style={{fontFamily:"Poppins-Medium", fontSize:20, color:"#ffad16"}}>Login</Text>
-
-            <View style={{gap:10}}>
-              <TextInput placeholderTextColor="#e5e1d8" style={{borderBottomWidth:1,color: '#e5e1d8', borderColor:"#e5e1d8" ,paddingHorizontal:10, paddingVertical:12, fontFamily:"SourceSerifPro-Regular", fontSize:15}} placeholder="Email ID" />
-              <TextInput placeholderTextColor="#e5e1d8" style={{borderBottomWidth:1,color: '#e5e1d8', borderColor:"#e5e1d8" ,paddingHorizontal:10, paddingVertical:12, fontFamily:"SourceSerifPro-Regular", fontSize:15}} placeholder="Password" />
-
-              <Button mode='contained' style={{fontFamily:"Poppins-Regular", fontSize:20, width:'80%', alignSelf:"center", marginTop:25, paddingVertical:8, borderRadius:10}} buttonColor='#ef845d' uppercase>Login</Button>
-            </View>
-
-          </View>
-
-          <View style={{width:'100%', justifyContent:"space-around", alignItems:"center", flexDirection:"row", paddingTop:50, paddingBottom:30}}>
-            <Pressable style={styles.logo}>
-              <Ionicons name="logo-google" size={24} color="#e5e1d8" />
-            </Pressable>
-            <Pressable style={styles.logo}>
-              <MaterialIcons name="facebook" size={24} color="#e5e1d8" />
-            </Pressable>
-            <Pressable style={styles.logo}>
-              <AntDesign name="twitter" size={24} color="#e5e1d8" />
-            </Pressable>
-          </View>
-
-          <View style={{width:"100%"}}>
-            <View style={{ alignSelf:"center", color:"#ffad16", flexDirection:"row", justifyContent:"center", alignItems:"center",gap:5}}>
-              <Text style={{color:"#e5e1d8", fontFamily:"Poppins-Regular", fontSize:15}}>Don't have an account?</Text>
-              <Pressable onPress={()=>navigation.navigate('SignUp')}>
-                <Text style={{color:"#ef845d", fontFamily:"Poppins-SemiBold", fontSize:15}}>Register</Text>
-              </Pressable>
-            </View>
-          </View>
-        </View>
-    </SafeAreaProvider>
-  )
+    // <View style={styles.container}>
+    //   {userInfo === null ? (
+    //     <Button
+    //       title="Sign in with Google"
+    //       disabled={!request}
+    //       onPress={() => {
+    //         promptAsync();
+    //       }}
+    //     />
+    //   ) : (
+    //     <Text style={styles.text}>{userInfo.name}</Text>
+    //   )}
+    // </View>
+    <Text>Login screen</Text>
+  );
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems:'center',
-    justifyContent:'center',
-    backgroundColor:'#1c1c27',
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  logo:{
-   borderRadius:10, paddingVertical:20, paddingHorizontal:20, borderWidth:1,
-   borderColor:"gray"
-  }
-})
-
-export default LoginScreen
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+});

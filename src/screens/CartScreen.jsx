@@ -1,21 +1,25 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable, Alert } from 'react-native'
 import {Button, Badge} from 'react-native-paper'
 import { useFonts } from 'expo-font'
+import axios from 'axios'
 
 import { CartItem } from '../components'
 
 import useStore from '../store/store'
 
-// import RazorpayCheckout from 'react-native-razorpay'
+import { useNavigation } from '@react-navigation/native'
 
 import {I18n} from 'i18n-js'
 import { en, bn, hi } from '../i18n'
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
+import { useStripe } from '@stripe/stripe-react-native'
+
 const CartScreen = () => {
 
+  const navigation = useNavigation()
       const i18n = new I18n()
 
       const {locale} = useStore((state) => ({
@@ -46,6 +50,50 @@ const CartScreen = () => {
     });
 
     const [deliverycharge, setDeliveryCharge] = useState(45)
+
+    const {initPaymentSheet, presentPaymentSheet} = useStripe()
+
+    const handleCheckout = async() => {
+
+      console.log("checkout")
+
+      const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
+      {
+        amount: (totalPrice + deliverycharge)*100,
+        currency: "INR",
+      },{
+        headers:{
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json',
+        }
+    })
+    const res =  payamentIntent.data
+    console.log(res)
+
+    const initResponse = await initPaymentSheet({
+      merchantDisplayName: 'Foodiex',
+      paymentIntentClientSecret: res.client_secret,
+    })
+
+    if(initResponse.error){
+      console.log("error")
+      Alert.alert("Error", initResponse.error.message)
+      return
+    }
+
+    const payementRes = await presentPaymentSheet();
+
+    if(payementRes.error){
+      console.log("error")
+      Alert.alert("Error", payementRes.error.message)
+      return
+    }else{
+      console.log("success")
+      Alert.alert("Success", "Your order has been placed")
+      clearCart()
+      navigation.navigate("Home")
+    }
+  }
   
   return (
     <SafeAreaView style={styles.container}>
@@ -88,34 +136,7 @@ const CartScreen = () => {
                   </View>
 
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
-                
-                  onPress={() => {
-
-                    var options = {
-                      order_id:"order_LTUsmSfiKe4e8f",
-                      description: 'Chekcout Payment',
-                      image: 'https://i.imgur.com/3g7nmJC.png',
-                      currency: 'INR',
-                      key: 'rzp_test_8lwdluon5ElOzi', // Your api 
-                      amount: 500,
-                      name: 'foo',
-                      prefill: {
-                        email: 'pradhandebayan@gmail.com',
-                        contact: '9007361795',
-                        name: 'Razorpay Software'
-                      },
-                      theme: {color: '#F37254'}
-                    }
-                    RazorpayCheckout.open(options).then((data) => {
-                      // handle success
-                      alert(`Success: ${data.razorpay_payment_id}`);
-                    }).catch((error) => {
-                      // handle failure
-                      console.log(error)
-                      alert(`Error: ${error.code} | ${error.description}`);
-                    });
-                  }}
-
+                  onPress={handleCheckout}
                 >
                   {i18n.t("proceed to checkout")}
                 </Button>

@@ -33,15 +33,17 @@ export default function App() {
   
   return (
     <StripeProvider publishableKey='pk_test_51MnT0pSBE9PwAuPZOpvhaH0QAMlHm7uSXuZgI84HyrK3N4UyKu9QESQJQjL7PBZjWz6bSERWthF7zN6gQxRtoyT900geCkrQiW'>
-<PaperProvider>
+      <PaperProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={RootNavigator}
+        <Stack.Navigator
+          initialRouteName='Home'
+        >
+          {/* <Stack.Screen name="Login" component={LoginScreen} 
           options={{
             headerShown: false,
           }}
-          />
-          <Stack.Screen name="Login" component={LoginScreen} 
+          /> */}
+          <Stack.Screen name="Home" component={RootNavigator}
           options={{
             headerShown: false,
           }}
@@ -68,7 +70,7 @@ export default function App() {
                         <Text style={{fontFamily:"Poppins-SemiBold",fontSize:18,color:"#e5e1d8", paddingTop:5}}>{route.params.item.restaurant_name}</Text>
                     </View>
                 )
-              }
+                  }
             }} 
           />
           <Stack.Screen name="MapScreen" component={MapScreen} 
