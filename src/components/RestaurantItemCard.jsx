@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useState } from 'react'
-import { Button, Surface } from 'react-native-paper'
+import { ActivityIndicator, Button, Surface } from 'react-native-paper'
 import { Image } from 'react-native'
 
 import useStore from '../store/store'
@@ -61,11 +61,14 @@ return (
             <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
             {
 
-                loading ? <Loading /> :(
+                loading ? <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} /> :(
                 cartItems?.find((cartItem) => cartItem.id === item.id) ? (
                     <Button style={{backgroundColor:"#ffad16", marginTop:10, borderRadius:10, width:"100%", justifyContent:"center"}} onPress={() => {
+                        setLoading(true)
                         setTotalPrice(totalPrice - Number(item.price))
                         removeFromCart(item.id)
+                        // console.log(totalPrice)
+                        setLoading(false)
                     }
                     }>{i18n.t("remove")}</Button>
                 ) : (
@@ -77,19 +80,42 @@ return (
                         if(cartItems.length > 0){
                             
                             if(cartItems[0].restaurant_name !== restaurant_name){
-                                clearCart();
-                                setTotalPrice(0)
-                                console.log(totalPrice)
-                                await addToCart({
-                                    id: item.id,
-                                    itemname: item.title,
-                                    description: item.description,
-                                    price: Number(item.price),
-                                    image_uri: item.image_uri,
-                                    quantity: 1,
-                                    restaurant_name: restaurant_name
-                                })
-                                setTotalPrice(Number(totalPrice) + Number(item.price))
+                                Alert.alert(
+                                    "you can only order from one restaurant at a time",
+                                    "do you want to clear your cart and add this item?",
+                                    [
+                                        {
+                                            text: "Cancel",
+                                            onPress: () => console.log("Cancel Pressed"),
+                                            style: "cancel"
+                                        },
+                                        { text: "OK", onPress: () => {
+                                            clearCart()
+                                            setTotalPrice(0)
+                                            addToCart({
+                                                id: item.id,
+                                                itemname: item.title,
+                                                description: item.description,
+                                                price: Number(item.price),
+                                                image_uri: item.image_uri,
+                                                quantity: 1,
+                                                restaurant_name: restaurant_name
+                                            })
+                                            setTotalPrice(Number(item.price))
+                                            
+                                        }}])
+                                // setTotalPrice(0)
+                                // console.log(totalPrice)
+                                // await addToCart({
+                                //     id: item.id,
+                                //     itemname: item.title,
+                                //     description: item.description,
+                                //     price: Number(item.price),
+                                //     image_uri: item.image_uri,
+                                //     quantity: 1,
+                                //     restaurant_name: restaurant_name
+                                // })
+                                // setTotalPrice(Number(item.price))
                             }else {
                                 setTotalPrice(Number(totalPrice) + Number(item.price))
                             await addToCart({
@@ -104,6 +130,7 @@ return (
                             }
 
                         }else{
+                            console.log(totalPrice)
                             setTotalPrice(Number(totalPrice) + Number(item.price))
                             await addToCart({
                                 id: item.id,

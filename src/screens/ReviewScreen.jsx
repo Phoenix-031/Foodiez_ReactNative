@@ -55,7 +55,7 @@ const ReviewScreen = ({route}) => {
 
 {        restaurantReviews.map((item,index) => {
           return (
-            <ReviewCard item={item} />
+            <ReviewCard item={item} key={index} />
           )
         })}
 
