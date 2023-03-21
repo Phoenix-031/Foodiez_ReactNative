@@ -46,4 +46,9 @@ export const bn = {
         "hotelkohinoor":"হোটেল কোহিনূর",
         "kolkatabiriyanihouse":"কলকাতা বিরিয়ানি হাউস",
         "cart":"কার্ট",
+        "Nearest":"সর্বশেষ",
+        "Rating 4.0+":"রেটিং 4.0+",
+        "Pure Veg":"পুরো পশুপাখি",
+        "New Arrivals":"নতুন আসছে",
+        "Previous Orders":"পূর্ববর্তী অর্ডার",
 }

@@ -17,7 +17,7 @@ import {
 
 import { Badge } from "react-native-paper";
 
-import { CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen, SearchScreen, DeliveryScreen } from "../screens";
+import { CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen, SearchScreen, DeliveryScreen, OrderTrackingScreen } from "../screens";
 
 const ProfileStack = createNativeStackNavigator();
 
@@ -156,6 +156,48 @@ function SearchScreenStack() {
   );
 }
 
+const OrderStack = createNativeStackNavigator();
+
+function OrderTracScreen() {
+
+  const [fontsLoaded] = useFonts({
+    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+  });
+
+  return (
+    <OrderStack.Navigator>
+      <OrderStack.Screen name="OrderTrackingScreen" component={OrderTrackingScreen}
+        options={{
+          header: ({ navigation, route }) => {
+            // console.log(route, navigation)
+            return (
+              <View style={{
+                backgroundColor: "#1c1c27",
+                borderBottomWidth: 0,
+                paddingHorizontal: 20,
+                paddingTop: 20,
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: 6,
+              }}>
+                <Pressable
+                  onPress={() => navigation.goBack()}
+                ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Track your Order</Text>
+              </View>
+            )
+          }
+        }}
+      />
+    </OrderStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 const RootNavigator = () => {
@@ -219,9 +261,10 @@ const RootNavigator = () => {
         }}
       />
 
-      <Tab.Screen name="Delivery"
+      <Tab.Screen
         // tabBarLabel : 'Order',
-        component={DeliveryScreen}
+        name="Delivery"
+        component={OrderTracScreen}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (

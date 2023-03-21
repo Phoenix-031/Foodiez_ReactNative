@@ -160,7 +160,7 @@ const HomeScreen = () => {
                             }else{
                                 setFilters([...filters, item])
                             }
-                        }}><Text style={{color:`${filters.includes(item) ? "red" : "green"}`, fontFamily:"Poppins-SemiBold"}}>{item}</Text></Pressable>
+                        }}><Text style={{color:`${filters.includes(item) ? "red" : "green"}`, fontFamily:"Poppins-SemiBold"}}>{i18n.t(item)}</Text></Pressable>
                         ))
                     }
                 </ScrollView>

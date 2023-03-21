@@ -43,4 +43,9 @@ export const hi = {
     "hotelkohinoor":"होटल कोहिनूर",
     "kolkatabiriyanihouse":"कोलकाता बिरयानी हाउस",
     "cart":"कार्ट",
+    "Nearest":"निकटतम",
+    "Rating 4.0+":"रेटिंग 4.0+",
+    "Pure Veg":"स्वच्छ वेज़",
+    "New Arrivals":"नए आगमन",
+    "Previous Orders":"पिछले आदेश",
 }

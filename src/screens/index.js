@@ -17,6 +17,8 @@ import Welcome from "./Welcome";
 import SearchScreen from "./SearchScreen";
 import DeliveryScreen from "./DeliveryScreen";
 import DeliveryLocation from "./DeliveryLocation";
+import OrderTrackingScreen from "./OrderTrackingScreen";
+import OrderMapView from "./OrderMapView";
 
 
-export { HomeScreen,DeliveryLocation, ProfileScreen, CartScreen,SearchScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList, MyReviewsScreen, EditProfile, UserProfile, CommentScreen, Welcome, DeliveryScreen }
+export { HomeScreen,OrderMapView, OrderTrackingScreen,DeliveryLocation, ProfileScreen, CartScreen,SearchScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList, MyReviewsScreen, EditProfile, UserProfile, CommentScreen, Welcome, DeliveryScreen }
