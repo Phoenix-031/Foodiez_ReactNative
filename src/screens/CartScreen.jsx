@@ -54,6 +54,8 @@ const CartScreen = () => {
 
     const {initPaymentSheet, presentPaymentSheet} = useStripe()
 
+    const [payement,setPayement] = useState()
+
     const handleCheckout = async() => {
     setLoadingPayement(true)
 
@@ -68,7 +70,8 @@ const CartScreen = () => {
         }
     })
     const res =  payamentIntent.data
-    console.log(res)
+    // console.log(res)
+    setPayement(res)
     
     const initResponse = await initPaymentSheet({
       merchantDisplayName: 'Foodiez',
@@ -84,16 +87,19 @@ const CartScreen = () => {
     setLoadingPayement(false)
 
     const payementRes = await presentPaymentSheet();
+    console.log(payementRes)
 
     if(payementRes.error){
       console.log("error")
       Alert.alert("Error", payementRes.error.message)
       return
     }else{
-      console.log("success")
+      // console.log("success")
+      // console.log(payementRes)
       Alert.alert("Success", "Your order has been placed")
       clearCart()
       navigation.navigate("Home")
+      
     }
   }
   
