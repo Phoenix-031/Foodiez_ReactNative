@@ -5,15 +5,19 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import useStore from '../store/store'
 import { useNavigation } from '@react-navigation/native'
 
-const SearchScreen = () => {
+const SearchScreen = ({route}) => {
 
   const {restaurantsList} = useStore((state) => ({
     restaurantsList: state.restaurantsList
   }))
 
   const [data, setData] = useState([])
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState(route.params.data)
   const navigation = useNavigation()
+
+  useEffect(() => {
+    setSearchQuery(route.params.data)
+  }, [route.params.data])
 
   useEffect(() => {
     if(searchQuery.length > 0){
@@ -34,13 +38,15 @@ const SearchScreen = () => {
         <TextInput placeholder="Search" style={{width:"100%", height:50, borderWidth:1, borderColor:"gray", borderRadius:10, paddingLeft:10, color:"white"}} 
         placeholderTextColor="white"
         autoFocus={true}
+        value={searchQuery}
         onChangeText={(text) => {
           setSearchQuery(text)
         }}
         />
 
-        <ScrollView style={{width:"100%", height:"100%", marginTop:10}}>
+        {/* <ScrollView style={{width:"100%", height:"100%", marginTop:10}}> */}
           <FlatList
+          style={{width:"100%", height:"100%", marginTop:10}}
             data={data}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => {
@@ -56,7 +62,7 @@ const SearchScreen = () => {
               )
             }}
           />
-          </ScrollView>
+          {/* </ScrollView> */}
         
       </View>
     </SafeAreaProvider>
