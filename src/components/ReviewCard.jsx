@@ -6,8 +6,25 @@ import { Entypo } from '@expo/vector-icons'
 
 import { useFonts } from 'expo-font'
 
-<<<<<<< HEAD
+import useStore from '../store/store'
+
+import { I18n } from 'i18n-js'
+import { en, bn, hi } from '../i18n'
+
+import { useNavigation } from '@react-navigation/native'
+
 const ReviewCard = ({ item }) => {
+
+    const navigation = useNavigation()
+    const i18n = new I18n()
+
+    const { locale } = useStore((state) => ({
+        locale: state.locale
+    }))
+
+    i18n.fallbacks = true,
+        i18n.translations = { en, bn, hi },
+        i18n.locale = locale
 
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -18,7 +35,9 @@ const ReviewCard = ({ item }) => {
     });
 
     return (
-        <View style={{ marginVertical: 10, width: "100%", paddingHorizontal: 15, paddingVertical: 15, backgroundColor: "#28293d", borderRadius: 15 }}>
+        <Pressable style={{ marginVertical: 10, width: "100%", paddingHorizontal: 15, paddingVertical: 15, backgroundColor: "#28293d", borderRadius: 15 }}
+            onPress={() => navigation.navigate('CommentScreen', { item: item })}
+        >
             <View style={{ width: "100%", justifyContent: "space-between", alignItems: "center", }}>
                 <View style={{ flexDirection: "row", alignSelf: "flex-start", gap: 8 }}>
                     <Avatar.Image source={{ uri: item.profile_image }}
@@ -38,85 +57,19 @@ const ReviewCard = ({ item }) => {
             <View style={{ width: "100%", flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 4 }}>
                     <Entypo name="thumbs-up" size={20} color="#e5e1d8" />
-                    <Text style={{ color: "#e5e1d8", fontFamily: "Poppins-Medium", fontSize: 15 }}>Like</Text>
+                    <Text style={{ color: "#e5e1d8", fontFamily: "Poppins-Medium", fontSize: 15 }}>{i18n.t("liked")}</Text>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 4 }}>
                     <Entypo name="message" size={20} color="#e5e1d8" />
-                    <Text style={{ color: "#e5e1d8", fontFamily: "Poppins-Medium", fontSize: 15 }}>Comment</Text>
+                    <Text style={{ color: "#e5e1d8", fontFamily: "Poppins-Medium", fontSize: 15 }}>{i18n.t("comment")}</Text>
                 </View>
                 <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 4 }}>
                     <Entypo name="share" size={20} color="#e5e1d8" />
-                    <Text style={{ color: "#e5e1d8", fontFamily: "Poppins-Medium", fontSize: 15 }}>Share</Text>
+                    <Text style={{ color: "#e5e1d8", fontFamily: "Poppins-Medium", fontSize: 15 }}>{i18n.t("share")}</Text>
                 </View>
             </View>
-        </View>
+        </Pressable>
     )
-=======
-import useStore from '../store/store'
-
-import { I18n } from 'i18n-js'
-import { en, bn, hi } from '../i18n'
-
-import { useNavigation } from '@react-navigation/native'
-
-const ReviewCard = ({item}) => {
-
-    const navigation = useNavigation()
-    const i18n = new I18n()
-
-    const {locale} = useStore((state) => ({
-        locale: state.locale
-    }))
-
-    i18n.fallbacks = true,
-    i18n.translations = {en, bn, hi},
-    i18n.locale = locale
-    
-const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-});
-    
-  return (
-    <Pressable style={{marginVertical:10, width:"100%", paddingHorizontal:15, paddingVertical:15, backgroundColor:"#28293d", borderRadius:15}}
-    onPress={() => navigation.navigate('CommentScreen',{item:item})}
-    >
-        <View style={{width:"100%", justifyContent:"space-between", alignItems:"center",}}>
-            <View style={{flexDirection:"row", alignSelf:"flex-start", gap:8}}>
-                <Avatar.Image source={{uri:item.profile_image}} 
-                // ss
-                />
-                <View style={{flexDirection:"column", justifyContent:"flex-start", alignItems:"baseline", paddingTop:8}}>
-                    <Text style={{fontFamily:"Poppins-Medium", color:"#e5e1d8"}}>{item.username}</Text>
-                    <Text style={{fontFamily:"Poppins-Medium", color:"#e5e1d8"}}>{item.time_of_comment}</Text>
-                </View>
-            </View>
-        </View>
-
-        <View>
-            <Text style={{fontFamily:"Poppins-Medium", fontSize:15, color:"#ef845d", paddingVertical:10}}>{item.review_description}</Text>
-        </View>
-
-        <View style={{width:"100%", flexDirection:"row", justifyContent:"space-between" , alignContent:"center"}}>
-            <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
-                <Entypo name="thumbs-up" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("liked")}</Text>
-            </View>
-            <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
-                <Entypo name="message" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("comment")}</Text>
-            </View>
-            <View style={{flexDirection:"row",justifyContent:"center" ,alignItems:"center", gap:4}}>
-                <Entypo name="share" size={20} color="#e5e1d8" />
-                <Text style={{color:"#e5e1d8",fontFamily:"Poppins-Medium", fontSize:15}}>{i18n.t("share")}</Text>
-            </View>
-        </View>
-    </Pressable>
-  )
->>>>>>> f6e9d90439aa5aeb56078ec0bd00bf81d222181b
 }
 
 export default ReviewCard

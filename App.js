@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen } from './src/screens';
+import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen } from './src/screens';
 
 
 import FavouriteOrders from './src/screens/FavouriteOrders';
