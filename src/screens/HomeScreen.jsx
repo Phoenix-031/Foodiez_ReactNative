@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, StatusBar, ScrollView, Pressable } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, ScrollView, Pressable, FlatList } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import {Chip, Avatar, Searchbar} from 'react-native-paper'
 import { useFonts } from 'expo-font'
@@ -26,14 +26,15 @@ const HomeScreen = () => {
 
     const i18n = new I18n()
 
-    const {restaurantsList, cartItems, totalPrice, filters, setFilters, allfilters, locale} = useStore((state) => ({
+    const {restaurantsList, cartItems, totalPrice, filters, setFilters, allfilters, locale, sortbyDistance} = useStore((state) => ({
         restaurantsList: state.restaurantsList,
         cartItems: state.cartItems,
         totalPrice: state.totalPrice,
         filters: state.filters,
         setFilters: state.setFilters,
         allfilters: state.allfilters,
-        locale: state.locale
+        locale: state.locale,
+        sortbyDistance: state.sortbyDistance
     }))
 
     i18n.fallbacks = true,
@@ -62,6 +63,38 @@ const HomeScreen = () => {
             setData(restaurantsList)
         }
     }, [searchQuery])
+
+    useEffect(() => {
+        console.log(filters)
+        if(filters.length > 0){
+            filters.map((item) => {
+                if(item === "Nearest"){
+                    const newData = data.filter((item) => item.distance <= 10)
+                    setData(newData)
+                }
+                if(item === "Rating 4.0+"){
+                    const newData = data.filter((item) => item.rating >= 4)
+                    setData(newData)
+                }
+                if(item === "Pure Veg"){
+                    const newData = data.filter((item) => item.special_tag === "Pure veg")
+                    setData(newData)
+                }
+                // if(item === "New Arrivals"){
+                //     const newData = restaurantsList.sort((a,b) => a.id - b.id)
+                //     setData(newData)
+                // }
+            })
+            // const newData = restaurantsList.filter((item) => {
+            //     const itemData = String(item.restaurant_name).toUpperCase();
+            //     const textData = searchQuery.toUpperCase();
+            //     return itemData.indexOf(textData) > -1;
+            // })
+            // setData(newData)
+        }else{
+            setData(restaurantsList)
+        }
+    }, [filters])
 
     // I18n.translations = {en , bn}
 
@@ -120,7 +153,14 @@ const HomeScreen = () => {
                     </Chip>
                     {
                         allfilters.map((item, index) => (
-                        <Chip style={{margin:5,paddingVertical:0 , paddingHorizontal:8,fontFamily:"Poppins-SemiBold"}} key={index} onPress={() => console.log('Pressed')}>{item}</Chip>
+                        <Pressable style={{borderRadius:12,flex:1,justifyContent:"center", alignItems:"center", margin:5,paddingVertical:0 ,borderWidth:1, paddingHorizontal:8,fontFamily:"Poppins-SemiBold",borderColor:`${filters.includes(item) ? "red" : "green"}`}} key={index} onPress={() => {
+                            if(filters.includes(item)){
+                                setFilters(filters.filter((filter) => filter !== item))
+                                setData(restaurantsList)
+                            }else{
+                                setFilters([...filters, item])
+                            }
+                        }}><Text style={{color:`${filters.includes(item) ? "red" : "green"}`, fontFamily:"Poppins-SemiBold"}}>{item}</Text></Pressable>
                         ))
                     }
                 </ScrollView>
@@ -134,18 +174,26 @@ const HomeScreen = () => {
             <Cravings />
 
             <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{number}{i18n.t("restaurant")}</Text>
+                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{data.length} {i18n.t("restaurant")}</Text>
             </View>
 
             <View>
                 {
-                    data.length > 0 ? data.map((item, index) => {
-                        return(
-                            <RestaurantCard item={item} key={index} />
-                        )
-                    }) : (
+                    data.length > 0 ? 
+                    <FlatList
+                        data={data}
+                        renderItem={({item}) => (
+                            <RestaurantCard
+                                key={item.id}
+                                item={item}
+                            />
+                        )}
+                        keyExtractor={item => item.id}
+                        showsVerticalScrollIndicator={false}
+                    />
+                     : (
                         <View style={{width:"100%", height:300, justifyContent:"center", alignItems:"center"}}>
-                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{i18n.t("no restuarants found")}</Text>
+                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{i18n.t("no restaurants found")}</Text>
                             <MaterialIcons name="search-off" size={40} color="gray" />
                         </View>
                     )

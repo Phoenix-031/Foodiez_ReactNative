@@ -105,10 +105,20 @@ const RestaurantScreen = ({ naviagation, route }) => {
                   keyExtractor={item => item.id}
               /> */}
 
-        {
+        {/* {
           data.map((item, index) => {
             return <RestaurantItemCard item={item} restaurant_name={restaurant_name} key={index} />
           })
+        } */}
+        {
+          <FlatList
+            data={data}
+            renderItem={({ item }) => {
+              return <RestaurantItemCard item={item} restaurant_name={restaurant_name} />
+            }
+            }
+            keyextractor={item => item.id}
+          />
         }
 
         {/* </ScrollView> */}

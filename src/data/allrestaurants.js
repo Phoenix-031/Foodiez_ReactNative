@@ -10,6 +10,7 @@ export const allrestaurants = [
     {
         "id": 1,
         restaurant_name: "Burger King",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80",
         small_description: "BURGER KING® is the second largest fast food hamburger chain in the world.",
         rating: 4.1,
@@ -25,6 +26,7 @@ export const allrestaurants = [
     {
         "id": 2,
         restaurant_name: "KFC",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1167&q=80",
         small_description: "KFC is a global chicken restaurant brand with a rich, decades-long history of success and innovation",
         rating: 4.2,
@@ -40,6 +42,7 @@ export const allrestaurants = [
     {
         "id": 3,
         restaurant_name: "Domino's",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1590947132387-155cc02f3212?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         small_description: "as the largest pizza company in the world, Domino's proudly continues its legacy of delivering great-tasting pizza to customers' doors",
         rating: 4,
@@ -54,6 +57,7 @@ export const allrestaurants = [
     {
         "id": 4,
         restaurant_name: "Pizza Hut",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1613564834361-9436948817d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=443&q=80",
         small_description: "Pizza Hut is an American multinational restaurant chain and international franchise founded in 1958 in Wichita, Kansas by Dan and Frank Carney ",
         rating: 4.9,
@@ -68,6 +72,7 @@ export const allrestaurants = [
     {
         "id": 5,
         restaurant_name: "Wow! Momo",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1625220194771-7ebdea0b70b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         small_description: "Wow! Momo is an Indian chain of fast food restaurants headquartered in Kolkata",
         rating: 1.2,
@@ -83,6 +88,7 @@ export const allrestaurants = [
     {
         "id": 6,
         restaurant_name: "Baskin Robbins",
+        special_tag:"Pure Non-veg",
         restaurant_image: "https://images.unsplash.com/photo-1576506295286-5cda18df43e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80",
         small_description: "Baskin-Robbins is an American multinational chain of ice cream and cake speciality shops owned by Inspire Brands",
         rating: 3.6,
@@ -98,6 +104,7 @@ export const allrestaurants = [
     {
         "id": 8,
         restaurant_name: "One Bite",
+        special_tag:"Pure Non-veg",
         restaurant_image: "https://images.unsplash.com/photo-1627662236973-4fd8358fa206?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         small_description: "One Bite, we came up with this concept to serve every single customer, who doesn't need to compromise on their own choices",
         rating: 3.8,
@@ -113,6 +120,7 @@ export const allrestaurants = [
     {
         "id": 9,
         restaurant_name: "Star Buck",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1603455550882-81ab72ef829f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
         small_description: "Starbucks Corp (Starbucks) is a specialty coffee retailer. It roasts, markets, and retails specialty coffee",
         rating: 1.9,
@@ -128,6 +136,7 @@ export const allrestaurants = [
     {
         "id": 10,
         restaurant_name: "Lips Slip",
+        special_tag:"Pure Non-veg",
         restaurant_image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
         small_description: "Enjoy nicely cooked sandwiches at this restaurant when you happen to be near it. LIPS SLIP (Mocktails & Sandwiches) is rated on Google 4.4 by its guests",
         rating: 4.5,
@@ -143,6 +152,7 @@ export const allrestaurants = [
     {
         "id": 11,
         restaurant_name: "Hotel Kohinoor",
+        special_tag:"Pure veg",
         restaurant_image: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
         small_description: "Enjoy the variety of food at Hotel Kohinoor",
         rating: 4,
@@ -158,6 +168,7 @@ export const allrestaurants = [
     {
         "id": 12,
         restaurant_name: "Kolkata Biryani House",
+        special_tag:"Pure Non-veg",
         restaurant_image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2010&q=80",
         small_description: "The Kolkata biryani is unique because it's mildly spiced, light and easy on the palate, unlike, say, the spicy Hyderabadi biryani.",
         rating: 4.5,
