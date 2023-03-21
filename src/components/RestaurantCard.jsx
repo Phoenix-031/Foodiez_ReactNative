@@ -16,10 +16,11 @@ const RestaurantCard = ({item}) => {
     const navigation = useNavigation()
     const [heartcol, setheartcol] = React.useState('rgba(235, 235, 224,0.7)')
 
-    const {addLikedRestaurant, removeLikedRestaurant, likedRestaurants} = useStore(state => ({
+    const {addLikedRestaurant, removeLikedRestaurant, likedRestaurants, locale} = useStore(state => ({
         addLikedRestaurant: state.addLikedRestaurant,
         removeLikedRestaurant: state.removeLikedRestaurant,
-        likedRestaurants: state.likedRestaurants
+        likedRestaurants: state.likedRestaurants,
+        locale: state.locale,
     }))
 
     const [fontsLoaded] = useFonts({

@@ -6,42 +6,62 @@ import { useFonts } from 'expo-font'
 import { useNavigation } from '@react-navigation/native'
 
 import { imageList } from '../data/imageList'
-import { categoryData } from '../data/categoryData'
-import { allrestaurants } from '../data/allrestaurants'
+
+import { categoryData, allrestaurants } from '../data'
 
 import { RestaurantCard, FilterModal, LanguageModal } from '../components'
 
-import { AntDesign, FontAwesome, Entypo } from '@expo/vector-icons'
+import { AntDesign, FontAwesome, Entypo, MaterialIcons } from '@expo/vector-icons'
 
 import useStore from '../store/store'
 
 import {ActivityIndicator} from 'react-native-paper'
 
-// import I18n from 'react-native-i18n'
-// import { en } from '../i18n/en'
-// import { bn } from '../i18n/bn'
+import * as Localization from 'expo-localization';
+import {I18n} from 'i18n-js'
+import { en, bn, hi } from '../i18n'
+
 
 const HomeScreen = () => {
 
-    const navigation =useNavigation()
-    const [user,setUser] = useState("Federico")
-    const [category, setCategory] = useState(categoryData)
-    const [number,setNumber] = useState('652')
-    const [languagemodal, setLanguageModal] = useState(false)
-    // const [locale, setLocale] = useState("en")
+    const i18n = new I18n()
 
-    const {restaurantsList, cartItems, totalPrice, filters, setFilters, allfilters} = useStore((state) => ({
+    const {restaurantsList, cartItems, totalPrice, filters, setFilters, allfilters, locale} = useStore((state) => ({
         restaurantsList: state.restaurantsList,
         cartItems: state.cartItems,
         totalPrice: state.totalPrice,
         filters: state.filters,
         setFilters: state.setFilters,
-        allfilters: state.allfilters
+        allfilters: state.allfilters,
+        locale: state.locale
     }))
 
-    // useEffect(() => {
-    //     console.log("state changed")
-    // }, [restaurantsList])
+    i18n.fallbacks = true,
+    i18n.translations = {en, bn, hi},
+    i18n.locale = locale
+    
+    const navigation =useNavigation()
+    const [category, setCategory] = useState(categoryData)
+    const [number,setNumber] = useState('13')
+    const [languagemodal, setLanguageModal] = useState(false)
+
+    const [data,setData] = useState(restaurantsList)
+    const [searchQuery, setSearchQuery] = useState('');
+    // const [locale, setLocale] = useState("en")
+
+
+    useEffect(() => {
+        if(searchQuery.length > 0){
+            const newData = restaurantsList.filter((item) => {
+                const itemData = String(item.restaurant_name).toUpperCase();
+                const textData = searchQuery.toUpperCase();
+                return itemData.indexOf(textData) > -1;
+            })
+            setData( newData)
+        }else{
+            setData(restaurantsList)
+        }
+    }, [searchQuery])
 
     // I18n.translations = {en , bn}
 
@@ -59,7 +79,7 @@ const HomeScreen = () => {
         <SafeAreaProvider style={styles.container}>
             <StatusBar hidden/>
 
-            <View style={{width:"90%", flexDirection:"row", justifyContent:"space-between", alignItems:"center"}}>
+            <View style={{width:"90%", flexDirection:"row", justifyContent:"space-between", alignItems:"center", paddingVertical:10}}>
                 <Pressable style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}
                      onPress={() => navigation.navigate('MapScreen')}
                 >
@@ -74,8 +94,21 @@ const HomeScreen = () => {
                 </Pressable>
                 
             </View>
+
+            <View style={{width:"90%", flexDirection:"row", gap:4,}}>
+            <Searchbar placeholder={i18n.t("homesearch")} style={{borderRadius:10, width:"80%", paddingVertical:0, flex:6 }} 
+               onChangeText={(text) => {
+                setSearchQuery(text)
+                }}
+                value={searchQuery}
+            />
             
-            <Searchbar placeholder='Restaurant name / Dish' style={{borderRadius:10, width:"90%", paddingVertical:0, }} />
+            <Pressable style={{flex:1, backgroundColor:"white", paddingVertical:4, paddingHorizontal:4, borderRadius:100,flexDirection:"row", justifyContent:"center", alignItems:"center"}}
+            onPress={() => console.log('Pressed')}
+            >
+                <MaterialIcons name="keyboard-voice" size={24} color="#ef845d"  />
+            </Pressable>
+            </View>
 
             <View style={{width:"90%", marginTop:2}}>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
@@ -95,7 +128,7 @@ const HomeScreen = () => {
 
             <ScrollView style={{width:"90%", marginTop:5, marginBottom:Number(`${cartItems.length > 0 ? 100 : 60}`)}}>
             <View>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#ffad16", marginTop:8, letterSpacing:3, alignSelf:"center"}}>EXPLORE</Text>
+                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#ffad16", marginTop:8, letterSpacing:3, alignSelf:"center"}}>{i18n.t('explore')}</Text>
             </View>
 
             <View style={{height:85, flexDirection:"row",justifyContent:"center", alignItems:"center"}}>
@@ -112,16 +145,21 @@ const HomeScreen = () => {
             </View>
 
             <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{number} Restaurants</Text>
+                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{number}{i18n.t("restaurant")}</Text>
             </View>
 
             <View>
                 {
-                    restaurantsList.map((item, index) => {
+                    data.length > 0 ? data.map((item, index) => {
                         return(
                             <RestaurantCard item={item} key={index} />
                         )
-                    })
+                    }) : (
+                        <View style={{width:"100%", height:300, justifyContent:"center", alignItems:"center"}}>
+                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{i18n.t("no restuarants found")}</Text>
+                            <MaterialIcons name="search-off" size={40} color="gray" />
+                        </View>
+                    )
                 }
             </View>
 

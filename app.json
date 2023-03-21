@@ -7,6 +7,21 @@
     "orientation": "portrait",
     "icon": "assets/foodiez-logo.png",
     "userInterfaceStyle": "light",
+    "scheme": ["com.auth.Foodiez", "fb48ae831f-4c83-499c-bded-4cc7e5201ca6"],
+    "plugins": [
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": [
+            "com.jgogoi.Foodiez"
+          ],
+          "enableGooglePay": false
+        }
+      ],
+      [
+        "@react-native-voice/voice"
+      ]
+    ],
     "splash": {
       "image": "assets/foodiez-logo.png",
       "resizeMode": "contain",
@@ -16,16 +31,27 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "package": "com.auth.Foodiez",
+      "bundleIdentifier": "com.auth.Foodiez"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.auth.Foodiez",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "48ae831f-4c83-499c-bded-4cc7e5201ca6"
+      }
     }
   }
 }

@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Pressable } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Pressable, TextInput } from 'react-native'
 import { useFonts } from 'expo-font';
 import { Chip } from 'react-native-paper';
 
@@ -8,9 +8,6 @@ import { RestaurantItemCard } from '../components';
 import { useNavigation } from '@react-navigation/native';
 
 import useStore from '../store/store';
-
-import { restairantItems } from '../data/restaurantItems'
-
 
 const RestaurantScreen = ({ naviagation, route }) => {
 
@@ -26,6 +23,21 @@ const RestaurantScreen = ({ naviagation, route }) => {
   }))
   
   const navigation = useNavigation()
+  const [search,setSearch] = useState('')
+  const [data, setData] = useState(res_items)
+
+  useEffect(() => {
+    if(search.length > 0){
+      const newData = res_items.filter((item) => {
+        const itemData = String(item.title).toUpperCase();
+        const textData = search.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      })
+      setData(newData)
+    }else{
+      setData(res_items)
+    }
+  },[search])
 
   const [fontsLoaded] = useFonts({
     'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -37,6 +49,15 @@ const RestaurantScreen = ({ naviagation, route }) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#1c1c27", width: "100%", height: "100%", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", paddingTop: 15 }}>
+
+      <TextInput 
+        style={{ width: "90%", height: 40, backgroundColor: "#28293d", borderRadius: 12, paddingHorizontal: 10, color: "white", fontFamily: "Poppins-Regular", fontSize: 14,borderColor:"#ef845d", borderWidth:1 }}
+        onChangeText={(text) => setSearch(text)}
+        value={search}
+        placeholder="Search for items"
+        placeholderTextColor={"white"}
+      />
+      
       <ScrollView style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}>
         {/* <ScrollView style={{backgroundColor:"#28293d", borderRadius:12, borderWidth:1}}> */}
 
@@ -85,8 +106,8 @@ const RestaurantScreen = ({ naviagation, route }) => {
               /> */}
 
         {
-          res_items.map((item, index) => {
-            return <RestaurantItemCard item={item} key={index} />
+          data.map((item, index) => {
+            return <RestaurantItemCard item={item} restaurant_name={restaurant_name} key={index} />
           })
         }
 

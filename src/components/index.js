@@ -6,6 +6,8 @@ import RestaurantItemCard from "./RestaurantItemCard";
 import RestaurantCard from "./RestaurantCard";
 import ReviewCard from "./ReviewCard";
 import FilterModal from "./FilterModal";
+import Comment from "./Comment";
 import MyReviewCard from "./MyReviewCard";
 
-export { CategoryComponent, CartItem, LanguageModal, LikedRestaurantCard, RestaurantItemCard, RestaurantCard, ReviewCard, FilterModal, MyReviewCard }
+export { CategoryComponent, CartItem, LanguageModal, LikedRestaurantCard, RestaurantItemCard, RestaurantCard, ReviewCard, FilterModal, MyReviewCard, Comment }
+

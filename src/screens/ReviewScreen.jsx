@@ -6,9 +6,24 @@ import { useFonts } from 'expo-font'
 
 import { ReviewCard } from '../components'
 
+import { I18n } from 'i18n-js'
+import { en, bn, hi } from '../i18n'
+
+import useStore from '../store/store'
+
 // import useStore from '../store/store'
 
 const ReviewScreen = ({route}) => {
+
+      const i18n = new I18n()
+
+    const {locale} = useStore((state) => ({
+        locale: state.locale
+    }))
+
+    i18n.fallbacks = true,
+    i18n.translations = {en, bn, hi},
+    i18n.locale = locale
 
   const {restaurantReviews} = route.params
 
@@ -48,7 +63,7 @@ const ReviewScreen = ({route}) => {
 
       <Button mode='contained' style={{marginVertical:10, backgroundColor:"#ffad16", paddingVertical:6,}} uppercase textColor="white"
       contentStyle={{fontSize:25, fontFamily:"Poppins-Medium"}}
-      >Write a Review</Button>
+      >{i18n.t("write a review")}</Button>
       </View>
 
     </SafeAreaProvider>
