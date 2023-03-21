@@ -17,7 +17,7 @@ import {
 
 import { Badge } from "react-native-paper";
 
-import { CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen } from "../screens";
+import { CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen, SearchScreen } from "../screens";
 
 const ProfileStack = createNativeStackNavigator();
 
@@ -146,7 +146,7 @@ const RootNavigator = () => {
 
       <Tab.Screen
         name="Search"
-        component={HomeScreen}
+        component={SearchScreen}
         options={{
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (

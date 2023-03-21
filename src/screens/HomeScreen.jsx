@@ -9,7 +9,7 @@ import { imageList } from '../data/imageList'
 
 import { categoryData, allrestaurants } from '../data'
 
-import { RestaurantCard, FilterModal, LanguageModal } from '../components'
+import { RestaurantCard, FilterModal, LanguageModal, Cravings } from '../components'
 
 import { AntDesign, FontAwesome, Entypo, MaterialIcons } from '@expo/vector-icons'
 
@@ -131,18 +131,7 @@ const HomeScreen = () => {
                 <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#ffad16", marginTop:8, letterSpacing:3, alignSelf:"center"}}>{i18n.t('explore')}</Text>
             </View>
 
-            <View style={{height:85, flexDirection:"row",justifyContent:"center", alignItems:"center"}}>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{}}>
-
-                    {
-                        imageList.map((item, index) => {
-                            return(
-                                <Avatar.Image style={{marginLeft:10}} size={70} source={{uri: item}} key={index} />
-                            )
-                        })
-                    }
-                </ScrollView>
-            </View>
+            <Cravings />
 
             <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
                 <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{number}{i18n.t("restaurant")}</Text>

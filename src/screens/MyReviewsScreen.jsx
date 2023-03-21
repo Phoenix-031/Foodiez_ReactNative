@@ -30,7 +30,7 @@ const MyReviewsScreen = () => {
 
                     {myreviews.map((item, index) => {
                         return (
-                            <MyReviewCard item={item} />
+                            <MyReviewCard item={item} key={index} />
                         )
                     })}
 

@@ -20,7 +20,7 @@ const userSlice = (set) => ({
     likedRestaurants: [],
     cartItems:[],
     totalPrice:0,
-    sortfilter:"RLTH",
+    sortfilter:"",
     filters:[],
     orders:[],
     setOrder: (order) => set((state) => ({ orders: [...state.orders, order] })),
