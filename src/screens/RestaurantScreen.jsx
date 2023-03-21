@@ -107,7 +107,7 @@ const RestaurantScreen = ({ naviagation, route }) => {
 
         {
           data.map((item, index) => {
-            return <RestaurantItemCard item={item} key={index} />
+            return <RestaurantItemCard item={item} restaurant_name={restaurant_name} key={index} />
           })
         }
 

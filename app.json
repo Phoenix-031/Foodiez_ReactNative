@@ -7,7 +7,7 @@
     "orientation": "portrait",
     "icon": "assets/foodiez-logo.png",
     "userInterfaceStyle": "light",
-    "scheme": "com.auth.Foodiez",
+    "scheme": ["com.auth.Foodiez", "fb48ae831f-4c83-499c-bded-4cc7e5201ca6"],
     "plugins": [
       [
         "@stripe/stripe-react-native",

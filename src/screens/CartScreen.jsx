@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable, Alert } from 'react-native'
-import {Button, Badge} from 'react-native-paper'
+import {Button, Badge, ActivityIndicator} from 'react-native-paper'
 import { useFonts } from 'expo-font'
 import axios from 'axios'
 
@@ -15,7 +15,7 @@ import { en, bn, hi } from '../i18n'
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-import { useStripe } from '@stripe/stripe-react-native'
+import { confirmPayment, useStripe } from '@stripe/stripe-react-native'
 
 const CartScreen = () => {
 
@@ -50,12 +50,12 @@ const CartScreen = () => {
     });
 
     const [deliverycharge, setDeliveryCharge] = useState(45)
+    const [loadingpayement, setLoadingPayement] = useState(false)
 
     const {initPaymentSheet, presentPaymentSheet} = useStripe()
 
     const handleCheckout = async() => {
-
-      console.log("checkout")
+    setLoadingPayement(true)
 
       const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
       {
@@ -69,9 +69,9 @@ const CartScreen = () => {
     })
     const res =  payamentIntent.data
     console.log(res)
-
+    
     const initResponse = await initPaymentSheet({
-      merchantDisplayName: 'Foodiex',
+      merchantDisplayName: 'Foodiez',
       paymentIntentClientSecret: res.client_secret,
     })
 
@@ -80,6 +80,8 @@ const CartScreen = () => {
       Alert.alert("Error", initResponse.error.message)
       return
     }
+
+    setLoadingPayement(false)
 
     const payementRes = await presentPaymentSheet();
 
@@ -135,11 +137,17 @@ const CartScreen = () => {
                   <View>
                   </View>
 
+                  {
+                    loadingpayement ? (
+                      <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} />
+                    ) : (
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
                   onPress={handleCheckout}
                 >
                   {i18n.t("proceed to checkout")}
                 </Button>
+                    )
+                  }
 
                 </ScrollView>
         ) : (

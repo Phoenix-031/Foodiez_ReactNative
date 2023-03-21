@@ -11,7 +11,7 @@ import Loading from './Loading'
 import { I18n } from 'i18n-js'
 import { en, bn, hi } from '../i18n'
 
-const RestaurantItemCard = ({item}) => {
+const RestaurantItemCard = ({item, restaurant_name}) => {
 
     const i18n = new I18n()
 
@@ -33,12 +33,13 @@ const [fontsLoaded] = useFonts({
     'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
 });
 
-const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart} = useStore((state) => ({
+const {addToCart, totalPrice, setTotalPrice, cartItems, removeFromCart, clearCart} = useStore((state) => ({
     addToCart: state.addToCart,
     totalPrice: state.totalPrice,
     setTotalPrice: state.setTotalPrice,
     cartItems: state.cartItems,
     removeFromCart: state.removeFromCart,
+    clearCart: state.clearCart,
 }))
 
 
@@ -59,6 +60,8 @@ return (
         <View style={{flex:1}}>
             <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
             {
+
+                loading ? <Loading /> :(
                 cartItems?.find((cartItem) => cartItem.id === item.id) ? (
                     <Button style={{backgroundColor:"#ffad16", marginTop:10, borderRadius:10, width:"100%", justifyContent:"center"}} onPress={() => {
                         setTotalPrice(totalPrice - Number(item.price))
@@ -66,27 +69,75 @@ return (
                     }
                     }>{i18n.t("remove")}</Button>
                 ) : (
-                    loading ? (<Loading />) : (
                         <Button style={{borderColor:"gray", borderWidth:1, borderRadius:10, marginTop:10}} textColor="#ef845d" 
-                        onPress = {() => {
-                        setLoading(true)
-                        setTotalPrice(Number(totalPrice) + Number(item.price))
-                        setTimeout(() => {
-                        addToCart({
-                            id: item.id,
-                            itemname: item.title,
-                            description: item.description,
-                            price: Number(item.price),
-                            image_uri: item.image_uri,
-                            quantity: 1,
-                        })
-                        }, 2000);
-                        setLoading(false)
-                        }}
+                        onPress = {async() => {
+                        // setLoading(true)
+                        // console.log(loading)
+
+                        if(cartItems.length > 0){
+                            
+                            if(cartItems[0].restaurant_name !== restaurant_name){
+                                clearCart();
+                                setTotalPrice(0)
+                                console.log(totalPrice)
+                                await addToCart({
+                                    id: item.id,
+                                    itemname: item.title,
+                                    description: item.description,
+                                    price: Number(item.price),
+                                    image_uri: item.image_uri,
+                                    quantity: 1,
+                                    restaurant_name: restaurant_name
+                                })
+                                setTotalPrice(Number(totalPrice) + Number(item.price))
+                            }else {
+                                setTotalPrice(Number(totalPrice) + Number(item.price))
+                            await addToCart({
+                                id: item.id,
+                                itemname: item.title,
+                                description: item.description,
+                                price: Number(item.price),
+                                image_uri: item.image_uri,
+                                quantity: 1,
+                                restaurant_name: restaurant_name
+                            })
+                            }
+
+                        }else{
+                            setTotalPrice(Number(totalPrice) + Number(item.price))
+                            await addToCart({
+                                id: item.id,
+                                itemname: item.title,
+                                description: item.description,
+                                price: Number(item.price),
+                                image_uri: item.image_uri,
+                                quantity: 1,
+                                restaurant_name: restaurant_name
+                            })
+                            // setLoading(false)
+                        }
+                        
+                        // setTotalPrice(Number(totalPrice) + Number(item.price))
+                        // await addToCart({
+                        //     id: item.id,
+                        //     itemname: item.title,
+                        //     description: item.description,
+                        //     price: Number(item.price),
+                        //     image_uri: item.image_uri,
+                        //     quantity: 1,
+                        //     restaurant_name: restaurant_name
+                        // })
+                        // setLoading(false)
+
+
+
+                        }
+                    
+                    
+                    }
                         >{i18n.t("add")}</Button>
                 )
                 )
-
 
             }
         </View>

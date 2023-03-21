@@ -22,6 +22,8 @@ const userSlice = (set) => ({
     totalPrice:0,
     sortfilter:"RLTH",
     filters:[],
+    orders:[],
+    setOrder: (order) => set((state) => ({ orders: [...state.orders, order] })),
     allfilters:["Nearest","Rating 4.0+","Pure Veg", "New Arrivals", "Previous Orders"],     
     locale:"en",
     setLocale: (locale) => set((state) => ({ locale: locale })), 
@@ -41,6 +43,7 @@ const userSlice = (set) => ({
 
 const appSlice = (set) => ({
     restaurantsList: allrestaurants,
+    loading:false,
     addRestaurants: (restaurantName) => set((state) => ({ restaurantsList: [...state.restaurantsList,restaurantName] })),
     removeRestaurants: (restaurantName) => set((state) => ({ restaurantsList: state.restaurantsList.filter((item) => item !== restaurantName) })),
     sortbyRatingHTL: () => set((state) => ({ restaurantsList: state.restaurantsList.sort((a,b) => b.rating - a.rating) })),
