@@ -42,7 +42,10 @@ export default function App() {
     });
   
   
-
+  const [request, response, promptAsync] = Google.useAuthRequest({
+      androidClientId:'585846589791-nmksq7lc0fbvi7u7ivtoe8ff88m17iqr.apps.googleusercontent.com',
+      expoClientId:'585846589791-01t5jhqt6v9vo2rihcc3adt58q3dbknt.apps.googleusercontent.com',
+  });
 
   useEffect(() => {
     if (response?.type === "success") {
@@ -63,7 +66,7 @@ export default function App() {
       const user = await response.json();
       setUser(user);
       navigation.navigate('Home')
-      console.log(user);
+      // console.log(user);
       setLoading(false)
     } catch (error) {
       // Add your own error handler here
@@ -72,6 +75,7 @@ export default function App() {
   };
 
   return (
+    loading? (<ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} /> ) : (
     <SafeAreaProvider style={{backgroundColor:"#1c1c27", width:"100%", height:"100%", flex:1, justifyContent:"center", alignItems:"center"}}>
       <View >
         <Text style={{color:"#ef845d", fontSize:25,fontFamily:"Poppins-SemiBold"}}>Welcome to Foodiez</Text>
@@ -102,7 +106,7 @@ export default function App() {
       <Text style={{fontFamily:"Poppins-SemiBold", fontSize:12,color:"white", paddingVertical:10}}>OR</Text>
       <View style={styles.container}>
         {
-          loading? (<ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} /> ) : (
+           (
             user === null ? (
                   <Pressable
                     style={{width:80, backgroundColor:'#ef845d', borderRadius:10, marginBottom:10, paddingVertical:5, justifyContent:'center', alignItems:'center', flexDirection:'row', paddingVertical:10}}
@@ -118,6 +122,7 @@ export default function App() {
         }
       </View>
     </SafeAreaProvider>
+    )
   );
 }
 

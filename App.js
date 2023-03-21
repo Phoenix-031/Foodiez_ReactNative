@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen } from './src/screens';
+import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen } from './src/screens';
 
 
 import FavouriteOrders from './src/screens/FavouriteOrders';
@@ -237,7 +237,7 @@ export default function App() {
                       <Pressable
                         onPress={() => navigation.goBack()}
                       ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
-                      <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Profile</Text>
+                      <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Reviews</Text>
                     </View>
                   )
                 }
