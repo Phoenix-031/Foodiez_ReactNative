@@ -9,6 +9,7 @@ import FavouriteOrders from "./FavouriteOrders";
 import MapScreen from "./MapScreen";
 import OrderList from "./OrderList";
 import ReviewScreen from "./ReviewScreen";
+import MyReviewsScreen from "./MyReviewsScreen";
 
 
-export {HomeScreen, ProfileScreen, CartScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList}
+export { HomeScreen, ProfileScreen, CartScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList, MyReviewsScreen }
