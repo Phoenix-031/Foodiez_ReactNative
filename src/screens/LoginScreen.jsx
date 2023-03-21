@@ -42,11 +42,6 @@ export default function App() {
   });
 
 
-  const [request, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: '585846589791-nmksq7lc0fbvi7u7ivtoe8ff88m17iqr.apps.googleusercontent.com',
-    expoClientId: '585846589791-01t5jhqt6v9vo2rihcc3adt58q3dbknt.apps.googleusercontent.com',
-  });
-
 
   useEffect(() => {
     if (response?.type === "success") {
