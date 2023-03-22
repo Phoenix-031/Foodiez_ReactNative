@@ -32,6 +32,8 @@
     "react-icons": "^4.8.0",
     "react-native": "0.71.3",
     "react-native-dotenv": "^3.4.8",
+    "react-native-geocoding": "^0.5.0",
+    "react-native-gesture-handler": "^2.9.0",
     "react-native-google-places-autocomplete": "^2.5.1",
     "react-native-localize": "^2.2.6",
     "react-native-maps": "^1.4.0",

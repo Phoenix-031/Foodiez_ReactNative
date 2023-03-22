@@ -117,7 +117,10 @@ function CartStackScreen() {
 
 const SearchStack = createNativeStackNavigator();
 
-function SearchScreenStack() {
+function SearchScreenStack({route}) {
+
+  if(route.params.data === undefined)
+    route.params.data = ""
 
   const [fontsLoaded] = useFonts({
     'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),

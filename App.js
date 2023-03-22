@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen, BookingScreen, BookingOptionScree, PopularRestaurantData } from './src/screens';
+import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen, OtpInput, BookingScreen, BookingOptionScree, PopularRestaurantData } from './src/screens';
 
 
 import FavouriteOrders from './src/screens/FavouriteOrders';
@@ -77,6 +77,7 @@ export default function App() {
             />
             <Stack.Screen name="MapScreen" component={MapScreen}
               options={{
+                headerShown: false,
                 header: ({ navigation, route }) => {
                   // console.log(route, navigation)
                   return (
@@ -267,10 +268,11 @@ export default function App() {
                 }
               }}
             />
-            <Stack.Screen name="BookingScreen" component={BookingScreen}
+            <Stack.Screen name="OTP" component={OtpInput}
               options={{
                 headerShown: true,
                 header: ({ navigation, route }) => {
+                  // console.log(route, navigation)
                   return (
                     <View style={{
                       backgroundColor: "#1c1c27",
@@ -285,7 +287,32 @@ export default function App() {
                       <Pressable
                         onPress={() => navigation.goBack()}
                       ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
-                      <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Book A table</Text>
+                      <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Verify</Text>
+                    </View>
+                  )
+                }
+              }}
+            />
+            <Stack.Screen name="BookingScreen" component={BookingScreen}
+              options={{
+                headerShown: true,
+                header: ({ navigation, route }) => {
+                  // console.log(route, navigation)
+                  return (
+                    <View style={{
+                      backgroundColor: "#1c1c27",
+                      borderBottomWidth: 0,
+                      paddingHorizontal: 20,
+                      paddingTop: 20,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: 6,
+                    }}>
+                      <Pressable
+                        onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Book a table</Text>
                     </View>
                   )
                 }
