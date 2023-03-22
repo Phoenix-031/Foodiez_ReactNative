@@ -19,6 +19,12 @@
         }
       ],
       [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Foodiez to use your location."
+        }
+      ],
+      [
         "@react-native-voice/voice"
       ]
     ],

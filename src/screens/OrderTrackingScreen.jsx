@@ -33,14 +33,6 @@ const OrderTrackingScreen = () => {
             </View>
         </View>
 
-        <View>
-            <Text>Delivery Person</Text>
-        </View>
-
-        <View>
-            <Text>Tip Amount</Text>
-        </View>
-
 
 
 
