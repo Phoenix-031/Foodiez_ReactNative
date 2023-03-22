@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen } from './src/screens';
+import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen, OtpInput } from './src/screens';
 
 
 import FavouriteOrders from './src/screens/FavouriteOrders';
@@ -262,6 +262,31 @@ export default function App() {
                         onPress={() => navigation.goBack()}
                       ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
                       <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Review</Text>
+                    </View>
+                  )
+                }
+              }}
+            />
+            <Stack.Screen name="OTP" component={OtpInput}
+              options={{
+                headerShown: true,
+                header: ({ navigation, route }) => {
+                  // console.log(route, navigation)
+                  return (
+                    <View style={{
+                      backgroundColor: "#1c1c27",
+                      borderBottomWidth: 0,
+                      paddingHorizontal: 20,
+                      paddingTop: 20,
+                      flexDirection: "row",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: 6,
+                    }}>
+                      <Pressable
+                        onPress={() => navigation.goBack()}
+                      ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                      <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Verify</Text>
                     </View>
                   )
                 }

@@ -8,9 +8,6 @@ import { useNavigation } from '@react-navigation/native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const SearchScreen = ({route}) => {
-  if(route.params.data === undefined)
-    route.params.data = ""
-
 
   const {restaurantsList} = useStore((state) => ({
     restaurantsList: state.restaurantsList
@@ -19,14 +16,6 @@ const SearchScreen = ({route}) => {
   const [data, setData] = useState([])
   const [searchQuery, setSearchQuery] = useState(route.params.data)
   const navigation = useNavigation()
-
-  useEffect(() => {
-
-    if(route.params.data === undefined)
-       route.params.data = ""
-    // route.params.data? setSearchQuery(route.params.data) : setSearchQuery("")
-    setSearchQuery(route.params.data)
-  }, [route.params.data])
 
   useEffect(() => {
     if(searchQuery.length > 0){

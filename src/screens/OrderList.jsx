@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
@@ -35,27 +35,16 @@ const OrderList = () => {
     
   return (
     <SafeAreaProvider>
-        <View style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
 
-        <ScrollView>
+        <TextInput placeholder="Search" style={{width:"100%", height:50, borderWidth:1, borderColor:"gray", borderRadius:10, paddingLeft:10, color:"white"}} 
+        placeholderTextColor="white"
+        autoFocus={true}
+        value={searchQuery}
+        onChangeText={(text) => {
+          setSearchQuery(text)
+        }}
+        />
 
-            {
-                orderlist.length > 0 ? (
-                    orderlist.map((item, index) => (
-                        <View key={index}>
-                            <Text>{item.name}</Text>
-                        </View>
-                    ))) : (
-                        <View style={{alignSelf:"center", justifyContent:"center", alignContent:"center",flex:1}}>
-                            <MaterialIcons name="remove-shopping-cart" size={35} color="#e5e1d8" />
-                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:20, color:"#e5e1d8"}}>{i18n.t("no orders")}</Text>
-                        </View> 
-                    )
-            }
-            
-        </ScrollView>
-
-        </View>
     </SafeAreaProvider>
   )
 }
@@ -63,3 +52,6 @@ const OrderList = () => {
 export default OrderList
 
 const styles = StyleSheet.create({})
+
+
+

@@ -98,7 +98,9 @@ export default function App() {
           withDarkTheme
           autoFocus
         />
-        <Button mode="contained" buttonColor='#28293d' textColor='white' style={{ marginVertical: 15, width: "70%", alignSelf: "center", paddingVertical: 8, fontSize: 20, fontFamily: "Poppins-SemiBold", color: "#ef845d" }}><Text style={{ fontSize: 15, fontFamily: "Poppins-SemiBold", color: "#ef845d" }}>Continue</Text></Button>
+        <Button mode="contained" buttonColor='#28293d' textColor='white' style={{ marginVertical: 15, width: "70%", alignSelf: "center", paddingVertical: 8, fontSize: 20, fontFamily: "Poppins-SemiBold", color: "#ef845d" }}
+          onPress={() => navigation.navigate('OTP')}
+        ><Text style={{ fontSize: 15, fontFamily: "Poppins-SemiBold", color: "#ef845d" }}>Continue</Text></Button>
       </View>
 
       <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 12, color: "white", paddingVertical: 10 }}>OR</Text>
