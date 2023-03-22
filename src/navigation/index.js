@@ -136,6 +136,8 @@ function SearchScreenStack({route}) {
         options={{
           header: ({ navigation, route }) => {
             // console.log(route, navigation)
+            if(route.params.data === undefined)
+              route.params.data = ""
             return (
               <View style={{
                 backgroundColor: "#1c1c27",
