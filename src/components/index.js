@@ -10,6 +10,8 @@ import Comment from "./Comment";
 import MyReviewCard from "./MyReviewCard";
 import Cravings from "./Cravings";
 import HotOffers from "./HotOffers";
+import DiningRestaurantCard from "./DiningRestaurantCard";
+import PopularDining from "./PopularDining";
 
-export { CategoryComponent, CartItem,HotOffers, LanguageModal, LikedRestaurantCard, RestaurantItemCard, RestaurantCard, ReviewCard, FilterModal, MyReviewCard, Comment, Cravings }
+export { CategoryComponent, CartItem, HotOffers, LanguageModal, LikedRestaurantCard, RestaurantItemCard, RestaurantCard, ReviewCard, FilterModal, MyReviewCard, Comment, Cravings, DiningRestaurantCard, PopularDining }
 
