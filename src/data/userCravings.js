@@ -13,7 +13,7 @@ export const userCravings = [
     },
     {
         id: 3,
-        name: "Biriyani",
+        name: "Biryani",
         image: "https://b.zmtcdn.com/data/dish_images/d19a31d42d5913ff129cafd7cec772f81639737697.png",
         selected: false
     },
