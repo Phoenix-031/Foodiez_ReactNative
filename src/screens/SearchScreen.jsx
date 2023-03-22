@@ -5,7 +5,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import useStore from '../store/store'
 import { useNavigation } from '@react-navigation/native'
 
+import { MaterialCommunityIcons } from '@expo/vector-icons'
+
 const SearchScreen = ({route}) => {
+
 
   const {restaurantsList} = useStore((state) => ({
     restaurantsList: state.restaurantsList
@@ -16,8 +19,12 @@ const SearchScreen = ({route}) => {
   const navigation = useNavigation()
 
   useEffect(() => {
+
+    if(route.params.data === undefined)
+       route.params.data = ""
+    // route.params.data? setSearchQuery(route.params.data) : setSearchQuery("")
     setSearchQuery(route.params.data)
-  }, [route.params.data])
+  }, [])
 
   useEffect(() => {
     if(searchQuery.length > 0){
@@ -59,6 +66,11 @@ const SearchScreen = ({route}) => {
                   <Image source={{uri:item.restaurant_image}} style={{width:60, height:60, borderRadius:12, flex:1, borderWidth:1, borderColor:"white"}} />
                   <Text style={{fontFamily:"Poppins-Medium", fontSize:15, color:"white", flex:3, alignSelf:"center"}}>{item.restaurant_name}</Text>
                 </Pressable>
+              )
+            }}
+            ListEmptyComponent={() => {
+              return (
+                <Text style={{fontFamily:"Poppins-Medium", fontSize:15, color:"white", alignSelf:"center"}}>No Restaurants Found</Text>
               )
             }}
           />

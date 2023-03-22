@@ -58,44 +58,8 @@ const RestaurantScreen = ({ naviagation, route }) => {
         placeholderTextColor={"white"}
       />
       
-      <ScrollView style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}>
+      {/* <ScrollView style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}> */}
         {/* <ScrollView style={{backgroundColor:"#28293d", borderRadius:12, borderWidth:1}}> */}
-
-        <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", borderRadius: 12, marginBottom: 10, backgroundColor: "#28293d", }}>
-
-          <View style={{ paddingHorizontal: 10, paddingVertical: 15, flex: 3, }}>
-            <Text style={{ fontFamily: "Poppins-Bold", fontSize: 18, color: "#e5e1d8" }}>{restaurant_name}</Text>
-            <Text style={{ fontFamily: "Poppins-Bold", fontSize: 10, color: "#e5e1d8" }}>
-              {cusines.map((item, index) => {
-                return item + (index < cusines.length - 1 ? ", " : "")
-              })}
-            </Text>
-            <Text style={{ fontFamily: "Poppins-Bold", fontSize: 9, color: "gray" }}>Sealdah, Kolkata</Text>
-            <Text style={{ fontFamily: "Poppins-Bold", fontSize: 12, color: "#e5e1d8" }}>40-45 min | {distance}km away</Text>
-          </View>
-
-          <Pressable style={{ flex: 1, marginRight: 10, borderRadius: 12, height: 110, paddingVertical: 12, backgroundColor: "#1c1c27" }}
-            onPress={() => navigation.navigate("ReviewScreen",{restaurantReviews:restaurantReviews })}
-          >
-            <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 20, alignSelf: "center", color: "#ef845d", height: "40%" }}>{rating}</Text>
-
-            <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center", alignSelf: "center", height: "60%" }}>
-              <Text style={{ fontFamily: "Poppins-Medium", fontSize: 12, color: "#ffad16" }}>{reviews}</Text>
-              <Text style={{ fontFamily: "Poppins-Medium", fontSize: 12, color: "#ffad16" }}>Reviews</Text>
-            </View>
-          </Pressable>
-
-        </View>
-
-        <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-start", }}>
-          <ScrollView horizontal style={{ width: "100%" }}>
-            {
-              filters.map((item, index) => {
-                return <Chip key={index} style={{ marginRight: 10, marginVertical: 10 }} >{item}</Chip>
-              })
-            }
-          </ScrollView>
-        </View>
 
         {/* <SectionList
                   sections={restairantItems}
@@ -112,17 +76,57 @@ const RestaurantScreen = ({ naviagation, route }) => {
         } */}
         {
           <FlatList
+          style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}
             data={data}
             renderItem={({ item }) => {
               return <RestaurantItemCard item={item} restaurant_name={restaurant_name} />
             }
             }
             keyextractor={item => item.id}
+            ListHeaderComponent={()=>(
+              <View>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", borderRadius: 12, marginBottom: 10, backgroundColor: "#28293d", }}>
+
+              <View style={{ paddingHorizontal: 10, paddingVertical: 15, flex: 3, }}>
+                <Text style={{ fontFamily: "Poppins-Bold", fontSize: 18, color: "#e5e1d8" }}>{restaurant_name}</Text>
+                <Text style={{ fontFamily: "Poppins-Bold", fontSize: 10, color: "#e5e1d8" }}>
+                  {cusines.map((item, index) => {
+                    return item + (index < cusines.length - 1 ? ", " : "")
+                  })}
+                </Text>
+                <Text style={{ fontFamily: "Poppins-Bold", fontSize: 9, color: "gray" }}>Sealdah, Kolkata</Text>
+                <Text style={{ fontFamily: "Poppins-Bold", fontSize: 12, color: "#e5e1d8" }}>40-45 min | {distance}km away</Text>
+              </View>
+
+              <Pressable style={{ flex: 1, marginRight: 10, borderRadius: 12, height: 110, paddingVertical: 12, backgroundColor: "#1c1c27" }}
+                onPress={() => navigation.navigate("ReviewScreen",{restaurantReviews:restaurantReviews })}
+              >
+                <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 20, alignSelf: "center", color: "#ef845d", height: "40%" }}>{rating}</Text>
+
+                <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center", alignSelf: "center", height: "60%" }}>
+                  <Text style={{ fontFamily: "Poppins-Medium", fontSize: 12, color: "#ffad16" }}>{reviews}</Text>
+                  <Text style={{ fontFamily: "Poppins-Medium", fontSize: 12, color: "#ffad16" }}>Reviews</Text>
+                </View>
+              </Pressable>
+
+            </View>
+
+            <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-start", }}>
+              <ScrollView horizontal style={{ width: "100%" }}>
+                {
+                  filters.map((item, index) => {
+                    return <Chip key={index} style={{ marginRight: 10, marginVertical: 10 }} >{item}</Chip>
+                  })
+                }
+              </ScrollView>
+            </View>
+              </View>
+            )}
           />
         }
 
         {/* </ScrollView> */}
-      </ScrollView>
+      {/* </ScrollView> */}
 
       {
         cartItems.length > 0 ? <View style={{ position: "absolute", bottom: 0, width: "100%", height: 60, zIndex: 40, backgroundColor: "#1c1c27", flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20 }}>
