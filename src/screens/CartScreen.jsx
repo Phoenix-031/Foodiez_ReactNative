@@ -148,7 +148,8 @@ const CartScreen = () => {
                       <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} />
                     ) : (
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
-                  onPress={handleCheckout}
+                  // onPress={handleCheckout}
+                  onPress={() => navigation.navigate("MapScreen")}
                 >
                   {i18n.t("proceed to checkout")}
                 </Button>
