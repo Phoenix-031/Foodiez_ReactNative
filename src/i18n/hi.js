@@ -48,4 +48,5 @@ export const hi = {
     "Pure Veg":"स्वच्छ वेज़",
     "New Arrivals":"नए आगमन",
     "Previous Orders":"पिछले आदेश",
+    "Place Order":"ऑर्डर जमा करें",
 }

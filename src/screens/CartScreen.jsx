@@ -50,58 +50,58 @@ const CartScreen = () => {
     });
 
     const [deliverycharge, setDeliveryCharge] = useState(45)
-    const [loadingpayement, setLoadingPayement] = useState(false)
+  //   const [loadingpayement, setLoadingPayement] = useState(false)
 
-    const {initPaymentSheet, presentPaymentSheet} = useStripe()
+  //   const {initPaymentSheet, presentPaymentSheet} = useStripe()
 
-    const [payement,setPayement] = useState()
+  //   const [payement,setPayement] = useState()
 
-    const handleCheckout = async() => {
-    setLoadingPayement(true)
+  //   const handleCheckout = async() => {
+  //   setLoadingPayement(true)
 
-      const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
-      {
-        amount: (totalPrice + deliverycharge)*100,
-        currency: "INR",
-      },{
-        headers:{
-        'Access-Control-Allow-Origin': '*',
-        'content-type': 'application/json',
-        }
-    })
-    const res =  payamentIntent.data
-    // console.log(res)
-    setPayement(res)
+  //     const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
+  //     {
+  //       amount: (totalPrice + deliverycharge)*100,
+  //       currency: "INR",
+  //     },{
+  //       headers:{
+  //       'Access-Control-Allow-Origin': '*',
+  //       'content-type': 'application/json',
+  //       }
+  //   })
+  //   const res =  payamentIntent.data
+  //   // console.log(res)
+  //   setPayement(res)
     
-    const initResponse = await initPaymentSheet({
-      merchantDisplayName: 'Foodiez',
-      paymentIntentClientSecret: res.client_secret,
-    })
+  //   const initResponse = await initPaymentSheet({
+  //     merchantDisplayName: 'Foodiez',
+  //     paymentIntentClientSecret: res.client_secret,
+  //   })
 
-    if(initResponse.error){
-      console.log("error")
-      Alert.alert("Error", initResponse.error.message)
-      return
-    }
+  //   if(initResponse.error){
+  //     console.log("error")
+  //     Alert.alert("Error", initResponse.error.message)
+  //     return
+  //   }
 
-    setLoadingPayement(false)
+  //   setLoadingPayement(false)
 
-    const payementRes = await presentPaymentSheet();
-    console.log(payementRes)
+  //   const payementRes = await presentPaymentSheet();
+  //   console.log(payementRes)
 
-    if(payementRes.error){
-      console.log("error")
-      Alert.alert("Error", payementRes.error.message)
-      return
-    }else{
-      // console.log("success")
-      // console.log(payementRes)
-      Alert.alert("Success", "Your order has been placed")
-      clearCart()
-      navigation.navigate("Home")
+  //   if(payementRes.error){
+  //     console.log("error")
+  //     Alert.alert("Error", payementRes.error.message)
+  //     return
+  //   }else{
+  //     // console.log("success")
+  //     // console.log(payementRes)
+  //     Alert.alert("Success", "Your order has been placed")
+  //     clearCart()
+  //     navigation.navigate("Home")
       
-    }
-  }
+  //   }
+  // }
   
   return (
     <SafeAreaView style={styles.container}>
@@ -143,18 +143,20 @@ const CartScreen = () => {
                   <View>
                   </View>
 
-                  {
+                  {/* {
                     loadingpayement ? (
                       <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} />
-                    ) : (
+                    ) : ( */}
+                    
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
                   // onPress={handleCheckout}
                   onPress={() => navigation.navigate("MapScreen")}
                 >
                   {i18n.t("proceed to checkout")}
                 </Button>
-                    )
-                  }
+
+                    {/* ) */}
+                  {/* } */}
 
                 </ScrollView>
         ) : (

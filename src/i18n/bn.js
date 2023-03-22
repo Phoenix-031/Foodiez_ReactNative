@@ -51,4 +51,5 @@ export const bn = {
         "Pure Veg":"পুরো পশুপাখি",
         "New Arrivals":"নতুন আসছে",
         "Previous Orders":"পূর্ববর্তী অর্ডার",
+        "Place Order":"অর্ডার করুন",
 }

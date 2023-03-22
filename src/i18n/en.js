@@ -48,5 +48,6 @@ export const en = {
     "Pure Veg":"Pure Veg",
     "New Arrivals":"New Arrivals",
     "Previous Orders":"Previous Orders",
+    "Place Order":"Place Order",
 
 }       
