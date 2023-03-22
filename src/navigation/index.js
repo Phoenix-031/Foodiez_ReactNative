@@ -11,13 +11,14 @@ import {
   FontAwesome5,
   FontAwesome,
   Entypo,
-  MaterialIcons
+  MaterialIcons,
+  Ionicons,
 
 } from "@expo/vector-icons";
 
 import { Badge } from "react-native-paper";
 
-import { CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen, SearchScreen, DeliveryScreen, OrderTrackingScreen } from "../screens";
+import { CartScreen, ProfileScreen, HomeScreen, LoginScreen, RegisterScreen, SearchScreen, DeliveryScreen, OrderTrackingScreen, DinningScreen } from "../screens";
 
 const ProfileStack = createNativeStackNavigator();
 
@@ -198,6 +199,48 @@ function OrderTracScreen() {
   );
 }
 
+const DinningStack = createNativeStackNavigator();
+
+function DinningStackScreen() {
+
+  const [fontsLoaded] = useFonts({
+    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+  });
+
+  return (
+    <DinningStack.Navigator>
+      <DinningStack.Screen name="DinningScreen" component={DinningScreen}
+        options={{
+          header: ({ navigation, route }) => {
+            // console.log(route, navigation)
+            return (
+              <View style={{
+                backgroundColor: "#1c1c27",
+                borderBottomWidth: 0,
+                paddingHorizontal: 20,
+                paddingTop: 20,
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                gap: 6,
+              }}>
+                <Pressable
+                  onPress={() => navigation.goBack()}
+                ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
+                <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}>Dine In</Text>
+              </View>
+            )
+          }
+        }}
+      />
+    </DinningStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 const RootNavigator = () => {
@@ -235,6 +278,17 @@ const RootNavigator = () => {
           tabBarLabel: "",
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="search" size={22} color={color} />
+          )
+        }}
+      />
+
+      <Tab.Screen
+      name="Dinning"
+        component={DinningStackScreen}
+        options={{
+          tabBarLabel: "",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="restaurant" size={22} color={color} />
           )
         }}
       />

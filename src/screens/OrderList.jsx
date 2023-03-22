@@ -14,15 +14,16 @@ const OrderList = () => {
 
     const i18n = new I18n()
 
-    const {locale} = useStore((state) => ({
-        locale: state.locale
+    const {locale, orders} = useStore((state) => ({
+        locale: state.locale,
+        orders: state.orders
     }))
 
     i18n.fallbacks = true,
     i18n.translations = {en, bn, hi},
     i18n.locale = locale
 
-    const [orderlist, setOrderList] = useState([])
+    const [orderlist, setOrderList] = useState(orders)
     
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
