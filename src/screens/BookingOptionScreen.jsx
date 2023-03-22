@@ -2,6 +2,7 @@ import React,{ useState } from 'react';
 import { Text, View, StyleSheet,ScrollView, TouchableOpacity} from 'react-native';
 import Constants from 'expo-constants';
 import { useFonts } from 'expo-font';
+import { Button } from 'react-native-paper';
 
   
 export default function BookingOptionScreen(){
@@ -87,6 +88,7 @@ export default function BookingOptionScreen(){
   </ScrollView>
 </View>
     </ScrollView> 
+    <Button mode="contained">Book</Button>
     </View>
   );
 }
