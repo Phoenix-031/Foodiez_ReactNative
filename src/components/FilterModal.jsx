@@ -10,7 +10,7 @@ import useStore from '../store/store'
 
 const FilterModal = ({ visible, setSortModal }) => {
 
-  const { sortbyRatingHTL, sortbyRatingLTH, sortbyPriceHTL, sortbyPriceLTH, sortbyDeliveryTime, sortbyDistance,} = useStore((state) => ({
+  const { sortbyRatingHTL, sortbyRatingLTH, sortbyPriceHTL, sortbyPriceLTH, sortbyDeliveryTime, sortbyDistance, } = useStore((state) => ({
     sortbyRatingHTL: state.sortbyRatingHTL,
     sortbyRatingLTH: state.sortbyRatingLTH,
     sortbyPriceHTL: state.sortbyPriceHTL,

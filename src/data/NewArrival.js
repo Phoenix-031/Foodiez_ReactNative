@@ -1,0 +1,98 @@
+export const NewArrivalItems = [
+    {
+        id: 1,
+        restaurant_name: "Burger King",
+        title: "Double Whopper",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 585,
+        ratings: "4",
+        number_ratings: "45",
+        description: "Two ¼ lb.* flame-grilled beef patties with juicy tomatoes, crisp lettuce, creamy mayonnaise, ketchup, crunchy pickles, and sliced white onions on a toasted sesame seed bun",
+        image_uri: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?ixlib=rb-4.0.3&ixid=M'BurgerKingItemsn'wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1068&q=80"
+    },
+    {
+        id: 2,
+        restaurant_name: "Kolkata Biryani House",
+        title: "Chicken Biryani",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 200,
+        ratings: "4",
+        number_ratings: "45",
+        description: "Chicken Biryani is a savory chicken and rice dish that includes layers of chicken, rice, and aromatics that are steamed together",
+        image_uri: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=M'HotelKohinoorItemsn'wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    },
+    {
+        id: 3,
+        restaurant_name: "Domino's",
+        title: "Chicken Sausage",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 991,
+        ratings: "4",
+        number_ratings: "45",
+        description: "American classic! Spicy, herbed chicken sausage on pizza",
+        image_uri: "https://images.unsplash.com/photo-1617424771170-d333ef3d93d8?ixlib=rb-4.0.3&ixid=M'DominoItemsn'wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=470&q=80"
+    },
+    {
+        id: 4,
+        restaurant_name: "KFC",
+        title: "Ultimate Savings Bucket",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 699,
+        ratings: "4",
+        number_ratings: "48",
+        description: "A Box with your favorites! Get 1 pc Hot & Crispy, 2 Hot Wings & 1 Chicken Strip at a deal price",
+        image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00001003.jpg?ver=26.14"
+    },
+    {
+        id: 5,
+        restaurant_name: "Kolkata Biryani House",
+        title: "Paneer Butter Masala",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 190,
+        ratings: "4",
+        number_ratings: "47",
+        description: "Also known as butter paneer is a rich & creamy curry made with paneer, spices, onions, tomatoes, cashews and butter",
+        image_uri: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?ixlib=rb-4.0.3&ixid=M'KolkataBiryaniItemsn'wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+    },
+    {
+        id: 6,
+        restaurant_name: "Pizza Hut",
+        title: "Chicken Sausage",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 991,
+        ratings: "4",
+        number_ratings: "45",
+        description: "American classic! Spicy, herbed chicken sausage on pizza",
+        image_uri: "https://images.unsplash.com/photo-1617424771170-d333ef3d93d8?ixlib=rb-4.0.3&ixid=M'PizzaHutItemsn'wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=470&q=80"
+    },
+    {
+        id: 7,
+        restaurant_name: "KFC",
+        title: "Chicken Popcorn-Large",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 228,
+        ratings: "4",
+        number_ratings: "42",
+        description: "Save 21% on 4 Hot & Crispy, 4 Wings, 6 Peri Strips & 2 dips (20gm each)",
+        image_uri: "https://orderserv-kfc-assets.yum.com/15895bb59f7b4bb588ee933f8cd5344a/images/items/xl/D-PR00002169.jpg?ver=26.14"
+    },
+    {
+        id: 8,
+        restaurant_name: "Domino's",
+        title: "Peppy Chicken Nuggets",
+        tag: "Best Seller",
+        name: "Chicken Tikka",
+        price: 199,
+        ratings: "4",
+        number_ratings: "45",
+        description: "Oven baked soft tender boneless nuggets sprinkled with peri peri seasoning",
+        image_uri: "https://images.unsplash.com/photo-1562967914-608f82629710?ixlib=rb-4.0.3&ixid=M'DominoItemsn'wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80"
+    },
+]
