@@ -220,6 +220,7 @@ function DinningStackScreen() {
     <DinningStack.Navigator>
       <DinningStack.Screen name="DinningScreen" component={DinningScreen}
         options={{
+          headerShown: false,
           header: ({ navigation, route }) => {
             // console.log(route, navigation)
             return (

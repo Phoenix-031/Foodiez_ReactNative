@@ -9,6 +9,9 @@ import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const SearchScreen = ({route}) => {
 
+  if(route.params.data === undefined)
+    route.params.data = ""
+
   const {restaurantsList} = useStore((state) => ({
     restaurantsList: state.restaurantsList
   }))
