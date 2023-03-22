@@ -11,7 +11,7 @@ import Loading from './Loading'
 import { I18n } from 'i18n-js'
 import { en, bn, hi } from '../i18n'
 
-const RestaurantItemCard = ({item, restaurant_name}) => {
+const RestaurantItemCard = ({item, restaurant_name, restaurant_image}) => {
 
     const i18n = new I18n()
 
@@ -125,7 +125,8 @@ return (
                                 price: Number(item.price),
                                 image_uri: item.image_uri,
                                 quantity: 1,
-                                restaurant_name: restaurant_name
+                                restaurant_name:restaurant_name,
+                                restaurant_image:restaurant_image
                             })
                             }
 

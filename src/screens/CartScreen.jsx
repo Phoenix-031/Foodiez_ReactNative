@@ -15,7 +15,7 @@ import { en, bn, hi } from '../i18n'
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-import { confirmPayment, useStripe } from '@stripe/stripe-react-native'
+// import { confirmPayment, useStripe } from '@stripe/stripe-react-native'
 
 const CartScreen = () => {
 
@@ -147,7 +147,7 @@ const CartScreen = () => {
                     loadingpayement ? (
                       <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} />
                     ) : ( */}
-                    
+
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
                   // onPress={handleCheckout}
                   onPress={() => navigation.navigate("MapScreen")}

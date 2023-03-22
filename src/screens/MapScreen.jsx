@@ -18,11 +18,13 @@ export default function MapScreen() {
 
   const navigation = useNavigation()
 
-  const {cartItems,totalPrice, clearCart, setTotalPrice,} = useStore((state) => ({
+  const {cartItems,totalPrice, clearCart, setTotalPrice,orders, addOrders} = useStore((state) => ({
     cartItems: state.cartItems,
     totalPrice: state.totalPrice,
     clearCart: state.clearCart,
     setTotalPrice: state.setTotalPrice,
+    orders: state.orders,
+    addOrders: state.addOrders,
   }))
 
 
@@ -70,10 +72,25 @@ export default function MapScreen() {
       Alert.alert("Error", payementRes.error.message)
       return
     }else{
-      console.log("success")
-      console.log(payementRes)
+      // console.log("success")
+      // console.log(payementRes)
       setTotalPrice(0)
       Alert.alert("Success", "Your order has been placed")
+      console.log(
+         cartItems,
+         totalPrice,
+         address,
+      )
+      addOrders({
+        id: res.client_secret,
+        items: cartItems,
+        total: totalPrice,
+        address: address,
+        status: "Pending",
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+      })
+      // console.log(orders)
       clearCart()
       navigation.navigate("Home")
     }

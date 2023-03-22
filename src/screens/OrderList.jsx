@@ -9,6 +9,8 @@ import useStore from '../store/store'
 
 import { I18n } from 'i18n-js'
 import { en, bn, hi } from '../i18n'
+import { FlatList } from 'react-native-gesture-handler'
+import OrderItems from '../components/OrderItems'
 
 const OrderList = () => {
 
@@ -19,11 +21,14 @@ const OrderList = () => {
         orders: state.orders
     }))
 
+    const [allorders,setAllorders] = useState(orders)
+    
     i18n.fallbacks = true,
     i18n.translations = {en, bn, hi},
     i18n.locale = locale
 
     const [orderlist, setOrderList] = useState(orders)
+    // console.log(orderlist)
     
     const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -34,15 +39,22 @@ const OrderList = () => {
     });
     
   return (
-    <SafeAreaProvider>
+    <SafeAreaProvider style={{backgroundColor:"#1c1c27", flex:1,width:"100%", height:"100%", paddingVertical:10, paddingHorizontal:12}}>
 
-        <TextInput placeholder="Search" style={{width:"100%", height:50, borderWidth:1, borderColor:"gray", borderRadius:10, paddingLeft:10, color:"white"}} 
+        <TextInput placeholder="Search" style={{width:"100%", height:50, borderWidth:1, borderColor:"gray", borderRadius:10, paddingLeft:10, color:"white", marginVertical:10}} 
         placeholderTextColor="white"
         autoFocus={true}
-        value={searchQuery}
-        onChangeText={(text) => {
-          setSearchQuery(text)
-        }}
+        // value={searchQuery}
+        // onChangeText={(text) => {
+        //   setSearchQuery(text)
+        // }}
+        />
+        <FlatList
+            data={allorders}
+            renderItem={({item}) => (
+              <OrderItems item={item} />
+            )}
+            keyExtractor={item => item.id}
         />
 
     </SafeAreaProvider>

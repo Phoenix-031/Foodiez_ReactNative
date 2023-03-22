@@ -11,7 +11,7 @@ import useStore from '../store/store';
 
 const RestaurantScreen = ({ naviagation, route }) => {
 
-  const { restaurant_name, rating, distance, reviews, cusines, filters, res_items } = route.params.item;
+  const { restaurant_name, rating, distance, reviews, cusines, filters, res_items, restaurant_image } = route.params.item;
 
   const { menuItems, addToCart, totalPrice, cartItems, removeFromCart, restaurantReviews } = useStore((state) => ({
     menuItems: state.menuItems,
@@ -79,7 +79,7 @@ const RestaurantScreen = ({ naviagation, route }) => {
           style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}
             data={data}
             renderItem={({ item }) => {
-              return <RestaurantItemCard item={item} restaurant_name={restaurant_name} />
+              return <RestaurantItemCard item={item} restaurant_name={restaurant_name} restaurant_image={restaurant_image} />
             }
             }
             keyextractor={item => item.id}

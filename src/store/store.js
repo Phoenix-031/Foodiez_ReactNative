@@ -27,6 +27,7 @@ const userSlice = (set) => ({
     allfilters: ["Nearest", "Rating 4.0+", "Pure Veg", "New Arrivals", "Previous Orders"],
     bookingfilter: ["Book Table", "Nearest", "Rating 4.0 + ", "Pure Veg", "New Arrivals", "Previous Orders"],
     locale: "en",
+    addOrders: (order) => set((state) => ({ orders: [...state.orders, order] })),
     setLocale: (locale) => set((state) => ({ locale: locale })),
     setFilters: (filters) => set((state) => ({ filters: filters })),
     setSortfilter: (sortfilter) => set((state) => ({ sortfilter: sortfilter })),
