@@ -7,7 +7,7 @@ import { useFonts } from 'expo-font'
 
 const OrderTrackingScreen = () => {
 
-    const [fontsLoaded] = useFonts({
+      const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
         'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
         'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
@@ -16,6 +16,9 @@ const OrderTrackingScreen = () => {
         'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
         'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
     });
+
+    if(!fontsLoaded)
+      return null
     
   return (
     <SafeAreaProvider style={{flex:1, backgroundColor:"#1c1c27"}}>

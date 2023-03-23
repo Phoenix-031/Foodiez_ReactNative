@@ -13,5 +13,18 @@ import HotOffers from "./HotOffers";
 import DiningRestaurantCard from "./DiningRestaurantCard";
 import PopularDining from "./PopularDining";
 
-export { CategoryComponent, CartItem, HotOffers, LanguageModal, LikedRestaurantCard, RestaurantItemCard, RestaurantCard, ReviewCard, FilterModal, MyReviewCard, Comment, Cravings, DiningRestaurantCard, PopularDining }
+export { CategoryComponent, 
+    CartItem, 
+    HotOffers, 
+    LanguageModal, 
+    LikedRestaurantCard, 
+    RestaurantItemCard, 
+    RestaurantCard, 
+    ReviewCard, 
+    FilterModal, 
+    MyReviewCard, 
+    Comment, 
+    Cravings, 
+    DiningRestaurantCard, 
+    PopularDining }
 

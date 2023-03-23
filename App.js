@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, Pressable, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { RootNavigator } from './src/navigation';
 import { Provider as PaperProvider } from 'react-native-paper';
 import React from 'react';
@@ -8,14 +7,25 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-import { MapScreen, OrderList, ReviewScreen, HomeScreen, LoginScreen, RegisterScreen, RestaurantScreen, MyReviewsScreen, CommentScreen, OtpInput, BookingScreen, BookingOptionScreen, PopularRestaurantData } from './src/screens';
+import { 
+  MapScreen, 
+  OrderList, 
+  ReviewScreen, 
+  LoginScreen, 
+  RegisterScreen, 
+  RestaurantScreen, 
+  MyReviewsScreen, 
+  CommentScreen, 
+  OtpInput, 
+  BookingScreen, 
+  BookingOptionScreen,
+  FavouriteOrders,
+  LikedRestaurantsScreen,
+  UserProfile,
+ } from './src/screens';
 
-
-import FavouriteOrders from './src/screens/FavouriteOrders';
-import LikedRestaurantsScreen from './src/screens/LikedRestaurantsScreen';
 
 import { Entypo } from '@expo/vector-icons';
-import UserProfile from './src/screens/UserProfile';
 
 import { StripeProvider } from '@stripe/stripe-react-native';
 
@@ -24,13 +34,18 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
 
-  const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('./assets/fonts/SourceSerifPro-Regular.ttf'),
-  });
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('./assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('./assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('./assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('./assets/fonts/Roboto-Bold.ttf'),
+    });
+
+    if(!fontsLoaded)
+      return null
 
   return (
     <StripeProvider publishableKey='pk_test_51MnT0pSBE9PwAuPZOpvhaH0QAMlHm7uSXuZgI84HyrK3N4UyKu9QESQJQjL7PBZjWz6bSERWthF7zN6gQxRtoyT900geCkrQiW'>
@@ -54,7 +69,6 @@ export default function App() {
             <Stack.Screen name="RestaurantScreen" component={RestaurantScreen}
               options={{
                 header: ({ navigation, route }) => {
-                  // console.log(route, navigation)
                   return (
                     <View style={{
                       backgroundColor: "#1c1c27",
@@ -79,7 +93,6 @@ export default function App() {
               options={{
                 headerShown: false,
                 header: ({ navigation, route }) => {
-                  // console.log(route, navigation)
                   return (
                     <View style={{
                       backgroundColor: "#1c1c27",
@@ -103,7 +116,6 @@ export default function App() {
             <Stack.Screen name="OrderHistoryScreen" component={OrderList}
               options={{
                 header: ({ navigation, route }) => {
-                  // console.log(route, navigation)
                   return (
                     <View style={{
                       backgroundColor: "#1c1c27",
@@ -151,7 +163,6 @@ export default function App() {
             <Stack.Screen name="FavouriteOrders" component={FavouriteOrders}
               options={{
                 header: ({ navigation, route }) => {
-                  // console.log(route, navigation)
                   return (
                     <View style={{
                       backgroundColor: "#1c1c27",
@@ -174,8 +185,7 @@ export default function App() {
             />
             <Stack.Screen name="LikedRestaurantsScreen" component={LikedRestaurantsScreen}
               options={{
-                header: ({ navigation, route }) => {
-                  // console.log(route, navigation)
+                header: ({ navigation }) => {
                   return (
                     <View style={{
                       backgroundColor: "#1c1c27",
@@ -337,7 +347,6 @@ export default function App() {
                       <Pressable
                         onPress={() => navigation.goBack()}
                       ><Entypo name="chevron-left" size={24} color="#e5e1d8" /></Pressable>
-                      {/* <Text style={{ fontFamily: "Poppins-SemiBold", fontSize: 18, color: "#e5e1d8", paddingTop: 5 }}></Text> */}
                     </View>
                   )
                 }

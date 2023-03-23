@@ -1,24 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, FlatList, Pressable, TextInput } from 'react-native'
 import { useFonts } from 'expo-font';
 import { Chip } from 'react-native-paper';
 
 import { RestaurantItemCard } from '../components';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 import useStore from '../store/store';
 
-const RestaurantScreen = ({ naviagation, route }) => {
+const RestaurantScreen = ({ route }) => {
+
+  const isfocused = useIsFocused()
 
   const { restaurant_name, rating, distance, reviews, cusines, filters, res_items, restaurant_image } = route.params.item;
 
-  const { menuItems, addToCart, totalPrice, cartItems, removeFromCart, restaurantReviews } = useStore((state) => ({
-    menuItems: state.menuItems,
-    addToCart: state.addToCart,
+  const { totalPrice, cartItems, restaurantReviews } = useStore((state) => ({
     totalPrice: state.totalPrice,
     cartItems: state.cartItems,
-    removeFromCart: state.removeFromCart,
     restaurantReviews: state.restaurantReviews
   }))
   
@@ -26,7 +25,7 @@ const RestaurantScreen = ({ naviagation, route }) => {
   const [search,setSearch] = useState('')
   const [data, setData] = useState(res_items)
 
-  useEffect(() => {
+  useMemo(() => {
     if(search.length > 0){
       const newData = res_items.filter((item) => {
         const itemData = String(item.title).toUpperCase();
@@ -39,14 +38,26 @@ const RestaurantScreen = ({ naviagation, route }) => {
     }
   },[search])
 
-  const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-  });
 
+  useEffect(() => {
+    if(isfocused)
+      setData(res_items)
+  },[isfocused])
+
+
+
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    });
+
+    if(!fontsLoaded)
+      return null
   return (
     <SafeAreaView style={{ backgroundColor: "#1c1c27", width: "100%", height: "100%", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", paddingTop: 15 }}>
 
@@ -57,25 +68,10 @@ const RestaurantScreen = ({ naviagation, route }) => {
         placeholder="Search for items"
         placeholderTextColor={"white"}
       />
-      
-      {/* <ScrollView style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}> */}
-        {/* <ScrollView style={{backgroundColor:"#28293d", borderRadius:12, borderWidth:1}}> */}
 
-        {/* <SectionList
-                  sections={restairantItems}
-                  renderItem={({item}) => {
-                    <RestaurantItemCard item={item}/>
-                  }}
-                  keyExtractor={item => item.id}
-              /> */}
-
-        {/* {
-          data.map((item, index) => {
-            return <RestaurantItemCard item={item} restaurant_name={restaurant_name} key={index} />
-          })
-        } */}
-        {
           <FlatList
+          innitialNumToRender={3}
+          maxToRenderPerBatch={3}
           style={{ width: "90%", height: "100%", marginTop: 10, marginBottom: Number(`${cartItems.length > 0 ? 60 : 0}`) }}
             data={data}
             renderItem={({ item }) => {
@@ -112,21 +108,20 @@ const RestaurantScreen = ({ naviagation, route }) => {
             </View>
 
             <View style={{ width: "100%", flexDirection: "row", justifyContent: "flex-start", }}>
-              <ScrollView horizontal style={{ width: "100%" }}>
-                {
-                  filters.map((item, index) => {
-                    return <Chip key={index} style={{ marginRight: 10, marginVertical: 10 }} >{item}</Chip>
-                  })
-                }
-              </ScrollView>
+
+              <FlatList
+              style={{ width: "100%"}}
+                data={filters}
+                horizontal
+                renderItem={({ item }) => {
+                  return <Chip style={{ marginRight: 10, marginVertical: 10 }} >{item}</Chip>
+                }}
+                keyextractor={item => item.id}
+              />
             </View>
               </View>
             )}
           />
-        }
-
-        {/* </ScrollView> */}
-      {/* </ScrollView> */}
 
       {
         cartItems.length > 0 ? <View style={{ position: "absolute", bottom: 0, width: "100%", height: 60, zIndex: 40, backgroundColor: "#1c1c27", flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingHorizontal: 20 }}>

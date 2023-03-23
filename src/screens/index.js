@@ -25,6 +25,35 @@ import BookingOptionScreen from "./BookingOptionScreen";
 import DiningRestaurantCard from "../components/DiningRestaurantCard";
 import PopularDining from "../components/PopularDining";
 import OtpInput from "./OTP";
+import LikedRestaurantsScreen from "./LikedRestaurantsScreen";
 
-export { HomeScreen, DinningScreen, OtpInput, OrderMapView, OrderTrackingScreen, DeliveryLocation, ProfileScreen, CartScreen, SearchScreen, LoginScreen, RegisterScreen, RestaurantScreen, ReviewScreen, LikedRestaurantCard, FavouriteOrders, MapScreen, OrderList, MyReviewsScreen, EditProfile, UserProfile, CommentScreen, Welcome, DeliveryScreen, BookingScreen, BookingOptionScreen, DiningRestaurantCard, PopularDining }
+export { HomeScreen, 
+    DinningScreen, 
+    OtpInput, 
+    OrderMapView, 
+    OrderTrackingScreen, 
+    DeliveryLocation, 
+    ProfileScreen, 
+    CartScreen, 
+    SearchScreen, 
+    LoginScreen, 
+    RegisterScreen, 
+    RestaurantScreen, 
+    ReviewScreen, 
+    LikedRestaurantCard, 
+    FavouriteOrders, 
+    MapScreen, 
+    OrderList, 
+    MyReviewsScreen, 
+    EditProfile, 
+    UserProfile, 
+    CommentScreen, 
+    Welcome, 
+    DeliveryScreen, 
+    BookingScreen, 
+    BookingOptionScreen, 
+    DiningRestaurantCard, 
+    PopularDining,
+    LikedRestaurantsScreen,
+}
 

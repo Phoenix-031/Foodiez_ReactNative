@@ -1,27 +1,35 @@
-import { FlatList, StyleSheet, Text, TextInput, View, Image, SectionList, ScrollView, Pressable } from 'react-native'
+import { FlatList, Text, TextInput, View, Image, Pressable } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import useStore from '../store/store'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useIsFocused, useFocusEffect } from '@react-navigation/native'
+import { useFonts } from 'expo-font'
 
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 
 const SearchScreen = ({route}) => {
 
-  if(route.params.data === undefined)
-    route.params.data = ""
+  const isfocused = useIsFocused()
+  const [data, setData] = useState(null)
+  const [searchQuery, setSearchQuery] = useState(null)
+  const navigation = useNavigation()
+
 
   const {restaurantsList} = useStore((state) => ({
     restaurantsList: state.restaurantsList
   }))
 
-  const [data, setData] = useState([])
-  const [searchQuery, setSearchQuery] = useState(route.params.data)
-  const navigation = useNavigation()
+  useEffect(() => {
+    if(isfocused){
+      if(route.params === undefined)
+        setSearchQuery('')
+      else
+        setSearchQuery(route.params.data)
+    }
+  }, [isfocused])
 
   useEffect(() => {
-    if(searchQuery.length > 0){
+  if(searchQuery?.length > 0){
       const newData = restaurantsList.filter((item) => {
         const itemData = String(item.restaurant_name).toUpperCase();
         const textData = searchQuery.toUpperCase();
@@ -29,9 +37,22 @@ const SearchScreen = ({route}) => {
       })
       setData(newData)
     }else{
-      setData([])
+      setData(null)
     }
   }, [searchQuery])
+
+    const [fontsLoaded] = useFonts({
+      'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+      'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+      'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+      'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+      'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+      'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+      'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+  });
+
+    if(!fontsLoaded)
+      return null
   
   return (
     <SafeAreaProvider style={{flex:1,justifyContent:"center", alignItems:"baseline", width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:12}}>
@@ -45,7 +66,6 @@ const SearchScreen = ({route}) => {
         }}
         />
 
-        {/* <ScrollView style={{width:"100%", height:"100%", marginTop:10}}> */}
           <FlatList
           style={{width:"100%", height:"100%", marginTop:10}}
             data={data}
@@ -57,7 +77,7 @@ const SearchScreen = ({route}) => {
                   navigation.navigate("RestaurantScreen", {item: item})
                 }}
                 >
-                  <Image source={{uri:item.restaurant_image}} style={{width:60, height:60, borderRadius:12, flex:1, borderWidth:1, borderColor:"white"}} />
+                  <Image source={{uri:item.restaurant_image, cache: 'only-if-cached'}} style={{width:60, height:60, borderRadius:12, flex:1, borderWidth:1, borderColor:"white"}} />
                   <Text style={{fontFamily:"Poppins-Medium", fontSize:15, color:"white", flex:3, alignSelf:"center"}}>{item.restaurant_name}</Text>
                 </Pressable>
               )
@@ -68,7 +88,6 @@ const SearchScreen = ({route}) => {
               )
             }}
           />
-          {/* </ScrollView> */}
         
       </View>
     </SafeAreaProvider>

@@ -2,13 +2,12 @@ import React from 'react'
 import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { useFonts } from 'expo-font'
-import { Button, Badge } from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native'
 import { I18n } from 'i18n-js'
 import { en, bn, hi } from '../i18n'
 import { Image } from 'react-native'
 
-import { FontAwesome5, Ionicons, SimpleLineIcons, Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons'
+import { Ionicons, SimpleLineIcons, Entypo, MaterialIcons, FontAwesome } from '@expo/vector-icons'
 
 import useStore from '../store/store'
 
@@ -34,14 +33,18 @@ const ProfileScreen = () => {
 
 
 
-  const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-  });
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    });
 
+    if(!fontsLoaded)
+      return null
 
   return (
     <SafeAreaProvider style={styles.container}>
@@ -53,10 +56,7 @@ const ProfileScreen = () => {
           <Text style={{ color: "#e5e1d8", fontFamily: "SourceSerifPro-Regular", fontSize: 14 }}>{user?.email}</Text>
         </View>
 
-        {/* <View style={{width:100, height:100, borderWidth:1, borderRadius:100, justifyContent:"center", alignItems:"center"}}>
-          <FontAwesome5 name="user" size={35} color="gray" />
-        </View> */}
-        <Image source={{ uri: user?.picture }} style={{ width: 80, height: 80, borderRadius: 100 }} />
+        <Image source={{ uri: user?.picture, cache: 'only-if-cached' }} style={{ width: 80, height: 80, borderRadius: 100 }} />
       </Pressable>
 
       <ScrollView style={{ width: "90%", flexDirection: "column",marginBottomL:20}}>

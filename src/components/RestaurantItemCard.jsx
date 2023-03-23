@@ -58,7 +58,7 @@ return (
             <Text style={{fontFamily:"Poppins-Medium", color:"#e5e1d8"}}>{item.description}</Text>
         </View>
         <View style={{flex:1}}>
-            <Image source={{uri: item.image_uri}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
+            <Image source={{uri: item.image_uri, cache: 'only-if-cached'}} style={{height:100, width:100, resizeMode:"cover", borderRadius:12}} />
             {
 
                 loading ? <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} /> :(
@@ -104,18 +104,6 @@ return (
                                             setTotalPrice(Number(item.price))
                                             
                                         }}])
-                                // setTotalPrice(0)
-                                // console.log(totalPrice)
-                                // await addToCart({
-                                //     id: item.id,
-                                //     itemname: item.title,
-                                //     description: item.description,
-                                //     price: Number(item.price),
-                                //     image_uri: item.image_uri,
-                                //     quantity: 1,
-                                //     restaurant_name: restaurant_name
-                                // })
-                                // setTotalPrice(Number(item.price))
                             }else {
                                 setTotalPrice(Number(totalPrice) + Number(item.price))
                             await addToCart({
@@ -131,7 +119,7 @@ return (
                             }
 
                         }else{
-                            console.log(totalPrice)
+                            // console.log(totalPrice)
                             setTotalPrice(Number(totalPrice) + Number(item.price))
                             await addToCart({
                                 id: item.id,
@@ -144,21 +132,6 @@ return (
                             })
                             // setLoading(false)
                         }
-                        
-                        // setTotalPrice(Number(totalPrice) + Number(item.price))
-                        // await addToCart({
-                        //     id: item.id,
-                        //     itemname: item.title,
-                        //     description: item.description,
-                        //     price: Number(item.price),
-                        //     image_uri: item.image_uri,
-                        //     quantity: 1,
-                        //     restaurant_name: restaurant_name
-                        // })
-                        // setLoading(false)
-
-
-
                         }
                     
                     

@@ -4,7 +4,6 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 import MapView, { Circle, Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import { Button } from 'react-native-paper';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useFonts } from 'expo-font';
 import useStore from '../store/store';
 import { confirmPayment, useStripe } from '@stripe/stripe-react-native'
@@ -18,93 +17,20 @@ export default function MapScreen() {
 
   const navigation = useNavigation()
 
-  const {cartItems,totalPrice, clearCart, setTotalPrice,orders, addOrders} = useStore((state) => ({
+  const {cartItems,totalPrice, clearCart, setTotalPrice, addOrders} = useStore((state) => ({
     cartItems: state.cartItems,
     totalPrice: state.totalPrice,
     clearCart: state.clearCart,
     setTotalPrice: state.setTotalPrice,
-    orders: state.orders,
     addOrders: state.addOrders,
   }))
 
 
    const [loadingpayement, setLoadingPayement] = useState(false)
+   const [payement,setPayement] = useState()
 
-    const {initPaymentSheet, presentPaymentSheet} = useStripe()
+  const {initPaymentSheet, presentPaymentSheet} = useStripe()
 
-    const [payement,setPayement] = useState()
-
-    const handleCheckout = async() => {
-    setLoadingPayement(true)
-
-      const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
-      {
-        amount: (totalPrice + 45)*100,
-        currency: "INR",
-      },{
-        headers:{
-        'Access-Control-Allow-Origin': '*',
-        'content-type': 'application/json',
-        }
-    })
-    const res =  payamentIntent.data
-    console.log(res)
-    setPayement(res)
-    
-    const initResponse = await initPaymentSheet({
-      merchantDisplayName: 'Foodiez',
-      paymentIntentClientSecret: res.client_secret,
-    })
-
-    if(initResponse.error){
-      console.log("error")
-      Alert.alert("Error", initResponse.error.message)
-      return
-    }
-
-    setLoadingPayement(false)
-
-    const payementRes = await presentPaymentSheet();
-    console.log(payementRes)
-
-    if(payementRes.error){
-      console.log("error")
-      Alert.alert("Error", payementRes.error.message)
-      return
-    }else{
-      // console.log("success")
-      // console.log(payementRes)
-      setTotalPrice(0)
-      Alert.alert("Success", "Your order has been placed")
-      console.log(
-         cartItems,
-         totalPrice,
-         address,
-      )
-      addOrders({
-        id: res.client_secret,
-        items: cartItems,
-        total: totalPrice,
-        address: address,
-        status: "Pending",
-        date: new Date().toLocaleDateString(),
-        time: new Date().toLocaleTimeString(),
-      })
-      // console.log(orders)
-      clearCart()
-      navigation.navigate("Home")
-    }
-  }
-  
-  const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-  });
-  
-  
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
   const [region, setRegion] = useState(null);
@@ -117,7 +43,6 @@ export default function MapScreen() {
   const[name,setName] = useState(null);
   const [district, setDistrict] = useState(null);
   const [regadd,setRegadd] = useState(null);
-
 
   useEffect(() => {
     (async() => {
@@ -166,12 +91,90 @@ export default function MapScreen() {
 
   };
 
+
+    const handleCheckout = async() => {
+    setLoadingPayement(true)
+
+      const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
+      {
+        amount: (totalPrice + 45)*100,
+        currency: "INR",
+      },{
+        headers:{
+        'Access-Control-Allow-Origin': '*',
+        'content-type': 'application/json',
+        }
+    })
+    const res =  payamentIntent.data
+    // console.log(res)
+    setPayement(res)
+    
+    const initResponse = await initPaymentSheet({
+      merchantDisplayName: 'Foodiez',
+      paymentIntentClientSecret: res.client_secret,
+    })
+
+    if(initResponse.error){
+      console.log("error")
+      Alert.alert("Error", initResponse.error.message)
+      return
+    }
+
+    setLoadingPayement(false)
+
+    const payementRes = await presentPaymentSheet();
+    // console.log(payementRes)
+
+    if(payementRes.error){
+      // console.log("error")
+      Alert.alert("Error", payementRes.error.message)
+      return
+    }else{
+      // console.log("success")
+      // console.log(payementRes)
+      setTotalPrice(0)
+      Alert.alert("Success", "Your order has been placed")
+      // console.log(
+      //    cartItems,
+      //    totalPrice,
+      //    address,
+      // )
+      // console.log(cartItems)
+      addOrders({
+        id: res.client_secret,
+        items: cartItems,
+        total: totalPrice,
+        address: address,
+        status: "Pending",
+        date: new Date().toLocaleDateString(),
+        time: new Date().toLocaleTimeString(),
+      })
+      // console.log(orders)
+      clearCart()
+      navigation.navigate("Home")
+    }
+  }
+
+
   let text = 'Waiting..';
   if (errorMsg) {
     text = errorMsg;
   } else if (location) {
     text = JSON.stringify(location);
   }
+
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    });
+
+    if(!fontsLoaded)
+      return null
 
   return (
        <>

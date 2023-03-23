@@ -26,13 +26,18 @@ const ReviewCard = ({item}) => {
     i18n.translations = {en, bn, hi},
     i18n.locale = locale
     
-const [fontsLoaded] = useFonts({
-    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-});
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    });
+
+    if(!fontsLoaded)
+      return null
     
   return (
     <Pressable style={{marginVertical:10, width:"100%", paddingHorizontal:15, paddingVertical:15, backgroundColor:"#28293d", borderRadius:15}}

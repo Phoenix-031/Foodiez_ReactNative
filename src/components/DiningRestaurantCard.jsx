@@ -1,8 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 
-import { Badge } from 'react-native-paper'
-
 import { MaterialIcons, AntDesign } from '@expo/vector-icons'
 
 import { useNavigation } from '@react-navigation/native'

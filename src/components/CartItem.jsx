@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, Image } from 'react-native' 
+import React, { useEffect, useMemo, useState } from 'react'
+import { View, Text, StyleSheet, Image } from 'react-native' 
 import { useFonts } from 'expo-font'
 import { Badge } from 'react-native-paper'
 import useStore from '../store/store'
@@ -9,7 +9,6 @@ import { MaterialIcons } from '@expo/vector-icons'
 const CartItem = ({item}) => {
 
     const [quan,setQuan] = useState(Number(item.quantity))
-    // const [image_uri,setImage_uri] = useState(item.image_uri)
     const image_uri = item.image_uri
 
     const {cartItems, removeFromCart, incrementItem, decrementItem,setTotalPrice, totalPrice} = useStore((state) => ({
@@ -21,7 +20,7 @@ const CartItem = ({item}) => {
         totalPrice: state.totalPrice,
     }))
 
-    useEffect(() => {
+    useMemo(() => {
         if(!quan)
             removeFromCart(item.id)
         else
@@ -34,18 +33,7 @@ const CartItem = ({item}) => {
         'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
         'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
         'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
-        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
-        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
-        'Robotto-Light': require('../../assets/fonts/Roboto-Light.ttf'),
-        'Enriqueta-Regular': require('../../assets/fonts/Enriqueta-Regular.ttf'),
-        'Enriqueta-Bold': require('../../assets/fonts/Enriqueta-Bold.ttf'),
-        'Enriqueta-Medium': require('../../assets/fonts/Enriqueta-Medium.ttf'),
-        'Enriqueta-SemiBold': require('../../assets/fonts/Enriqueta-SemiBold.ttf'),
         'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-        'SourceSerifPro-Bold': require('../../assets/fonts/SourceSerifPro-Bold.ttf'),
-        'SourceSerifPro-SemiBold': require('../../assets/fonts/SourceSerifPro-SemiBold.ttf'),
-    
     });
 
     

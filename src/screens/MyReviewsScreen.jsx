@@ -1,7 +1,6 @@
-import { ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useMemo, useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { Searchbar, Button, Surface, Chip } from 'react-native-paper'
 import { useFonts } from 'expo-font'
 import { myreviews } from '../data/MyReviews'
 
@@ -11,30 +10,36 @@ import { MyReviewCard } from '../components'
 
 const MyReviewsScreen = () => {
 
-    // const { restaurantReviews } = route.params
+    const [reviews, setReviews] = useState('')
 
-    const [fontsLoaded] = useFonts({
+    useMemo(() => {
+        setReviews(myreviews)
+    }, [myreviews])
+
+      const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
         'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
         'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
         'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
     });
+
+    if(!fontsLoaded)
+      return null
 
     return (
         <SafeAreaProvider style={{ backgroundColor: "#1c1c27", width: "100%", height: "100%", flexDirection: "column", justifyContent: "flex-start", alignItems: "center", paddingTop: 15 }}>
 
             <View style={{ width: "90%", height: "100%" }}>
 
-                <ScrollView>
-
-                    {myreviews.map((item, index) => {
-                        return (
-                            <MyReviewCard item={item} key={index} />
-                        )
-                    })}
-
-                </ScrollView>
+                <FlatList
+                    data={reviews}
+                    renderItem={({ item }) => <MyReviewCard item={item} />}
+                    keyExtractor={item => item.id}
+                />
+                
             </View>
 
         </SafeAreaProvider>

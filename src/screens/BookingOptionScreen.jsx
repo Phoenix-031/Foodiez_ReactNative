@@ -8,16 +8,6 @@ import { Button } from 'react-native-paper';
 export default function BookingOptionScreen(){
   
 
-    const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
-        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
-        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
-    });
-
         const days = ['Today', 'Tomorrow', 'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
         const dates = ['22 Mar', '23 Mar', '24 Mar', '25 Mar', '26 Mar', '27 Mar', '28 Mar', '29 Mar', '30 Mar', '31 Mar'];
         const clocks = ['1:00 PM', '1:30 PM', '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM', '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM', '7:30 PM', '8:00 PM', '8:30 PM', '9:00 PM', '9:30 PM', '10:00 PM', '10:30 PM', '11:00 PM']
@@ -30,6 +20,19 @@ export default function BookingOptionScreen(){
                 date: dates[index]
             }
         });
+
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    });
+
+    if(!fontsLoaded)
+      return null
         
   
   return (

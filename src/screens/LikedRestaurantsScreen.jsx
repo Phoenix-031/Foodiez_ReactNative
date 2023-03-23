@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { Searchbar } from 'react-native-paper'
 import React, { useEffect, useState } from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
@@ -52,33 +52,32 @@ const LikedRestaurantsScreen = () => {
   return (
     
     <SafeAreaProvider>
-        {
+        {/* {
             likedRestaurants.length > 0 ? (
-        <View style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:15}}>
+            <View style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:15}}> */}
 
-            <Searchbar style={{marginBottom:12}} 
-                placeholder={i18n.t("search")}
-                onChangeText={(query) => setSearchQuery(query)}
-                value={searchQuery}
+
+
+            <FlatList
+            style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:15}}
+                ListHeaderComponent={() => (
+                <Searchbar style={{marginBottom:12}} 
+                    placeholder={i18n.t("search")}
+                    onChangeText={(query) => setSearchQuery(query)}
+                    value={searchQuery}
+                />
+                )}
+                data={data}
+                renderItem={({item}) => <LikedRestaurantCard item={item} />}
+                keyExtractor={item => item.id}
+                showsVerticalScrollIndicator={false}
+                ListEmptyComponent={() => (
+                <View style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:15, justifyContent:"center", alignItems:"center"}}>
+                        <Octicons name="heart" size={24} color="white" />
+                        <Text style={{color:"white", fontSize:18, fontFamily:"Poppins-SemiBold"}}>{i18n.t("no liked restaurants")}</Text>
+                </View>
+                )}
             />
-
-            <ScrollView>
-                {
-                    data.map((item, index) => {
-                        return(
-                            <LikedRestaurantCard item={item} key={index}/>
-                        )
-                    })
-                }
-
-            </ScrollView>
-        </View>) : (
-            <View style={{width:"100%", height:"100%", backgroundColor:"#1c1c27", paddingHorizontal:15, paddingVertical:15, justifyContent:"center", alignItems:"center"}}>
-                <Octicons name="heart" size={24} color="white" />
-                <Text style={{color:"white", fontSize:18, fontFamily:"Poppins-SemiBold"}}>{i18n.t("no liked restaurants")}</Text>
-            </View>
-        )
-        }
     </SafeAreaProvider>
   )
 }

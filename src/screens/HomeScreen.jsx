@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, StatusBar, ScrollView, Pressable, FlatList } from 'react-native'
+import React, { useEffect, useMemo, useState } from 'react'
+import { View, Text, StyleSheet, StatusBar, TouchableHighlight, Pressable, FlatList, TouchableOpacity } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import {Chip, Avatar, Searchbar} from 'react-native-paper'
+import {Chip, Searchbar} from 'react-native-paper'
 import { useFonts } from 'expo-font'
 import { useNavigation } from '@react-navigation/native'
-
-import { imageList } from '../data/imageList'
-
-import { categoryData, allrestaurants } from '../data'
 
 import { RestaurantCard, FilterModal, LanguageModal, Cravings } from '../components'
 
@@ -15,23 +11,12 @@ import { AntDesign, FontAwesome, Entypo, MaterialIcons } from '@expo/vector-icon
 
 import useStore from '../store/store'
 
-import {ActivityIndicator} from 'react-native-paper'
-
-import * as Localization from 'expo-localization';
 import {I18n} from 'i18n-js'
 import { en, bn, hi } from '../i18n'
 
 
 const HomeScreen = () => {
 
-    const [fontsLoaded] = useFonts({
-        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-        'SourceSerifPro-Regular': require('../../assets/fonts/SourceSerifPro-Regular.ttf'),
-    });
-    
     const i18n = new I18n()
 
     const {restaurantsList, cartItems, totalPrice, filters, setFilters, allfilters, locale, sortbyDistance} = useStore((state) => ({
@@ -50,8 +35,6 @@ const HomeScreen = () => {
     i18n.locale = locale
     
     const navigation =useNavigation()
-    const [category, setCategory] = useState(categoryData)
-    const [number,setNumber] = useState('13')
     const [languagemodal, setLanguageModal] = useState(false)
 
     const [data,setData] = useState(restaurantsList)
@@ -59,7 +42,7 @@ const HomeScreen = () => {
     // const [locale, setLocale] = useState("en")
 
 
-    useEffect(() => {
+    useMemo(() => {
         if(searchQuery.length > 0){
             const newData = restaurantsList.filter((item) => {
                 const itemData = String(item.restaurant_name).toUpperCase();
@@ -73,7 +56,7 @@ const HomeScreen = () => {
     }, [searchQuery])
 
     useEffect(() => {
-        console.log(filters)
+        // console.log(filters)
         if(filters.length > 0){
             filters.map((item) => {
                 if(item === "Nearest"){
@@ -88,25 +71,27 @@ const HomeScreen = () => {
                     const newData = data.filter((item) => item.special_tag === "Pure veg")
                     setData(newData)
                 }
-                // if(item === "New Arrivals"){
-                //     const newData = restaurantsList.sort((a,b) => a.id - b.id)
-                //     setData(newData)
-                // }
             })
-            // const newData = restaurantsList.filter((item) => {
-            //     const itemData = String(item.restaurant_name).toUpperCase();
-            //     const textData = searchQuery.toUpperCase();
-            //     return itemData.indexOf(textData) > -1;
-            // })
-            // setData(newData)
         }else{
             setData(restaurantsList)
         }
     }, [filters])
 
-    // I18n.translations = {en , bn}
 
     const [sortmodal, setSortModal] = useState(false)
+
+      const [fontsLoaded] = useFonts({
+        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'Robotto-Regular': require('../../assets/fonts/Roboto-Regular.ttf'),
+        'Robotto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
+        'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
+    });
+
+    if(!fontsLoaded)
+      return null
 
     
   return (
@@ -137,91 +122,97 @@ const HomeScreen = () => {
                 value={searchQuery}
             />
             
-            <Pressable style={{flex:1, backgroundColor:"white", paddingVertical:4, paddingHorizontal:4, borderRadius:100,flexDirection:"row", justifyContent:"center", alignItems:"center"}}
-            onPress={() => console.log('Pressed')}
+            <TouchableOpacity style={{flex:1, backgroundColor:"white", paddingVertical:4, paddingHorizontal:4, borderRadius:100,flexDirection:"row", justifyContent:"center", alignItems:"center"}}
+            // onPress={() => console.log('Pressed')}
             >
                 <MaterialIcons name="keyboard-voice" size={24} color="#ef845d"  />
-            </Pressable>
+            </TouchableOpacity>
             </View>
 
             <View style={{width:"90%", marginTop:2}}>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+
+            <FlatList
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                ListHeaderComponent={() => (
                     <Chip style={{margin:5, paddingHorizontal:4,fontFamily:"Poppins-SemiBold", flexDirection:"row", justifyContent:"center",gap:4}} onPress={() => 
                         setSortModal((sortmodal) => !sortmodal)
                     }>
                         <Text>Sort </Text>
                         <AntDesign name="down" size={14} color="black" />
                     </Chip>
-                    {
-                        allfilters.map((item, index) => (
-                        <Pressable style={{borderRadius:12,flex:1,justifyContent:"center", alignItems:"center", margin:5,paddingVertical:0 ,borderWidth:1, paddingHorizontal:8,fontFamily:"Poppins-SemiBold",borderColor:`${filters.includes(item) ? "red" : "green"}`}} key={index} onPress={() => {
-                            if(filters.includes(item)){
-                                setFilters(filters.filter((filter) => filter !== item))
-                                setData(restaurantsList)
-                            }else{
-                                setFilters([...filters, item])
-                            }
-                        }}><Text style={{color:`${filters.includes(item) ? "red" : "green"}`, fontFamily:"Poppins-SemiBold"}}>{i18n.t(item)}</Text></Pressable>
-                        ))
-                    }
-                </ScrollView>
-            </View>
+                )}
+                data={allfilters}
+                keyExtractor={(item) => item}
+                renderItem={({item}) => (
+                    <TouchableOpacity style={{borderRadius:12,flex:1,justifyContent:"center", alignItems:"center", margin:5,paddingVertical:0 ,borderWidth:1, paddingHorizontal:8,fontFamily:"Poppins-SemiBold",borderColor:`${filters.includes(item) ? "red" : "green"}`}} 
+                    onPress={() => {
+                        if(filters.includes(item)){
+                            setFilters(filters.filter((filter) => filter !== item))
+                            setData(restaurantsList)
+                        }else{
+                            setFilters([...filters, item])
+                        }
+                    }}><Text style={{color:`${filters.includes(item) ? "red" : "green"}`, fontFamily:"Poppins-SemiBold"}}>{i18n.t(item)}</Text>
+                    </TouchableOpacity>
+                )}
+            />
 
-            <ScrollView style={{width:"90%", marginTop:5, marginBottom:Number(`${cartItems.length > 0 ? 100 : 60}`)}}>
-            <View>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#ffad16", marginTop:8, letterSpacing:3, alignSelf:"center"}}>{i18n.t('explore')}</Text>
-            </View>
+        </View>
 
-            <Cravings />
 
-            <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
-                <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{data.length} {i18n.t("restaurant")}</Text>
-            </View>
-
-            <View>
-                {
-                    data.length > 0 ? 
-                    <FlatList
-                        data={data}
-                        renderItem={({item}) => (
-                            <RestaurantCard
-                                key={item.id}
-                                item={item}
-                            />
-                        )}
-                        keyExtractor={item => item.id}
-                        showsVerticalScrollIndicator={false}
-                    />
-                     : (
-                        <View style={{width:"100%", height:300, justifyContent:"center", alignItems:"center"}}>
-                            <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{i18n.t("no restaurants found")}</Text>
-                            <MaterialIcons name="search-off" size={40} color="gray" />
-                        </View>
-                    )
-                }
-            </View>
-
-            </ScrollView>
-
-            {
-                cartItems.length > 0 ? <View style={{position:"absolute", bottom:50, width:"100%", height:60, backgroundColor:"#1c1c27", flexDirection:"row", justifyContent:"space-between", alignItems:"center", paddingHorizontal:20}}>
-                    <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-                        <Text style={{fontFamily:"Poppins-SemiBold", fontSize:10, color:"#e5e1d8"}}>{cartItems.length} Item </Text>
-                        <Text style={{fontFamily:"Poppins-SemiBold", fontSize:10, color:"#e5e1d8"}}>₹{totalPrice}</Text>    
+        <FlatList
+        style={{width:"90%", marginTop:5, marginBottom:Number(`${cartItems.length > 0 ? 100 : 60}`)}}
+            ListHeaderComponent={() => (
+                <>
+                    <View>
+                        <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#ffad16", marginTop:8, letterSpacing:3, alignSelf:"center"}}>{i18n.t('explore')}</Text>
                     </View>
-                    <Pressable style={{backgroundColor:"#ffad16", padding:5,paddingHorizontal:10, borderRadius:5}} onPress={() => navigation.navigate('Cart')}>
-                        <Text style={{fontFamily:"Poppins-Medium", fontSize:12, color:"#1c1c27"}}>View Cart</Text>
-                    </Pressable>
-                </View> : null
-            }
 
-            {
-                sortmodal ? <FilterModal visible={sortmodal} setSortModal={setSortModal} /> : null
-            }
+                    <Cravings />
 
-            {
-                languagemodal ? <LanguageModal languagemodal={languagemodal} setLanguageModal={setLanguageModal} /> : null
-            }
+                    <View style={{width:"90%", flexDirection:"row",justifyContent:"center", alignItems:"center" }}>
+                        <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{data.length} {i18n.t("restaurant")}</Text>
+                    </View>
+                </>
+            )}
+            data={data}
+            renderItem={({item}) => (
+                <RestaurantCard
+                    key={item.id}
+                    item={item}
+                />
+            )}
+            keyExtractor={item => item.id}
+            showsVerticalScrollIndicator={false}
+            ListEmptyComponent={() => (
+                <View style={{width:"100%", height:300, justifyContent:"center", alignItems:"center"}}>
+                    <Text style={{fontFamily:"Poppins-SemiBold", fontSize:18, color:"#e5e1d8", marginTop:10, letterSpacing:3}}>{i18n.t("no restaurants found")}</Text>
+                    <MaterialIcons name="search-off" size={40} color="gray" />
+                </View>
+            )}
+        />
+
+
+        {
+            cartItems.length > 0 ? <View style={{position:"absolute", bottom:50, width:"100%", height:60, backgroundColor:"#1c1c27", flexDirection:"row", justifyContent:"space-between", alignItems:"center", paddingHorizontal:20}}>
+                <View style={{flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                    <Text style={{fontFamily:"Poppins-SemiBold", fontSize:10, color:"#e5e1d8"}}>{cartItems.length} Item </Text>
+                    <Text style={{fontFamily:"Poppins-SemiBold", fontSize:10, color:"#e5e1d8"}}>₹{totalPrice}</Text>    
+                </View>
+                <Pressable style={{backgroundColor:"#ffad16", padding:5,paddingHorizontal:10, borderRadius:5}} onPress={() => navigation.navigate('Cart')}>
+                    <Text style={{fontFamily:"Poppins-Medium", fontSize:12, color:"#1c1c27"}}>View Cart</Text>
+                </Pressable>
+            </View> : null
+        }
+
+        {
+            sortmodal ? <FilterModal visible={sortmodal} setSortModal={setSortModal} /> : null
+        }
+
+        {
+            languagemodal ? <LanguageModal languagemodal={languagemodal} setLanguageModal={setLanguageModal} /> : null
+        }
 
         </SafeAreaProvider>
   )

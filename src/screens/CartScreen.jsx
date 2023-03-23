@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable, Alert } from 'react-native'
+import React, { useEffect, useMemo, useState } from 'react'
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, TextInput, Pressable, Alert, FlatList } from 'react-native'
 import {Button, Badge, ActivityIndicator} from 'react-native-paper'
 import { useFonts } from 'expo-font'
-import axios from 'axios'
 
 import { CartItem } from '../components'
 
@@ -15,7 +14,6 @@ import { en, bn, hi } from '../i18n'
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-// import { confirmPayment, useStripe } from '@stripe/stripe-react-native'
 
 const CartScreen = () => {
 
@@ -30,16 +28,24 @@ const CartScreen = () => {
     i18n.translations = {en, bn, hi},
     i18n.locale = locale
 
-  const {cartItems,totalPrice, addToCart, removeFromCart, clearCart, setTotalPrice,} = useStore((state) => ({
+  const {cartItems,totalPrice} = useStore((state) => ({
     cartItems: state.cartItems,
     totalPrice: state.totalPrice,
-    addToCart: state.addToCart,
-    removeFromCart: state.removeFromCart,
-    clearCart: state.clearCart,
-    setTotalPrice: state.setTotalPrice,
   }))
+
+  const [cartdata, setCartData] = useState(null)
+  const [deliverycharge, setDeliveryCharge] = useState(45)
+
+  useEffect(() => {
+    setCartData(cartItems)
+  }, [])
+
+  useMemo(() => {
+    setCartData(cartItems)
+  }, [cartItems])
   
-    const [fontsLoaded] = useFonts({
+
+      const [fontsLoaded] = useFonts({
         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
         'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
         'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
@@ -49,74 +55,26 @@ const CartScreen = () => {
         'Robotto-Bold': require('../../assets/fonts/Roboto-Bold.ttf'),
     });
 
-    const [deliverycharge, setDeliveryCharge] = useState(45)
-  //   const [loadingpayement, setLoadingPayement] = useState(false)
-
-  //   const {initPaymentSheet, presentPaymentSheet} = useStripe()
-
-  //   const [payement,setPayement] = useState()
-
-  //   const handleCheckout = async() => {
-  //   setLoadingPayement(true)
-
-  //     const payamentIntent = await axios.post('https://foodiex-backend.onrender.com/api/payement/',
-  //     {
-  //       amount: (totalPrice + deliverycharge)*100,
-  //       currency: "INR",
-  //     },{
-  //       headers:{
-  //       'Access-Control-Allow-Origin': '*',
-  //       'content-type': 'application/json',
-  //       }
-  //   })
-  //   const res =  payamentIntent.data
-  //   // console.log(res)
-  //   setPayement(res)
-    
-  //   const initResponse = await initPaymentSheet({
-  //     merchantDisplayName: 'Foodiez',
-  //     paymentIntentClientSecret: res.client_secret,
-  //   })
-
-  //   if(initResponse.error){
-  //     console.log("error")
-  //     Alert.alert("Error", initResponse.error.message)
-  //     return
-  //   }
-
-  //   setLoadingPayement(false)
-
-  //   const payementRes = await presentPaymentSheet();
-  //   console.log(payementRes)
-
-  //   if(payementRes.error){
-  //     console.log("error")
-  //     Alert.alert("Error", payementRes.error.message)
-  //     return
-  //   }else{
-  //     // console.log("success")
-  //     // console.log(payementRes)
-  //     Alert.alert("Success", "Your order has been placed")
-  //     clearCart()
-  //     navigation.navigate("Home")
-      
-  //   }
-  // }
+    if(!fontsLoaded)
+      return null
   
   return (
     <SafeAreaView style={styles.container}>
-      {
-        cartItems.length > 0 ? (
-          <ScrollView showsVerticalScrollIndicator={false} style={{flex:1,width:'100%',}}>
 
-                  {
-                    cartItems?.map((item, index) => {
-                      return <CartItem key={index} item={item} />
-                    })
-                  }
-
-                  {
-                    cartItems.length > 0 ? (
+      <FlatList
+        data={cartdata}
+        renderItem={({item}) => <CartItem item={item} />}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={() => (
+          <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
+            <MaterialCommunityIcons name="cart-remove" size={50} color="white" />
+            <Text style={{color:"#e5e1d8", fontSize:20, fontFamily:"Poppins-SemiBold", paddingTop:15}}>{i18n.t("your cart is empty")}</Text>
+          </View>
+        )}
+        ListFooterComponent={() => (
+          
+            cartdata.length > 0 ? (
+          <>
                   <View style={{gap:10}}>
                     <Text style={{color:"#ef845d", fontSize:20, fontFamily:"Poppins-SemiBold"}}>{i18n.t("order summary")}</Text>
 
@@ -138,34 +96,19 @@ const CartScreen = () => {
                       <Text style={{color:"#ffad16", fontSize:20, fontFamily:"Poppins-Bold"}}>{i18n.t("total")}</Text>
                       <Text style={{color:"#e5e1d8", fontSize:15, fontFamily:"Poppins-SemiBold"}}>Rs. {totalPrice + deliverycharge}</Text>
                     </View>
-                  </View>) : null
-                  }
-                  <View>
                   </View>
-
-                  {/* {
-                    loadingpayement ? (
-                      <ActivityIndicator size="large" color="#ef845d" style={{marginTop:"20%"}} />
-                    ) : ( */}
-
                 <Button mode='contained' uppercase style={{width:'100%', fontFamily:"Poppins-SemiBold",marginBottom:"20%" }} buttonColor="#ef845d"
                   // onPress={handleCheckout}
                   onPress={() => navigation.navigate("MapScreen")}
                 >
                   {i18n.t("proceed to checkout")}
                 </Button>
+          </>
+            ) : null
+        )}
+          
+      />
 
-                    {/* ) */}
-                  {/* } */}
-
-                </ScrollView>
-        ) : (
-          <View style={{flex:1, justifyContent:"center", alignItems:"center"}}>
-            <MaterialCommunityIcons name="cart-remove" size={50} color="white" />
-            <Text style={{color:"#e5e1d8", fontSize:20, fontFamily:"Poppins-SemiBold", paddingTop:15}}>{i18n.t("your cart is empty")}</Text>
-          </View>
-        )
-      }
     </SafeAreaView>
   )
 }

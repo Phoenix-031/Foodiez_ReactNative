@@ -3,11 +3,6 @@ import { Text, View, StyleSheet,TextInput ,TouchableOpacity} from 'react-native'
 import Constants from 'expo-constants';
 
 
-
-
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
-
 export default function App() {
   return (
     <View style={styles.container}>
